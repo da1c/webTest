@@ -2,9 +2,6 @@
 
 window.addEventListener("DOMContentLoaded", Init);
 
-// ウィンドウの幅、高さを取得
-var width = window.innerWidth;
-var height = window.innerHeight;
 
 function Init() {
 
@@ -18,14 +15,13 @@ function Init() {
   // デバイスピクセル比の設定
   renderer.setPixelRatio(window.devicePixelRatio);
   // レンダラーのサイズ指定
-  renderer.setSize(width, height);
-
+  renderer.setSize(window.innerWidth, window.innerHeight);
   
   // シーン作成
   const scene = new THREE.Scene();
   
   // カメラ作成
-  const camera =  new THREE.PerspectiveCamera(60, width/height, 0.1, 1000);
+  const camera =  new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
   camera.position.set(0,100, 100);
 
   var orbit = new THREE.OrbitControls(camera, canvas3D );
@@ -64,6 +60,25 @@ function Init() {
   function Animation(){
       requestAnimationFrame(Animation);
       renderer.render(scene, camera);
+  }
+
+  // 画面サイズ更新イベントにリサイズ処理を登録
+  window.addEventListener("reize", Resize);
+
+  // 画面リサイズ時の処理
+  function Resize(){
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+
+    // 
+    // デバイスピクセル比の設定
+    renderer.setPixelRatio(window.devicePixelRatio);
+    // レンダラーのサイズ指定
+    renderer.setSize(width, height);
+
+    // カメラ修正
+    camera.aspect= width/height;
+    camera.updateProjectionMatrix();
   }
 
 }
