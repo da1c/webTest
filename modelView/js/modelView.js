@@ -3,8 +3,8 @@
 window.addEventListener("DOMContentLoaded", Init);
 
 // ウィンドウの幅、高さを取得
-var width = window.innerWidth * 0.98;
-var height = window.innerHeight * 0.98;
+var width = window.innerWidth;
+var height = window.innerHeight;
 
 function Init() {
 
