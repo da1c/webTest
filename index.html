@@ -35,18 +35,18 @@
 
     <script>
       $(function () {
-        screenHegiht = $(window).innerHeight() * 0.5;
-        console.log(screenHegiht);
-        $("#modelView").css("height", screenHegiht + "px");
-        $("#menu").css("height", screenHegiht + "px");
-
+        resize();
       });
 
       $(window).resize(function(){
+        resize();
+      });
+
+      function resize(){
         screenHegiht = $(window).innerHeight() * 0.5;
         $("#modelView").css("height", screenHegiht + "px");
         $("#menu").css("height", screenHegiht + "px");
-      });
+      }
     </script>
 
   </body>
