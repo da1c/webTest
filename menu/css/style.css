@@ -1,0 +1,12 @@
+.slick-box{
+    height: 50%;
+    width: 100%;
+}
+
+.slick-box li{
+    height: 50%;
+}
+
+.slick-box img{
+    width: 100%;
+}
