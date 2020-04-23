@@ -63,7 +63,7 @@ function Init() {
   }
 
   // 画面サイズ更新イベントにリサイズ処理を登録
-  window.addEventListener("reize", Resize);
+  window.addEventListener("resize", Resize);
 
   // 画面リサイズ時の処理
   function Resize(){
