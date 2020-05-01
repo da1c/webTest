@@ -2,6 +2,13 @@
 
 window.addEventListener("DOMContentLoaded", Init);
 
+const modePathArray = new Array( "model/kitchen.fbx", 
+"model/kitchen.fbx",
+"model/kitchen.fbx",
+"model/kitchen.fbx" );
+
+var nowMesh = null;
+var scene = null;
 
 function Init() {
 
@@ -18,7 +25,7 @@ function Init() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   
   // シーン作成
-  const scene = new THREE.Scene();
+  scene = new THREE.Scene();
   
   // カメラ作成
   const camera =  new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -47,10 +54,10 @@ function Init() {
   // ローダー作成
   var loader = new THREE.FBXLoader();
 
-  loader.load( './model/kitchen.fbx', obj=>{  
+  loader.load( modePathArray[0], obj=>{  
     // 
-
-    scene.add(obj);
+    nowMesh = obj;
+    scene.add(nowMesh);
     Animation();
   } );
 
@@ -79,6 +86,30 @@ function Init() {
     // カメラ修正
     camera.aspect= width/height;
     camera.updateProjectionMatrix();
+  }
+
+  
+　/**
+ *モデル切り替え
+ *
+ * @param {*} id
+ */
+function SetModel(id){
+
+    // 現在のモデルを削除
+    scene.remove(nowMesh);
+    nowMesh.material.dispose();
+    nowMesh.geometry.dispose();
+
+
+    // モデル
+    loader.load( modePathArray[0], obj=>{  
+      // 
+      nowMesh = obj;
+      scene.add(nowMesh);
+      Animation();
+    } );
+    
   }
 
 }

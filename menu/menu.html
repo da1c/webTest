@@ -6,6 +6,11 @@
     <!--非圧縮版をとりあえず読み込み-->
     <script src="./../js/common/jq/jquery-3.5.0.js"></script>
     <script src="./../js/common/slick/slick.js"></script>
+
+<!--Frame間アクセステスト-->
+<script src="./../js/JsTest/menuTest.js"></script>
+<script src="./../js/myjs/flow.js"></script>
+
     <link
       rel="stylesheet"
       type="text/css"
@@ -47,15 +52,34 @@
         });
 
         // 画像にクリック処理を設定
-        $("#slideA").click( function(){
+        $("#slideB").click( function(){
           console.log("Click:SlideA");
+          window.top.Flow.GetModelViewWindow().testMenu.Disp();
         });
+
+        /*
+        $("#selectItemButton").click( function(){
+          console.log("Click");
+          //window.location.href = "./../itemPickUp/itemPickUp.html";
+          window.top.testFlow.ClickCategory(window);
+        });
+*/
       });
+
+      testMenu = new menuTest("menu.htmlの変数");
     </script>
   </head>
   <body>
     <header class="Header">
-      <div>test</div>
+
+      <button id="selectItemButton" onclick="window.top.Flow.ClickItemSelectButton()">商材名</button>
+      <!-- 商材選択 -->
+      <div class="selectItemModal">
+        <div class="content">
+          <p>てすと、てすと</p>
+          <button id="close">閉じる</button>
+        </div>
+      </div>
       <!-- パンくずリストの作成 -->
       <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
         <!-- 商材情報 -->
@@ -69,12 +93,8 @@
       </ol>
     </header>
     <ul class="slick-box">
-      <li><a href="./../itemPickUp/itemPickUp.html"><img id="slideA" src="./img/slide_A.png"  alt="slide_01"/></a></li>
+      <li><a onclick="window.top.Flow.ClickCategory()"><img id="slideA" src="./img/slide_A.png"  alt="slide_01"/></a></li>
       <li><img id="slideB" src="./img/slide_B.png"  alt="slide_02"/></li>
-      <li><img id="slideC" src="./img/slide_C.png"  alt="slide_03"/></li>
-      <li><img id="slideD" src="./img/slide_D.png"  alt="slide_04"/></li>
-      <li><img id="slideC2"src="./img/slide_C.png"  alt="slide_05"/></li>
-      <li><img id="slideB2"src="./img/slide_B.png"  alt="slide_06"/></li>
     </ul>
 
   </body>

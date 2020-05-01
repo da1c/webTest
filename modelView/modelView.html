@@ -18,6 +18,9 @@
     <script src="./../js/common/OrbitControls.js"></script>
 
     <script src="./js/modelView.js"></script>
+
+    <!--Frame間アクセステスト-->
+<script src="./../js/JsTest/menuTest.js"></script>
   </head>
   <body>
     <canvas id="Canvas3D"></canvas>
@@ -39,6 +42,7 @@
         $("#Canvas3D").css("width", $(window).innerWidth());
       }
 
+      var testMenu = new menuTest("modelView.htmlの変数");
     </script>
 
   </body>

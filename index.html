@@ -3,15 +3,18 @@
   <head>
     <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--非圧縮版をとりあえず読み込み-->
     <script src="./js/common/jq/jquery-3.5.0.js"></script>
     <script src="./js/common/slick/slick.js"></script>
+
+    <script src="./js/myjs/flow.js"></script>
+
     <link
       rel="stylesheet"
       type="text/css"
       href="./css/slick/slick.css"
-      media="screen" 
+      media="screen"
     />
     <link
       rel="stylesheet"
@@ -27,27 +30,79 @@
       href="./css/style.css"
       media="screen"
     />
+
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="./css/modalstyle.css"
+    media="screen"
+  />
   </head>
   <body>
+    <!--ヘッダ-->
+    <header id="header" width="100%" height="10%">    
+      <div class="content">
+      <a class="js-modal-open">クリックでモーダルを表示</a>
+  </div></header>
+    <!--3Dモデル表示領域-->
+    <iframe
+      id="modelView"
+      name="modelView"
+      src="./modelView/modelView.html"
+      width="100%"
+      height="45%"
+    ></iframe>
+    <!--メニュー表示領域-->
+    <iframe
+      id="menu"
+      name="menu"
+      src="./menu/menu.html"
+      width="100%"
+      height="45%"
+    ></iframe>
 
-    <iframe id="modelView" src = "./modelView/modelView.html" width="100%" height="50%"></iframe>
-    <iframe id="menu" src = "./menu/menu.html" width="100%" height="50%"></iframe>
-
+    <!--商材切り替えウィンドウ-->
+    <div class="modal js_modal">
+      <div class="modal__bg js-modal-close" onclick="Flow.ClickClose()"></div>
+      <div class="modal__content">
+        <ul class="itemlist">
+        <!--商材切り替え用のバナーを配置-->
+        <div class="itembanner" onclick="Flow.ClickItemButton(0)"><div id="icon"><img src="./img/kitchen.PNG" id="iconimg"> </div> <div id="ItemNameArea"><p id="ItemName">キッチン</p></div> </div>
+        <div class="itembanner" onclick="Flow.ClickItemButton(1)"><div id="icon"><img src="./img/bath.PNG" id="iconimg"> </div> <div id="ItemNameArea">バスルーム</div> </div>
+        <div class="itembanner" onclick="Flow.ClickItemButton(2)"><div id="icon"><img src="./img/senmen.PNG" id="iconimg"> </div> <div id="ItemNameArea">化粧台</div> </div>
+        <div class="itembanner" onclick="Flow.ClickItemButton(3)"><div id="icon"><img src="./img/toire.PNG" id="iconimg"> </div> <div id="ItemNameArea">トイレ</div> </div>
+        </ul>
+        <a class="js_modal_close" onclick="Flow.ClickClose()">閉じる</a>
+      </div>
+      <!--modal__inner-->
+    </div>
+    <!--modal-->
     <script>
+      // Flow作成
+      var Flow = new flow();
+
       $(function () {
+        // サイズ設定
+        resize();
+        // フローにwindowオブジェクトを登録
+        Flow.SetIndexWindow(window);
+
+      });
+
+      // 画面サイズ更新時の処理を設定
+      $(window).resize(function () {
         resize();
       });
 
-      $(window).resize(function(){
-        resize();
-      });
-
-      function resize(){
-        screenHegiht = $(window).innerHeight() * 0.5;
+      function resize() {
+        screenHegiht = $(window).innerHeight() * 0.45;
         $("#modelView").css("height", screenHegiht + "px");
         $("#menu").css("height", screenHegiht + "px");
+
+        $("#header").css("height", $(window).innerHeight() * 0.1 + "px");
       }
     </script>
 
+    <!--モーダルウィンドウはここで作らないとおかしくなる-->
   </body>
 </html>
