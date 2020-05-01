@@ -62,7 +62,7 @@ class flow {
     // モデルビュー更新
     // モデルビューのウィンドウ取得
     let modelViewWnd = this.GetModelViewWindow();
-    modelViewWnd.SetModel(id);
+    modelViewWnd.modelview.SetModel(id);
 
     // フェードアウトさせる
     this.indexWnd.$(".js_modal").fadeOut();
