@@ -4,9 +4,9 @@ window.addEventListener("DOMContentLoaded", Init);
 
 const modePathArray = new Array(
   "model/kitchen.fbx",
-  "model/kitchen.fbx",
-  "model/kitchen.fbx",
-  "model/kitchen.fbx"
+  "model/bathroom.fbx",
+  "model/makebase.fbx",
+  "model/toilet.fbx"
 );
 
 var modelview = null;
@@ -78,6 +78,9 @@ class modelView {
 
     this.scene.add(light);
 
+    // アンビエントライト
+    var ambientLight = new THREE.AmbientLight(0x444444,1.0);
+    this.scene.add(ambientLight);
     // モデルの読み込み
     // ローダー作成
     this.loader = new THREE.FBXLoader();
@@ -85,6 +88,7 @@ class modelView {
     // モデルのロード
     this.loader.load(modePathArray[0], (obj) => {
       // 読み込んだモデルをcache
+      obj.rotation.set(0, 0, 0);
       this.nowMesh = obj;
       // シーンに追加
       this.scene.add(this.nowMesh);
@@ -105,7 +109,8 @@ class modelView {
 
     // モデル
     this.loader.load(modePathArray[id], (obj) => {
-      //
+      // 読み込んだモデルをcache
+      obj.rotation.set(0, 0, 0);
       this.nowMesh = obj;
       this.nowMeshID = id;
       this.scene.add(this.nowMesh);
