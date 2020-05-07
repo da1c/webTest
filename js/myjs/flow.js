@@ -57,12 +57,17 @@ class flow {
    * @memberof flow
    */
   ClickItemButton(id) {
-    console.log(id);
+
 
     // モデルビュー更新
     // モデルビューのウィンドウ取得
     let modelViewWnd = this.GetModelViewWindow();
-    modelViewWnd.modelview.SetModel(id);
+    this.indexWnd.dataMng.nowItemID = id;
+    // モデルウィンドウのモデル更新
+    modelViewWnd.modelview.SetModel( this.indexWnd.dataMng.GetNowModelPath() );
+
+　　// メニュー部分の商材名更新
+    this.GetMenuWindow().$(".ItemName").html( this.indexWnd.dataMng.GetNowItemName() );
 
     // フェードアウトさせる
     this.indexWnd.$(".js_modal").fadeOut();

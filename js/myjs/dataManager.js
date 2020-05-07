@@ -5,7 +5,7 @@ class dataManager {
    */
   constructor() {
     this.itemInfoArray = null;
-    this.itemDetailInfoArray = null;
+    this.nowItemID = -1;
   }
 
   /**
@@ -19,6 +19,7 @@ class dataManager {
       {
         ID: 1,
         ModelPath: "model/kitchen.fbx",
+        ItemName:"キッチン",
         DetailIDArray: new Array(
           { IMG:"img/kitchen/1.png", NAME:"1"},
           { IMG:"img/kitchen/2.png", NAME:"2"},
@@ -35,6 +36,7 @@ class dataManager {
       {
         ID: 2,
         ModelPath: "model/bathroom.fbx",
+        ItemName:"バスルーム",
         DetailIDArray: new Array(
           { IMG:"img/bath/1.png", NAME:"1"},
           { IMG:"img/bath/2.png", NAME:"2"},
@@ -51,6 +53,7 @@ class dataManager {
       {
         ID: 3,
         ModelPath: "model/makebase.fbx",
+        ItemName:"化粧台",
         DetailIDArray: new Array(
           { IMG:"img/senmen/1.png", NAME:"1"},
           { IMG:"img/senmen/2.png", NAME:"2"},
@@ -67,6 +70,7 @@ class dataManager {
       {
         ID: 4,
         ModelPath: "model/toilet.fbx",
+        ItemName:"トイレ",
         DetailIDArray: new Array(
           { IMG:"img/toire/1.png", NAME:"1"},
           { IMG:"img/toire/2.png", NAME:"2"},
@@ -81,8 +85,27 @@ class dataManager {
         ),
       }
     );
-
-    //
-    this.itemDetailInfoArray = new Array({ ID: 1, IMGPATH: "", PRI: 0 }, {});
   }
+
+
+  /**
+   *現在選択中のモデルパスを取得
+   *
+   * @memberof dataManager
+   */
+  GetNowModelPath(){
+    return this.itemInfoArray[this.nowItemID].ModelPath;
+  }
+
+
+  /**
+   *現在選択中の商材名を取得
+   *
+   * @returns
+   * @memberof dataManager
+   */
+  GetNowItemName(){
+    return this.itemInfoArray[this.nowItemID].ItemName;
+  }
+
 }

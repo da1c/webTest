@@ -20,8 +20,6 @@ class modelView {
   constructor() {
     // 現在表示中のメッシュ
     this.nowMesh = null;
-    // メッシュのIDX
-    this.nowMeshID = -1;
 
     // scene
     this.scene = null;
@@ -86,7 +84,8 @@ class modelView {
     this.loader = new THREE.FBXLoader();
 
     // モデルのロード
-    this.loader.load(modePathArray[0], (obj) => {
+    var modelPath = window.top.dataMng.GetNowModelPath();
+    this.loader.load(modelPath, (obj) => {
       // 読み込んだモデルをcache
       obj.rotation.set(0, 0, 0);
       this.nowMesh = obj;
@@ -101,18 +100,18 @@ class modelView {
    * @param {*} id
    */
 
-  SetModel(id) {
+  SetModel(modelPath) {
     // 現在のモデルを削除
     this.scene.remove(this.nowMesh);
     //this.nowMesh.material.dispose();
     //this.nowMesh.geometry.dispose();
 
     // モデル
-    this.loader.load(modePathArray[id], (obj) => {
+    this.loader.load(modelPath, (obj) => {
       // 読み込んだモデルをcache
       obj.rotation.set(0, 0, 0);
       this.nowMesh = obj;
-      this.nowMeshID = id;
+
       this.scene.add(this.nowMesh);
     });
   }

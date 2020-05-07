@@ -9,6 +9,7 @@
     <script src="./js/common/slick/slick.js"></script>
 
     <script src="./js/myjs/flow.js"></script>
+    <script src="./js/myjs/dataManager.js"></script>
 
     <link
       rel="stylesheet"
@@ -89,10 +90,18 @@
     <script>
       // Flow作成
       var Flow = new flow();
+      // データマネージャー作成
+      var dataMng = new dataManager();
 
       $(function () {
         // サイズ設定
         resize();
+
+        // データマネージャー初期化
+        dataMng.Init();
+        // 初期商材はkitchenを指定
+        dataMng.nowItemID = 0;
+
         // フローにwindowオブジェクトを登録
         Flow.SetIndexWindow(window);
 

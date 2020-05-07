@@ -56,14 +56,10 @@
           console.log("Click:SlideA");
           window.top.Flow.GetModelViewWindow().testMenu.Disp();
         });
+        
+        // 商材名、設定
+        $(".ItemName").html( window.top.dataMng.GetNowItemName() );
 
-        /*
-        $("#selectItemButton").click( function(){
-          console.log("Click");
-          //window.location.href = "./../itemPickUp/itemPickUp.html";
-          window.top.testFlow.ClickCategory(window);
-        });
-*/
       });
 
       testMenu = new menuTest("menu.htmlの変数");
@@ -72,7 +68,7 @@
   <body>
     <header class="Header">
 
-      <a class="ItemName" id="ItemName">商材名</a>
+      <a class="ItemName" id="ItemName"></a>
 
       <!-- パンくずリストの作成 -->
       <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
