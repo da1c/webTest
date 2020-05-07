@@ -6,6 +6,7 @@ class dataManager {
   constructor() {
     this.itemInfoArray = null;
     this.nowItemID = -1;
+    this.selectDetailID = -1;
   }
 
   /**
@@ -117,6 +118,10 @@ class dataManager {
    */
   GetNowItemDetailInfo(){
     return this.itemInfoArray[this.nowItemID].DetailIDArray; 
+  }
+
+  GetSelectItemDetailInfo(){
+    return this.itemInfoArray[this.nowItemID].DetailIDArray[this.selectDetailID]; 
   }
 
 }

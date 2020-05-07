@@ -54,6 +54,7 @@
           let idx = elementIdx;
           let img = $(this).children();
           img.attr("src", "../" + itemDetailInfo[idx].IMG);
+          img.attr("onclick", "window.top.Flow.ClickDetailButton(" + idx + ")" );
           elementIdx ++;
         } );
 

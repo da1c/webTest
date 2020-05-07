@@ -1,0 +1,16 @@
+
+body{
+    margin: 0%;
+    padding: 0%;
+    overflow: hidden;
+}
+
+.ItemDetailArea{
+    height: 90%;
+    width: 100%;
+    background-color: antiquewhite;
+}
+
+.DetailImg{
+    height: 100%;
+}

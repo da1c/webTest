@@ -73,7 +73,14 @@ class flow {
     this.indexWnd.$(".js_modal").fadeOut();
   }
 
-  // 遷移
+  ClickDetailButton(idx){
+    console.log(idx);
+    // 選択したIDXを保存
+    this.indexWnd.dataMng.selectDetailID = idx;
 
-  // 前のページに戻る
+    // 商材詳細画面へ遷移
+    this.GetMenuWindow().location.href = "./../itemDetail/itemDetail.html";
+  }
+
+
 }
