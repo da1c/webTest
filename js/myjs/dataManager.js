@@ -108,4 +108,15 @@ class dataManager {
     return this.itemInfoArray[this.nowItemID].ItemName;
   }
 
+
+  /**
+   *現在選択中の商材の小組情報を取得
+   *
+   * @returns
+   * @memberof dataManager
+   */
+  GetNowItemDetailInfo(){
+    return this.itemInfoArray[this.nowItemID].DetailIDArray; 
+  }
+
 }
