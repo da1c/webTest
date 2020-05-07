@@ -69,24 +69,39 @@
     ></iframe>
 
     <!--商材切り替えウィンドウ-->
-    <div class="modal js_modal">
+    <div class="modal itemSelectModal">
       <div class="modal__bg js-modal-close" onclick="Flow.ClickClose()"></div>
       <div class="modal__content">
         <ul class="itemList">
         <!--商材切り替え用のバナーを配置-->
-        <div class="itembanner" onclick="Flow.ClickItemButton(0)"><div id="icon"><img src="./img/kitchen.PNG" id="iconimg"> </div> <div id="ItemNameArea"><p id="ItemName">キッチン</p></div> </div>
-        <div class="itembanner" onclick="Flow.ClickItemButton(1)"><div id="icon"><img src="./img/bath.PNG" id="iconimg"> </div> <div id="ItemNameArea">バスルーム</div> </div>
-        <div class="itembanner" onclick="Flow.ClickItemButton(2)"><div id="icon"><img src="./img/senmen.PNG" id="iconimg"> </div> <div id="ItemNameArea">化粧台</div> </div>
-        <div class="itembanner" onclick="Flow.ClickItemButton(3)"><div id="icon"><img src="./img/toire.PNG" id="iconimg"> </div> <div id="ItemNameArea">トイレ</div> </div>
-        </ul>
-
-        <ul class="itemDetaileList">
-          <!--ここにアイテムリストを追加する-->　
+        <div class="itembanner" onclick="Flow.ClickItemButton(0)"><div class="icon"><img src="./img/kitchen.PNG" class="iconimg"> </div> <div class="ItemNameArea">キッチン</div> </div>
+        <div class="itembanner" onclick="Flow.ClickItemButton(1)"><div class="icon"><img src="./img/bath.PNG" class="iconimg"> </div> <div class="ItemNameArea">バスルーム</div> </div>
+        <div class="itembanner" onclick="Flow.ClickItemButton(2)"><div class="icon"><img src="./img/senmen.PNG" class="iconimg"> </div> <div class="ItemNameArea">化粧台</div> </div>
+        <div class="itembanner" onclick="Flow.ClickItemButton(3)"><div class="icon"><img src="./img/toire.PNG" class="iconimg"> </div> <div class="ItemNameArea">トイレ</div> </div>
         </ul>
       </div>
       <!--modal__inner-->
     </div>
     <!--modal-->
+
+    <!-- 小組一覧 -->
+    <div class="modal itemDetailModal">
+      <div class="modal__bg js-modal-close" onclick="Flow.ClickCloseItemDetailListButton()"></div>
+      <div class="modal__content">
+        <ul class="itemList">
+        <!--商材切り替え用のバナーを配置-->
+        <div class="itembanner DetailBanner" onclick="Flow.ClickDetailListButton(0)"><div class="icon"><img src="" class="iconimg"> </div> <div class="ItemNameArea">キッチン</div> </div>
+        <div class="itembanner DetailBanner" onclick="Flow.ClickDetailListButton(1)"><div class="icon"><img src="" class="iconimg"> </div> <div class="ItemNameArea">バスルーム</div> </div>
+        <div class="itembanner DetailBanner" onclick="Flow.ClickDetailListButton(2)"><div class="icon"><img src="" class="iconimg"> </div> <div class="ItemNameArea">化粧台</div> </div>
+        <div class="itembanner DetailBanner" onclick="Flow.ClickDetailListButton(3)"><div class="icon"><img src="" class="iconimg"> </div> <div class="ItemNameArea">トイレ</div> </div>
+        </ul>
+      </div>
+      <!--modal__inner-->
+    </div>
+
+
+
+
     <script>
       // Flow作成
       var Flow = new flow();

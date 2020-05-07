@@ -33,24 +33,19 @@
     float: left;
 }
 
-#icon{
+.icon{
     width: 50%;
     height: 100%;
     float: left;
 }
-#iconimg{
+.iconimg{
     max-width: 100%;
     float: left;
 }
 
-#ItemNameArea{
+.ItemNameArea{
     width: 50%;
     height: 100%;
     float: left;
     text-align: center;
-}
-
-#ItemName{
-    margin-top: auto;
-    margin-bottom: auto;
 }
