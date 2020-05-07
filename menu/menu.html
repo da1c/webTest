@@ -51,18 +51,12 @@
           arrows:false
         });
 
-        // 画像にクリック処理を設定
-        $("#slideB").click( function(){
-          console.log("Click:SlideA");
-          window.top.Flow.GetModelViewWindow().testMenu.Disp();
-        });
         
         // 商材名、設定
         $(".ItemName").html( window.top.dataMng.GetNowItemName() );
 
       });
 
-      testMenu = new menuTest("menu.htmlの変数");
     </script>
   </head>
   <body>
@@ -84,8 +78,8 @@
     </header>
     <div class="SlickArea">
     <ul class="slick-box">
-      <li><div class="SlickElement"><a onclick="window.top.Flow.ClickCategory()"><img class="SlickElementImg" id="slideA" src="./img/itemBanner.png"  alt="slide_01"/></a></div></li>
-      <li><div class="SlickElement"><img id="slideB" src="./img/colorBanner.png"  alt="slide_02"/></div></li>
+      <li><div class="SlickElement"><a onclick="window.top.Flow.ClickCategory()"><img class="SlickElementImg" src="./img/itemBanner.png" /></a></div></li>
+      <li><div class="SlickElement"><img src="./img/colorBanner.png" /></div></li>
     </ul>
     </div>
 
