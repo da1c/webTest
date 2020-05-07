@@ -7,20 +7,37 @@
 
 .slick-box li{
     height: 60%;
+    width: 50%;
+}
+
+.slick-box a{
+    height: 100%;
+    width: 100%;
+}
+
+.SlickElement{
+    width: 100%;
+    height: 50%;
 }
 
 .slick-box img{
     width: 100%;
 }
 
+
 .Header {
     width: 100%;
     height: 40%;
     padding: 0%;
+    background-color: orange;
 }
 
 body{
     margin: 0px;
     overflow: hidden;
+}
+
+.SlickArea{
+    background-color: beige;
 }
 

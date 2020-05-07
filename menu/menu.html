@@ -72,14 +72,8 @@
   <body>
     <header class="Header">
 
-      <button id="selectItemButton" onclick="window.top.Flow.ClickItemSelectButton()">商材名</button>
-      <!-- 商材選択 -->
-      <div class="selectItemModal">
-        <div class="content">
-          <p>てすと、てすと</p>
-          <button id="close">閉じる</button>
-        </div>
-      </div>
+      <a class="ItemName" id="ItemName">商材名</a>
+
       <!-- パンくずリストの作成 -->
       <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
         <!-- 商材情報 -->
@@ -92,10 +86,12 @@
         </li>
       </ol>
     </header>
+    <div class="SlickArea">
     <ul class="slick-box">
-      <li><a onclick="window.top.Flow.ClickCategory()"><img id="slideA" src="./img/slide_A.png"  alt="slide_01"/></a></li>
-      <li><img id="slideB" src="./img/slide_B.png"  alt="slide_02"/></li>
+      <li><div class="SlickElement"><a onclick="window.top.Flow.ClickCategory()"><img class="SlickElementImg" id="slideA" src="./img/slide_A.png"  alt="slide_01"/></a></div></li>
+      <li><div class="SlickElement"><img id="slideB" src="./img/slide_B.png"  alt="slide_02"/></div></li>
     </ul>
+    </div>
 
   </body>
 </html>

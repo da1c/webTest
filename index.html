@@ -37,13 +37,19 @@
     href="./css/modalstyle.css"
     media="screen"
   />
+  <link
+  rel="stylesheet"
+  type="text/css"
+  href="./css/header.css"
+  media="screen"
+/>
   </head>
   <body>
     <!--ヘッダ-->
-    <header id="header" width="100%" height="10%">    
-      <div class="content">
-      <a class="js-modal-open">クリックでモーダルを表示</a>
-  </div></header>
+    <header class="Header" id="header" width="100%" height="10%">
+      <img class="ItemSelectButton" src="./img/ItemSelectButton.png" onclick="Flow.ClickItemSelectButton()" >
+      <div class="HeaderLogo"><img class="HeaderLogoImg" src="./img/h_logo.png"></div>
+    </header>
     <!--3Dモデル表示領域-->
     <iframe
       id="modelView"
@@ -65,14 +71,17 @@
     <div class="modal js_modal">
       <div class="modal__bg js-modal-close" onclick="Flow.ClickClose()"></div>
       <div class="modal__content">
-        <ul class="itemlist">
+        <ul class="itemList">
         <!--商材切り替え用のバナーを配置-->
         <div class="itembanner" onclick="Flow.ClickItemButton(0)"><div id="icon"><img src="./img/kitchen.PNG" id="iconimg"> </div> <div id="ItemNameArea"><p id="ItemName">キッチン</p></div> </div>
         <div class="itembanner" onclick="Flow.ClickItemButton(1)"><div id="icon"><img src="./img/bath.PNG" id="iconimg"> </div> <div id="ItemNameArea">バスルーム</div> </div>
         <div class="itembanner" onclick="Flow.ClickItemButton(2)"><div id="icon"><img src="./img/senmen.PNG" id="iconimg"> </div> <div id="ItemNameArea">化粧台</div> </div>
         <div class="itembanner" onclick="Flow.ClickItemButton(3)"><div id="icon"><img src="./img/toire.PNG" id="iconimg"> </div> <div id="ItemNameArea">トイレ</div> </div>
         </ul>
-        <a class="js_modal_close" onclick="Flow.ClickClose()">閉じる</a>
+
+        <ul class="itemDetaileList">
+          <!--ここにアイテムリストを追加する-->　
+        </ul>
       </div>
       <!--modal__inner-->
     </div>

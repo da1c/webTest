@@ -1,0 +1,18 @@
+.ItemSelectButton{
+
+    height: 100%;
+    width: auto;
+    float: left;
+}
+
+.HeaderLogo{
+    float: left;
+    height: 100%;
+    width: auto;
+    margin: auto;
+}
+
+.HeaderLogoImg{
+    height: 60%;
+    width: 60%;
+}
