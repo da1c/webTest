@@ -9,15 +9,9 @@
 
     height: 100%;
     width: 30%;
-    margin: auto;
-    position: relative;
 }
 
 .HeaderLogoImg{
     height: 60%;
     width: 60%;
-
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
 }
