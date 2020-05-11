@@ -30,22 +30,42 @@
 
 .itembanner{
     width: 100%;
+    height: 100px;
     float: left;
 }
+
+/*
+.itembanner div{
+    width: 50%;
+    height: 100%;
+    float: left;
+    
+}
+*/
+
 
 .icon{
     width: 50%;
     height: 100%;
     float: left;
 }
+
 .iconimg{
     max-width: 100%;
+    height: 100%;
     float: left;
 }
 
+.ItemName{
+    height: 20px;
+}
+
+
 .ItemNameArea{
+    display: block;
+    float: left;
     width: 50%;
     height: 100%;
-    float: left;
-    text-align: center;
+
 }
+

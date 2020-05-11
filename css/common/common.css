@@ -1,6 +1,6 @@
 
 
-/*コンテンツ中央寄せ用*/
+/*↓ コンテンツ中央寄せ用 ↓ ----------------------------------*/
 /*中央寄せを行う親要素に設定*/
 .ContentsParent{
     margin: auto;
@@ -11,5 +11,15 @@
 .ContentsChild{
     position: absolute;
     top: 50%;
-    transform: translate(25%, -50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+
+/*中央左寄せ*/
+.ContentsLeftChild{
+    position: absolute;
+    top: 50%;
+    transform: translateY( -50%);
+}
+
+/*↑ コンテンツ中央寄せ用 ↑----------------------------------*/
