@@ -12,10 +12,11 @@
     margin: 0%;
     padding: 0%;
     height: 2px;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 100%;
-    transform: translateY(-100%);
+    left: 50%;
+    transform: translate( -50%,-100%);
 
 }
 
@@ -23,16 +24,26 @@
 .breadcrumb{
    position: absolute;
    top: 100%;
+    left: 2%;
    transform: translateY(-115%);
 }
 
 /*商材名領域*/
 .ItemNameArea{
-
   width: 100%;
   height: 50px;
   font-size: 25px;
   color:white;
   background-color: dimgrey;
+}
 
+/*機能一覧表示ボタン*/
+.itemDetailListButton{
+    position: absolute;
+    top: 100%;
+    left: 100%;
+    transform: translate(-110%,-115%);
+    width: 120px;
+    text-decoration: underline;
+    text-align: right;
 }
