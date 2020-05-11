@@ -234,12 +234,12 @@
       });
 
       function resize() {
-        let screenHegiht = $(window).innerHeight();
-        let screenHarfHegiht = screenHegiht * 0.45;
+        let screenHegiht = $(window).innerHeight() - 50;
+        let screenHarfHegiht = screenHegiht * 0.5;
         $("#modelView").css("height", screenHarfHegiht + "px");
         $("#menu").css("height", screenHarfHegiht + "px");
 
-        $("#header").css("height", $(window).innerHeight() * 0.1 + "px");
+        $("#header").css("height", "50px");
       }
     </script>
   </body>
