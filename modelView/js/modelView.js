@@ -44,6 +44,8 @@ class modelView {
     this.renderer.setPixelRatio(window.devicePixelRatio);
     // レンダラーのサイズ指定
     this.renderer.setSize(window.innerWidth, window.innerHeight);
+    // 背景色の設定
+    this.renderer.setClearColor(0xe0e0e0, 1.0);
 
     // シーン作成
     this.scene = new THREE.Scene();
