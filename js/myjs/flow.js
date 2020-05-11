@@ -94,7 +94,8 @@ class flow {
 
       // 小組名設定
       let nameArea = $(this).children(".ItemNameArea");
-      nameArea.html( detailInfo[idx].NAME );
+      let name = nameArea.children(".ItemName");
+      name.html( detailInfo[idx].NAME );
 
     });
 

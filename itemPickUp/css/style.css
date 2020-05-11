@@ -13,16 +13,6 @@
     width: 100%;
 }
 
-.Header {
-    width: 100%;
-    height: 40%;
-    padding: 0%;
-    margin: 0%;
-    background-color: beige;
-}
-
-
-
 body{
     margin: 0%;
     padding: 0%;
@@ -31,10 +21,4 @@ body{
 
 .SlickArea{
     background-color: beige;
-}
-
-.Boarder{
-    margin: 0%;
-    padding: 0%;
-    height: 2px;
 }

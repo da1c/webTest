@@ -36,6 +36,18 @@
       href="./../css/breadcrumb.css"
       media="screen"
     />
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="./../css/common/common.css"
+    media="screen"
+  />
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="./../css/common/menuheader.css"
+    media="screen"
+  />
 
     <script type="text/javascript">
       $(function () {
@@ -58,8 +70,9 @@
   </head>
   <body>
     <header class="Header">
-      <a class="ItemName" id="ItemName"></a>
-
+      <div class="ItemNameArea ContentsParent">
+      <div class="ItemName ContentsChild" id="ItemName"></div>
+      </div>
       <!-- パンくずリストの作成 -->
       <ol
         class="breadcrumb"

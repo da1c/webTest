@@ -1,0 +1,38 @@
+.Header {
+    width: 100%;
+    height: 80px;
+    padding: 0%;
+    background-color: white;
+    position: relative;
+}
+
+
+/*ヘッダー下部罫線*/
+.Boarder{
+    margin: 0%;
+    padding: 0%;
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    transform: translateY(-100%);
+
+}
+
+/*パンくずの親要素*/
+.breadcrumb{
+   position: absolute;
+   top: 100%;
+   transform: translateY(-115%);
+}
+
+/*商材名領域*/
+.ItemNameArea{
+
+  width: 100%;
+  height: 50px;
+  font-size: 25px;
+  color:white;
+  background-color: dimgrey;
+
+}
