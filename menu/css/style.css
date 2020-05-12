@@ -16,13 +16,20 @@
 }
 
 .SlickElement{
+    display: block;
     width: 100%;
-    height: 50%;
+    height: 200px;
+    background-color: black;
+    position: relative;
 }
 
-.slick-box img{
-    width: 100%;
+.SlickElementImg{
+    display: block;
+    width: 80%;
+    height: 80%;
+    transform: translateX(5%);
 }
+
 
 body{
     margin: 0px;

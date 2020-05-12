@@ -37,17 +37,17 @@
       media="screen"
     />
     <link
-    rel="stylesheet"
-    type="text/css"
-    href="./../css/common/common.css"
-    media="screen"
-  />
+      rel="stylesheet"
+      type="text/css"
+      href="./../css/common/common.css"
+      media="screen"
+    />
     <link
-    rel="stylesheet"
-    type="text/css"
-    href="./../css/common/menuheader.css"
-    media="screen"
-  />
+      rel="stylesheet"
+      type="text/css"
+      href="./../css/common/menuheader.css"
+      media="screen"
+    />
 
     <script type="text/javascript">
       $(function () {
@@ -65,13 +65,30 @@
 
         // 商材名、設定
         $(".ItemName").html(window.top.dataMng.GetNowItemName());
+
+        Resize();
       });
+
+      $(window).resize(function () {
+        Resize();
+      });
+
+      function Resize() {
+        let height = window.top.Flow.GetMenuAreaHeight();
+
+        let headerSize = height * 0.3;
+        $(".Header").css("height", headerSize + "px");
+
+        let slickAreaSize = height * 0.7;
+        $(".SlickElement").css("height", slickAreaSize + "px");
+      }
     </script>
   </head>
+
   <body>
     <header class="Header">
       <div class="ItemNameArea ContentsParent">
-      <div class="ItemName ContentsChild" id="ItemName"></div>
+        <div class="ItemName ContentsChild" id="ItemName"></div>
       </div>
       <!-- パンくずリストの作成 -->
       <ol
@@ -96,14 +113,23 @@
     <div class="SlickArea">
       <ul class="slick-box">
         <li>
-          <div class="SlickElement">
-            <a onclick="window.top.Flow.ClickCategory()"
-              ><img class="SlickElementImg" src="./img/itemBanner.png"
-            /></a>
+          <div
+            class="SlickElement ContentsParent"
+            onclick="window.top.Flow.ClickCategory()"
+          >
+            <img
+              class="SlickElementImg ContentsChild"
+              src="./img/itemBanner.png"
+            />
           </div>
         </li>
         <li>
-          <div class="SlickElement"><img src="./img/colorBanner.png" /></div>
+          <div class="SlickElement">
+            <img
+              class="SlickElementImg ContentsChild"
+              src="./img/colorBanner.png"
+            />
+          </div>
         </li>
       </ul>
     </div>

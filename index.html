@@ -216,9 +216,6 @@
       var dataMng = new dataManager();
 
       $(function () {
-        // サイズ設定
-        resize();
-
         // データマネージャー初期化
         dataMng.Init();
         // 初期商材はkitchenを指定
@@ -226,21 +223,15 @@
 
         // フローにwindowオブジェクトを登録
         Flow.SetIndexWindow(window);
+
+        // サイズ設定
+        Flow.Resize();
       });
 
       // 画面サイズ更新時の処理を設定
       $(window).resize(function () {
-        resize();
+        Flow.Resize();
       });
-
-      function resize() {
-        let screenHegiht = $(window).innerHeight() - 50;
-        let screenHarfHegiht = screenHegiht * 0.5;
-        $("#modelView").css("height", screenHarfHegiht + "px");
-        $("#menu").css("height", screenHarfHegiht + "px");
-
-        $("#header").css("height", "50px");
-      }
     </script>
   </body>
 </html>

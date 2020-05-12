@@ -9,6 +9,7 @@ class flow {
     this.indexWnd = null;
     this.menuWnd = null;
     this.modelWnd = null;
+    this.menuAreaHeight = 0.0;
   }
 
   SetIndexWindow(wnd) {
@@ -22,6 +23,7 @@ class flow {
   SetModelViewWindow(wnd) {
     this.modelWnd = wnd;
   }
+
 
   // 遷移などをここに実装
   ClickCategory() {
@@ -38,6 +40,10 @@ class flow {
 
   GetModelViewWindow() {
     return this.indexWnd.frames.modelView;
+  }
+
+  GetMenuAreaHeight(){
+    return this.menuAreaHeight;
   }
 
   // 商材切り替えボタンクリック
@@ -127,6 +133,18 @@ class flow {
   ClickCloseItemDetailListButton(){
     // フェードアウトさせる
     this.indexWnd.$(".itemDetailModal").fadeOut();
+  }
+
+  Resize(){
+    let screenHegiht = $(window).innerHeight();
+    let screenHarfHegiht = screenHegiht * 0.47;
+
+    // Index.htmlの各要素のサイズ設定
+    this.indexWnd.$("#modelView").css("height", screenHarfHegiht + "px");
+    this.indexWnd.$("#menu").css("height", screenHarfHegiht + "px");
+    this.indexWnd.$("#header").css("height", screenHegiht * 0.06 + "px");
+    // メニュー部分のサイズを保存
+    this.menuAreaHeight = screenHarfHegiht;
   }
 
 }
