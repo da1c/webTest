@@ -46,6 +46,12 @@ class flow {
     return this.menuAreaHeight;
   }
 
+  // ARボタンクリック時の処理
+  ClickARButton(){
+    console.log("Click:AR");
+    this.indexWnd.location.href  = "";
+  }
+
   // 商材切り替えボタンクリック
   ClickItemSelectButton() {
     //this.indexWnd.

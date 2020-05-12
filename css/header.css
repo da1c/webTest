@@ -15,3 +15,13 @@
     height: 60%;
     width: 50%;
 }
+
+
+/*仮でここにARボタン*/
+.arButton{
+    width: auto;
+    height: 15%;
+    top: 5%;
+    right: 5%;
+    position: absolute;
+}
