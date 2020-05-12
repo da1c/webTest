@@ -20,11 +20,13 @@
     content: '';
   }
   
-  .breadcrumb li a {
-    text-decoration: none;
-    color: salmon;
-  }
-  
-  .breadcrumb li a:hover {
+  .breadcrumb_prev {
     text-decoration: underline;
+    text-decoration-color: coral;
+    color: coral;
+  }
+
+  .breadcrumb_current{
+    color: black;
+    text-decoration: none;
   }
