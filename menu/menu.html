@@ -51,18 +51,6 @@
 
     <script type="text/javascript">
       $(function () {
-        $(".slick-box").slick({
-          centerMode: true,
-          centerPadding: "50px",
-          dots: false,
-          infinite: false,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          speed: 300,
-          adaptiveHeight: true,
-          arrows: false,
-        });
-
         // 商材名、設定
         $(".ItemName").html(window.top.dataMng.GetNowItemName());
 
@@ -102,7 +90,7 @@
           itemscope
           itemtype="https://schema.org/ListItem"
         >
-          <a itemprop="item" >
+          <a itemprop="item">
             <span itemprop="name" class="breadcrumb_current">商品情報</span>
           </a>
           <meta itemprop="position" content="1" />
@@ -110,28 +98,27 @@
       </ol>
       <hr class="Boarder" size="2px" />
     </header>
-    <div class="SlickArea">
-      <ul class="slick-box">
-        <li>
-          <div
-            class="SlickElement ContentsParent"
-            onclick="window.top.Flow.ClickCategory()"
-          >
-            <img
-              class="SlickElementImg ContentsChild"
-              src="./img/itemBanner.png"
-            />
+
+    <!--カテゴリー選択-->
+    <div class="MenuArea">
+
+      <ul class="CategoryList ContentsParent">
+        <div class="CategoryBanner" onclick="window.top.Flow.ClickCategory()">
+          <div class="CategoryGuide">
+            <img class="CategoryBannerIcon" src="./img/item_icon.png" ></img>
+            <div class="CategoryBannerName">機能</div>
           </div>
-        </li>
-        <li>
-          <div class="SlickElement">
-            <img
-              class="SlickElementImg ContentsChild"
-              src="./img/colorBanner.png"
-            />
+          <div class="CategoryBannerMark">></div>
+        </div>
+        <div class="CategoryBanner">
+          <div class="CategoryGuide">
+            <img class="CategoryBannerIcon" src="./img/color_icon.png" ></img>
+            <div class="CategoryBannerName">カラー</div>
           </div>
-        </li>
+          <div class="CategoryBannerMark">></div>
+        </div>
       </ul>
+
     </div>
   </body>
 </html>
