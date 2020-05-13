@@ -28,10 +28,23 @@
     overflow: scroll;
 }
 
+.modal__content_item_select{
+    background: #fff;
+    left: 50%;
+    padding: 0px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 80%;
+    height: auto;
+
+}
+
 .itembanner{
     width: 100%;
     height: 100px;
     float: left;
+    outline: auto;
 }
 
 .icon{
@@ -48,6 +61,7 @@
 
 .ItemName{
     height: 20px;
+    padding: 10px;
 }
 
 
@@ -58,4 +72,22 @@
     height: 100%;
 
 }
+
+.itemselectbanner{
+    width: 100%;
+    height: 50px;
+    float: left;
+    outline: auto;
+}
+
+.CloseButton{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 0%;
+    right: 0%;
+    transform: translate(50%,-50%);
+}
+
+
 

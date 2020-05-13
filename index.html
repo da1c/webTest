@@ -87,35 +87,31 @@
     <!--商材切り替えウィンドウ-->
     <div class="modal itemSelectModal">
       <div class="modal__bg js-modal-close" onclick="Flow.ClickClose()"></div>
-      <div class="modal__content">
-        <ul class="itemList">
+      <div class="modal__content_item_select">
+        <img class="CloseButton" src="./img/modal_close.png" onclick="Flow.ClickClose()">
+        <ul class="itemList itemSelectList">
           <!--商材切り替え用のバナーを配置-->
-          <div class="itembanner" onclick="Flow.ClickItemButton(0)">
-            <div class="icon">
-              <img src="./img/kitchen.PNG" class="iconimg" />
+          <div class="itemselectbanner">
+            <div class="ItemNameArea ContentsParent">
+              <div class="ItemName ContentsLeftChild">商材を選ぶ</div>
             </div>
+          </div>
+          <div class="itemselectbanner" onclick="Flow.ClickItemButton(0)">
             <div class="ItemNameArea ContentsParent">
               <div class="ItemName ContentsLeftChild">キッチン</div>
             </div>
           </div>
-          <div class="itembanner" onclick="Flow.ClickItemButton(1)">
-            <div class="icon"><img src="./img/bath.PNG" class="iconimg" /></div>
+          <div class="itemselectbanner" onclick="Flow.ClickItemButton(1)">
             <div class="ItemNameArea ContentsParent">
               <div class="ItemName ContentsLeftChild">バスルーム</div>
             </div>
           </div>
-          <div class="itembanner" onclick="Flow.ClickItemButton(2)">
-            <div class="icon">
-              <img src="./img/senmen.PNG" class="iconimg" />
-            </div>
+          <div class="itemselectbanner" onclick="Flow.ClickItemButton(2)">
             <div class="ItemNameArea ContentsParent">
               <div class="ItemName ContentsLeftChild">化粧台</div>
             </div>
           </div>
-          <div class="itembanner" onclick="Flow.ClickItemButton(3)">
-            <div class="icon">
-              <img src="./img/toire.PNG" class="iconimg" />
-            </div>
+          <div class="itemselectbanner" onclick="Flow.ClickItemButton(3)">
             <div class="ItemNameArea ContentsParent">
               <div class="ItemName ContentsLeftChild">トイレ</div>
             </div>
