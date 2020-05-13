@@ -58,7 +58,7 @@
       <img
         class="ItemSelectButton"
         src="./img/ItemSelectButton.png"
-        onclick="Flow.ClickItemSelectButton()"
+        onclick="Flow.ClickMenuButton()"
       />
       <div class="HeaderLogo ContentsParent">
         <img class="HeaderLogoImg ContentsChild" src="./img/h_logo.png" />
@@ -83,6 +83,43 @@
       width="100%"
       height="45%"
     ></iframe>
+
+    <!--メニュー-->
+    <div class="modal menuModal">
+      <div class="modal__bg js-modal-close" onclick="Flow.ClickCloseMenu()"></div>
+      <div class="modal_menu">
+        <ul class="itemList itemSelectList">
+          <!--商材切り替え用のバナーを配置-->
+          <div class="itemselectbanner">
+            <div class="ItemNameArea ContentsParent">
+              <div class="ItemName ContentsLeftChild">メニュー1</div>
+            </div>
+          </div>
+          <div class="itemselectbanner" >
+            <div class="ItemNameArea ContentsParent">
+              <div class="ItemName ContentsLeftChild">メニュー2</div>
+            </div>
+          </div>
+          <div class="itemselectbanner" >
+            <div class="ItemNameArea ContentsParent">
+              <div class="ItemName ContentsLeftChild">メニュー3</div>
+            </div>
+          </div>
+          <div class="itemselectbanner">
+            <div class="SNSArea ContentsParent">
+              <div class="SNSIconArea">
+                <img src="./img/face_book.png">
+                <img src="./img/twitter.png">
+                <img src="./img/line.png">
+              </div>
+              <div class="SNSText">SNSでシェアしよう！</div>
+            </div>
+          </div>
+        </ul>
+      </div>
+      <!--modal__inner-->
+    </div>
+    <!--modal-->
 
     <!--商材切り替えウィンドウ-->
     <div class="modal itemSelectModal">

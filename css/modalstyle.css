@@ -1,93 +1,128 @@
-
-.content{
-    margin: 0 auto;
-    padding: 40px;
+.content {
+  margin: 0 auto;
+  padding: 40px;
 }
-.modal{
-    display: none;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    width: 100%;
+.modal {
+  display: none;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
-.modal__bg{
-    background: rgba(0,0,0,0.8);
-    height: 100vh;
-    position: absolute;
-    width: 100%;
+.modal__bg {
+  background: rgba(0, 0, 0, 0.8);
+  height: 100vh;
+  position: absolute;
+  width: 100%;
 }
-.modal__content{
-    background: #fff;
-    left: 50%;
-    padding: 0px;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    width: 80%;
-    height: 80%;
-    overflow: scroll;
-}
-
-.modal__content_item_select{
-    background: #fff;
-    left: 50%;
-    padding: 0px;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    width: 80%;
-    height: auto;
-
+.modal__content {
+  background: #fff;
+  left: 50%;
+  padding: 0px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  overflow: scroll;
 }
 
-.itembanner{
-    width: 100%;
-    height: 100px;
-    float: left;
-    outline: auto;
+.modal__content_item_select {
+  background: #fff;
+  left: 50%;
+  padding: 0px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: auto;
 }
 
-.icon{
-    width: 50%;
+.itembanner {
+  width: 100%;
+  height: 100px;
+  float: left;
+  outline: auto;
+}
+
+.icon {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+
+.iconimg {
+  max-width: 100%;
+  height: 100%;
+  float: left;
+}
+
+.ItemName {
+  height: 20px;
+  padding: 10px;
+}
+
+.ItemNameArea {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 100%;
+}
+
+.itemselectbanner {
+  width: 100%;
+  height: 50px;
+  float: left;
+  outline: auto;
+}
+
+.CloseButton {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 0%;
+  right: 0%;
+  transform: translate(50%, -50%);
+}
+
+.modal_menu {
+  background: #fff;
+  left: 50%;
+  padding: 0px;
+  position: absolute;
+  top: 50%;
+  width: 80%;
+  height: auto;
+}
+
+.SNSArea{
     height: 100%;
-    float: left;
+    width: 100%;
+    padding: 0px;
+    margin: 0%;
 }
 
-.iconimg{
-    max-width: 100%;
+.SNSIconArea{
     height: 100%;
-    float: left;
-}
-
-.ItemName{
-    height: 20px;
+    width: auto;
     padding: 10px;
+    margin: 0%;
 }
 
-
-.ItemNameArea{
-    display: block;
+.SNSIconArea img{
     float: left;
-    width: 50%;
-    height: 100%;
-
+    height: 70%;
+    width: auto;
+    padding: 0%;
+    margin: 0%;
 }
 
-.itemselectbanner{
-    width: 100%;
-    height: 50px;
-    float: left;
-    outline: auto;
-}
-
-.CloseButton{
+.SNSText{
+    clear: both;
     position: absolute;
-    width: 40px;
-    height: 40px;
-    top: 0%;
+    top:50%;
     right: 0%;
-    transform: translate(50%,-50%);
+    padding: 10px;
+    transform: translateY(-50%);
 }
-
-
 

@@ -48,7 +48,7 @@ class flow {
 
   // ARボタンクリック時の処理
   ClickARButton(){
-    console.log("Click:AR");
+
     this.indexWnd.location.href  = "";
   }
 
@@ -61,7 +61,26 @@ class flow {
     this.indexWnd.$(".itemSelectModal").fadeIn();
   }
 
+  // ボタンクリック
+  ClickMenuButton(){
+    // メニュー取得
+    let menu = this.indexWnd.$(".menuModal");
+    let headerHeight = this.indexWnd.$(".Header").innerHeight();
+
+    menu.css("top", headerHeight + "px" );
+    // 
+    let content = this.indexWnd.$(".modal_menu");
+    content.css( { top : "0px", 
+                   left : "0px",
+                   transformX : "translate(-50%)"  } );
+
+    menu.fadeIn();
+  }
   
+  ClickCloseMenu(){
+    this.indexWnd.$(".menuModal").fadeOut();
+  }
+
   /**
    *商材ボタンクリック1
    *
