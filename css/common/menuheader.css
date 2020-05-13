@@ -47,3 +47,14 @@
     text-decoration: underline;
     text-align: right;
 }
+
+.ItemSelectButton{
+    height: 50%;
+    width: auto;
+    padding: auto;
+    margin: 0%;
+    position: absolute;
+    right: 0%;
+    top: 50%;
+    transform: translateY(-50%);
+}
