@@ -77,6 +77,8 @@ class modelView {
     light.position.set(1, 1, 1);
 
     this.scene.add(light);
+    // 画面サイズ設定
+    Resize();
 
     // アンビエントライト
     var ambientLight = new THREE.AmbientLight(0x444444,1.0);
@@ -118,9 +120,6 @@ class modelView {
     });
   }
 }
-
-// 画面サイズ更新イベントにリサイズ処理を登録
-window.addEventListener("resize", Resize);
 
 // 画面リサイズ時の処理
 function Resize() {
