@@ -32,7 +32,8 @@ class dataManager {
           { IMG:"img/kitchen/8.png", NAME:"8"},
           { IMG:"img/kitchen/9.png", NAME:"9"},
           { IMG:"img/kitchen/10.png", NAME:"10"}
-        ),
+        ), 
+        ARURL: "",
       },
       {
         ID: 2,
@@ -50,6 +51,7 @@ class dataManager {
           { IMG:"img/bath/9.png", NAME:"9"},
           { IMG:"img/bath/10.png", NAME:"10"}
         ),
+        ARURL: "",
       },
       {
         ID: 3,
@@ -67,6 +69,7 @@ class dataManager {
           { IMG:"img/senmen/9.png", NAME:"9"},
           { IMG:"img/senmen/10.png", NAME:"10"}
         ),
+        ARURL: "",
       },
       {
         ID: 4,
@@ -84,6 +87,7 @@ class dataManager {
           { IMG:"img/toire/9.png", NAME:"9"},
           { IMG:"img/toire/10.png", NAME:"10"}
         ),
+        ARURL: "",
       }
     );
   }
@@ -122,6 +126,10 @@ class dataManager {
 
   GetSelectItemDetailInfo(){
     return this.itemInfoArray[this.nowItemID].DetailIDArray[this.selectDetailID]; 
+  }
+
+  GetSelectItemARUrl(){
+    return this.itemInfoArray[this.nowItemID].ARURL; 
   }
 
 }

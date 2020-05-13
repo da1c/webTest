@@ -48,8 +48,7 @@ class flow {
 
   // ARボタンクリック時の処理
   ClickARButton(){
-
-    this.indexWnd.location.href  = "";
+    this.indexWnd.location.href  = this.indexWnd.dataMng.GetSelectItemARUrl();
   }
 
   // 商材切り替えボタンクリック
