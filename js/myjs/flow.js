@@ -176,7 +176,7 @@ class flow {
     // カラーカテゴリー選択
     let menuWnd = this.GetMenuWindow();
 
-    menuWnd.location.href = "./../colorPickUp/colorPickUp.html";
+    menuWnd.location.href = "./../colorTypeSelect/colorSelectType.html";
   }
 
   /**
@@ -189,26 +189,54 @@ class flow {
     // カラー一覧の初期化
     let wnd = this.GetMenuWindow();
 
-    window.top.dataMng.SetSelectColorType(0);
-
     // 選択中の商材のカラー情報を取得
-    let colorInfo = window.top.dataMng.GetSelectColorInfo();
+    let colorInfo = this.indexWnd.dataMng.GetSelectColorTypeInfo();
 
     // 追加先の要素を取得
     let dstElement = wnd.$(".slick-box");
 
-    let elemnt_str = "";
+    let element_str = "";
+
+    // カラー情報分、スクロール要素配下に要素を追加
+    for (let index = 0; index < colorInfo.COLOR_ID_ARRAY.length; ++index) {
+      const element = this.indexWnd.dataMng.GetColorInfo( colorInfo.COLOR_ID_ARRAY[index]);
+      element_str += "<li class=\"SlickElement ContentsParent\"><img class=\"SlickElementImg ContentsChild\" src=\"../" + element.IMG + "\" /></li>";
+    }
+
+    dstElement.append( element_str );
+
+  }
+
+  InitColorTypeSelect(){
+    // Menu部分のウィンドウ取得
+    let wnd = this.GetMenuWindow();
+
+    // 選択中の商材のカラー情報を取得
+    let colorInfo = this.indexWnd.dataMng.GetSelectColorInfo();
+
+    let dstElement = wnd.$(".CategoryList");
+
+    let element_str = "";
 
     // カラー情報分、スクロール要素配下に要素を追加
     for (let index = 0; index < colorInfo.length; ++index) {
-      const element = window.top.dataMng.GetColorInfo( colorInfo[index]);
-      elemnt_str += "<li class=\"SlickElement ContentsParent\"><img class=\"SlickElementImg ContentsChild\" src=\"../" + element.IMG + "\" /></li>";
+      const element = colorInfo[index];
+      element_str += "<div class=\"CategoryBanner\" onclick=\"window.top.Flow.ClickColorType(" + index + ")\"><div class=\"CategoryGuide\"><div class=\"CategoryBannerName\">" + element.COLOR_CATEGORY +"</div></div><div class=\"CategoryBannerMark\">></div></div>";
     }
 
-    dstElement.append( elemnt_str );
-
-    // slickの初期化
+    dstElement.append( element_str );
 
   }
+
+  ClickColorType(ID){
+
+    this.indexWnd.dataMng.SetSelectColorType(ID);
+
+    // カラーカテゴリー選択
+    let menuWnd = this.GetMenuWindow();
+
+    menuWnd.location.href = "./../colorPickUp/colorPickUp.html";
+  }
+
 
 }

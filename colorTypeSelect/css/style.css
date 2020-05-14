@@ -1,0 +1,51 @@
+
+body{
+    margin: 0px;
+    overflow: hidden;
+    background-color: #f9f6f4;
+}
+
+.MenuArea{
+    background-color: #f9f6f4;
+    padding: 10px;
+}
+
+.CategoryList{
+    margin: 0%;
+    padding: 0%;
+}
+
+.CategoryBanner {
+    width: 100%;
+    margin: 0%;
+    position: relative;
+    outline: auto 3px;
+    padding: 0%;
+    margin: 0%;
+    background-color: #f9f6f4;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.CategoryBanner div{
+    display: inline-block;
+
+}
+
+.CategoryGuide{
+    padding: 10px;
+}
+
+.CategoryBannerMark{
+    position: absolute;
+    display: block;
+    left: 100%;
+    transform: translateX(-200%);
+    padding: 10px;
+    color: coral;
+}
+
+.CategoryBannerIcon{
+    height: 15px;
+    width: auto;
+}

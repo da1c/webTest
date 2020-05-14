@@ -204,11 +204,15 @@ class dataManager {
 
 
   GetSelectColorInfo() {
-    return this.itemInfoArray[this.nowItemID].COLOR[this.selectColorTypeID].COLOR_ID_ARRAY;
+    return this.itemInfoArray[this.nowItemID].COLOR;
   }
 
   SetSelectColorType(ID){
     this.selectColorTypeID = ID;
+  }
+
+  GetSelectColorTypeInfo(){
+    return this.itemInfoArray[this.nowItemID].COLOR[ this.selectColorTypeID];
   }
 
   GetColorInfo(colorID){
