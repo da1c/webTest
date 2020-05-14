@@ -1,0 +1,42 @@
+.slick-box{
+    height: 60%;
+    width: 100%;
+    margin: auto;
+    padding: 0%;
+}
+
+.slick-box li{
+    height: 60%;
+    width: 50%;
+}
+
+.slick-box a{
+    height: 100%;
+    width: 100%;
+}
+
+.SlickElement{
+    display: block;
+    width: 100%;
+    height: 200px;
+    background-color: #f9f6f4;;
+    position: relative;
+}
+
+.SlickElementImg{
+    display: block;
+    width: 80%;
+    height: 80%;
+}
+
+
+
+body{
+    margin: 0%;
+    padding: 0%;
+    overflow: hidden;
+}
+
+.SlickArea{
+    background-color: #f9f6f4;;
+}

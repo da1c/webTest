@@ -26,7 +26,7 @@ class flow {
 
 
   // 遷移などをここに実装
-  ClickCategory() {
+  ClickItemCategory() {
     this.GetMenuWindow().location.href = "./../itemPickUp/itemPickUp.html";
   }
 
@@ -169,6 +169,46 @@ class flow {
     this.indexWnd.$("#header").css("height", screenHegiht * 0.06 + "px");
     // メニュー部分のサイズを保存
     this.menuAreaHeight = screenHarfHegiht;
+  }
+
+  // カテゴリーのカラーを選択
+　ClickColorCategory(){
+    // カラーカテゴリー選択
+    let menuWnd = this.GetMenuWindow();
+
+    menuWnd.location.href = "./../colorPickUp/colorPickUp.html";
+  }
+
+  /**
+   *colorPickUpの初期化処理
+   *と見込み完了時に実行する
+   *
+   * @memberof flow
+   */
+  InitColorPickUp(){
+    // カラー一覧の初期化
+    let wnd = this.GetMenuWindow();
+
+    window.top.dataMng.SetSelectColorType(0);
+
+    // 選択中の商材のカラー情報を取得
+    let colorInfo = window.top.dataMng.GetSelectColorInfo();
+
+    // 追加先の要素を取得
+    let dstElement = wnd.$(".slick-box");
+
+    let elemnt_str = "";
+
+    // カラー情報分、スクロール要素配下に要素を追加
+    for (let index = 0; index < colorInfo.length; ++index) {
+      const element = window.top.dataMng.GetColorInfo( colorInfo[index]);
+      elemnt_str += "<li class=\"SlickElement ContentsParent\"><img class=\"SlickElementImg ContentsChild\" src=\"../" + element.IMG + "\" /></li>";
+    }
+
+    dstElement.append( elemnt_str );
+
+    // slickの初期化
+
   }
 
 }
