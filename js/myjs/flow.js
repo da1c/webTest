@@ -179,6 +179,26 @@ class flow {
     menuWnd.location.href = "./../colorTypeSelect/colorSelectType.html";
   }
 
+  InitItemPickUp(){
+    // メニュー部分のwindowオブジェクトの取得
+    let wnd = this.GetMenuWindow();
+
+    // 機能情報を取得
+    let itemInfo = this.indexWnd.dataMng.GetNowItemDetailInfo();
+
+    let element_str = "";
+
+    for (let index = 0; index < itemInfo.length; index++) {
+      const element = itemInfo[index].IMG;
+      element_str += "<li class=\"SlickElement ContentsParent\"><img class=\"SlickElementImg ContentsChild\" src=\"../" + element + "\" onclick= \"window.top.Flow.ClickDetailButton(" + index + ")\"></li>";
+    }
+
+    // 追加先の要素を取得
+    let dstElement = wnd.$(".slick-box");
+    dstElement.append(element_str);
+  }
+
+
   /**
    *colorPickUpの初期化処理
    *と見込み完了時に実行する

@@ -18,6 +18,11 @@
 
   <script type="text/javascript">
     $(function () {
+
+      // 選択中の商品の機能分要素追加
+      window.top.Flow.InitItemPickUp();
+
+      // slick初期化
       $(".slick-box").slick({
         centerMode: true,
         centerPadding: "50px",
@@ -28,18 +33,6 @@
         speed: 300,
         adaptiveHeight: true,
         arrows: false
-      });
-
-      // 小組画像を5つ分設定
-      let itemDetailInfo = window.top.dataMng.GetNowItemDetailInfo();
-
-      let elementIdx = 0;
-      $(".SlickElement").each(function () {
-        let idx = elementIdx;
-        let img = $(this).children();
-        img.attr("src", "../" + itemDetailInfo[idx].IMG);
-        img.attr("onclick", "window.top.Flow.ClickDetailButton(" + idx + ")");
-        elementIdx++;
       });
 
       // 商材名、設定
@@ -101,11 +94,6 @@
   </ul>
   <div class="SlickArea">
     <ul class="slick-box">
-      <li class="SlickElement ContentsParent"><img class="SlickElementImg ContentsChild" src="./img/slide_A.png" alt="slide_01" /></li>
-      <li class="SlickElement ContentsParent"><img class="SlickElementImg ContentsChild" src="./img/slide_A.png" alt="slide_02" /></li>
-      <li class="SlickElement ContentsParent"><img class="SlickElementImg ContentsChild" src="./img/slide_A.png" alt="slide_03" /></li>
-      <li class="SlickElement ContentsParent"><img class="SlickElementImg ContentsChild" src="./img/slide_A.png" alt="slide_04" /></li>
-      <li class="SlickElement ContentsParent"><img class="SlickElementImg ContentsChild" src="./img/slide_A.png" alt="slide_05" /></li>
     </ul>
   </div>
 
