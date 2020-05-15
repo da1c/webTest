@@ -78,8 +78,13 @@
     <header class="Header">
       <div class="ItemNameArea ContentsParent">
         <div class="ItemName ContentsChild" id="ItemName"></div>
-        <img class="ItemSelectButton" src="../img/item_select_button.png" onclick="window.top.Flow.ClickItemSelectButton()">
+        <img
+          class="ItemSelectButton"
+          src="../img/item_select_button.png"
+          onclick="window.top.Flow.ClickItemSelectButton()"
+        />
       </div>
+      <!-- パンくずリストの作成 -->
       <!-- パンくずリストの作成 -->
       <ol
         class="breadcrumb"
@@ -92,10 +97,22 @@
           itemscope
           itemtype="https://schema.org/ListItem"
         >
-          <a itemprop="item">
-            <span itemprop="name" class="breadcrumb_current">商品情報</span>
+          <a itemprop="item" href="./../menu/menu.html">
+            <span itemprop="name" class="breadcrumb_prev">商品情報</span>
           </a>
           <meta itemprop="position" content="1" />
+        </li>
+
+        <!-- 2つめ -->
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <a itemprop="item">
+            <span itemprop="name" class="breadcrumb_current">カラー</span>
+          </a>
+          <meta itemprop="position" content="2" />
         </li>
       </ol>
       <hr class="Boarder" size="2px" />
@@ -103,10 +120,7 @@
 
     <!--カテゴリー選択-->
     <div class="MenuArea">
-
-      <ul class="CategoryList ContentsParent">
-      </ul>
-
+      <ul class="CategoryList ContentsParent"></ul>
     </div>
   </body>
 </html>
