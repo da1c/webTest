@@ -35,6 +35,7 @@ class dataManager {
           { TYPE: this.SrcType.IMG, SRC: "img/kitchen/8.png", NAME: "8" },
           { TYPE: this.SrcType.IMG, SRC: "img/kitchen/9.png", NAME: "9" },
           { TYPE: this.SrcType.IMG, SRC: "img/kitchen/10.png", NAME: "10" },
+          { TYPE:this.SrcType.VIDEO, SRC: "https://www.youtube-nocookie.com/embed/U5ltyDw43lg", NAME:"1"}
         ),
         ARURL: "",
         COLOR: new Array(
@@ -223,6 +224,11 @@ class dataManager {
     }
 
     return null;
+  }
+
+
+  CheckIMGSrcType( check ){
+     return this.SrcType.IMG == check;
   }
 
 }

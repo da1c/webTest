@@ -185,17 +185,29 @@ class flow {
 
     // 機能情報を取得
     let itemInfo = this.indexWnd.dataMng.GetNowItemDetailInfo();
-
     let element_str = "";
 
     for (let index = 0; index < itemInfo.length; index++) {
       const element = itemInfo[index].SRC;
-      element_str += "<li class=\"SlickElement ContentsParent\"><img class=\"SlickElementImg ContentsChild\" src=\"../" + element + "\"></li>";
+
+      if( this.indexWnd.dataMng.CheckIMGSrcType(itemInfo[index].TYPE)){
+          element_str += this.CreateIMGElement(element);
+      }
+      else{
+        element_str += this.CreateVideoElement(element);
+      }
     }
 
     // 追加先の要素を取得
     let dstElement = wnd.$(".slick-box");
     dstElement.append(element_str);
+  }
+
+  CreateIMGElement(src){
+    return "<li class=\"SlickElement ContentsParent\"><img class=\"SlickElementImg ContentsChild\" src=\"../" + src + "\"></li>";
+  }
+  CreateVideoElement(src){
+    return "<li class=\"SlickElement ContentsParent\"><iframe class=\"SlickElementImg ContentsChild\" src=\""+ src +"\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
   }
 
 
