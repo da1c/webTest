@@ -30,6 +30,12 @@ class modelView {
 
     // モデルローダー
     this.loader = null;
+    this.textureLoader = null;
+    // 壁メッシュ
+    this.wallObj = null;
+    // 床メッシュ
+    this.floorObj = null;
+
   }
 
   Init() {
@@ -83,10 +89,42 @@ class modelView {
     // アンビエントライト
     var ambientLight = new THREE.AmbientLight(0x444444,1.0);
     this.scene.add(ambientLight);
+
+
+　　// 壁メッシュと床メッシュの作成
+    let geometry = new THREE.PlaneGeometry( 1000, 500, 1 );
+
+
+    let test = geometry.faceVertexUvs;
+    for (const item of test) {
+       console.log(item);
+    }
+
+    this.textureLoader = new THREE.TextureLoader();
+
+    // テクスチャロード
+    this.textureLoader.load("./../img/floor.png", (texture)=>{
+      let floor_mat = new THREE.MeshBasicMaterial( {map: texture, side: THREE.DoubleSide} );
+      floor_mat.map.wrapS = THREE.RepeatWrapping;
+      floor_mat.map.wrapT = THREE.RepeatWrapping;
+      floor_mat.map.repeat.set(32,32);
+      this.floorObj = new THREE.Mesh( geometry, floor_mat );
+      this.floorObj.rotation.set(Math.PI/2,0,Math.PI);
+      this.scene.add( this.floorObj );
+    });
+
+    this.textureLoader.load("./../img/wall.png", (texture)=>{
+      let wall_mat = new THREE.MeshBasicMaterial( {map: texture, side: THREE.DoubleSide} );
+      wall_mat.map.wrapS = THREE.RepeatWrapping;
+      wall_mat.map.wrapT = THREE.RepeatWrapping;
+      wall_mat.map.repeat.set(32,32);
+      this.wallObj = new THREE.Mesh( geometry, wall_mat );
+      this.scene.add( this.wallObj );
+    });
+
     // モデルの読み込み
     // ローダー作成
     this.loader = new THREE.FBXLoader();
-
     // モデルのロード
     var modelPath = window.top.dataMng.GetNowModelPath();
     this.loader.load(modelPath, (obj) => {
@@ -97,6 +135,7 @@ class modelView {
       this.scene.add(this.nowMesh);
       Animation();
     });
+
   }
   /**
    *モデル切り替え

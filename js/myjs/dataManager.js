@@ -52,6 +52,8 @@ class dataManager {
             COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
           }
         ),
+        WALL_POS:new THREE.Vector2(0,0),
+        FLOOR_POS:new THREE.Vector2(0,0),
       },
       {
         ID: 2,
@@ -84,6 +86,8 @@ class dataManager {
             COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
           }
         ),
+        WALL_POS:new THREE.Vector2(0,0),
+        FLOOR_POS:new THREE.Vector2(0,0),
       },
       {
         ID: 3,
@@ -116,6 +120,8 @@ class dataManager {
             COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
           }
         ),
+        WALL_POS:new THREE.Vector2(0,0),
+        FLOOR_POS:new THREE.Vector2(0,0),
       },
       {
         ID: 4,
@@ -138,6 +144,8 @@ class dataManager {
           COLOR_CATEGORY: "カラー1箇所",
           COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
         }),
+        WALL_POS:new THREE.Vector2(0,0),
+        FLOOR_POS:new THREE.Vector2(0,0),
       }
     );
 
