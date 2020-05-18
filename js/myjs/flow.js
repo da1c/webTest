@@ -120,7 +120,7 @@ class flow {
       // アイコンの要素に画像パスを設定
       let icon = $(this).children(".icon");
       let iconImg = icon.children(".iconimg");
-      iconImg.attr( "src", detailInfo[idx].IMG );
+      iconImg.attr( "src", detailInfo[idx].SRC );
 
       // 小組名設定
       let nameArea = $(this).children(".ItemNameArea");
@@ -189,7 +189,7 @@ class flow {
     let element_str = "";
 
     for (let index = 0; index < itemInfo.length; index++) {
-      const element = itemInfo[index].IMG;
+      const element = itemInfo[index].SRC;
       element_str += "<li class=\"SlickElement ContentsParent\"><img class=\"SlickElementImg ContentsChild\" src=\"../" + element + "\"></li>";
     }
 
@@ -223,7 +223,7 @@ class flow {
     // カラー情報分、スクロール要素配下に要素を追加
     for (let index = 0; index < colorInfo.COLOR_ID_ARRAY.length; ++index) {
       const element = this.indexWnd.dataMng.GetColorInfo( colorInfo.COLOR_ID_ARRAY[index]);
-      element_str += "<li class=\"SlickElement ContentsParent\"><div class=\"ColorName\">"+ element.NAME +"</div><img class=\"SlickElementImg ContentsChild\" src=\"../" + element.IMG + "\" /></li>";
+      element_str += "<li class=\"SlickElement ContentsParent\"><div class=\"ColorName\">"+ element.NAME +"</div><img class=\"SlickElementImg ContentsChild\" src=\"../" + element.SRC + "\" /></li>";
     }
 
     dstElement.append( element_str );
