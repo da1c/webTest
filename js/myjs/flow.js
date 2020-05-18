@@ -190,7 +190,7 @@ class flow {
 
     for (let index = 0; index < itemInfo.length; index++) {
       const element = itemInfo[index].IMG;
-      element_str += "<li class=\"SlickElement ContentsParent\"><img class=\"SlickElementImg ContentsChild\" src=\"../" + element + "\" onclick= \"window.top.Flow.ClickDetailButton(" + index + ")\"></li>";
+      element_str += "<li class=\"SlickElement ContentsParent\"><img class=\"SlickElementImg ContentsChild\" src=\"../" + element + "\"></li>";
     }
 
     // 追加先の要素を取得
