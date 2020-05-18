@@ -26,7 +26,7 @@
 .SlickElementImg{
     display: block;
     width: 80%;
-    height: 80%;
+    height: 60%;
 }
 
 
@@ -39,4 +39,11 @@ body{
 
 .SlickArea{
     background-color: #f9f6f4;;
+}
+
+.ColorName{
+    margin: 5% 0%;
+    width: 100%;
+    font-size: 1rem;
+    text-align: center;
 }
