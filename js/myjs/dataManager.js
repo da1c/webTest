@@ -52,8 +52,8 @@ class dataManager {
             COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
           }
         ),
-        WALL_POS:new THREE.Vector2(0,0),
-        FLOOR_POS:new THREE.Vector2(0,0),
+        WALL_POS:new THREE.Vector3(0,0,0),
+        FLOOR_POS:new THREE.Vector3(0,0,0),
       },
       {
         ID: 2,
@@ -86,8 +86,8 @@ class dataManager {
             COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
           }
         ),
-        WALL_POS:new THREE.Vector2(0,0),
-        FLOOR_POS:new THREE.Vector2(0,0),
+        WALL_POS:new THREE.Vector3(0,0,0),
+        FLOOR_POS:new THREE.Vector3(0,0,0),
       },
       {
         ID: 3,
@@ -120,8 +120,8 @@ class dataManager {
             COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
           }
         ),
-        WALL_POS:new THREE.Vector2(0,0),
-        FLOOR_POS:new THREE.Vector2(0,0),
+        WALL_POS:new THREE.Vector3(0,0,0),
+        FLOOR_POS:new THREE.Vector3(0,0,0),
       },
       {
         ID: 4,
@@ -144,8 +144,8 @@ class dataManager {
           COLOR_CATEGORY: "カラー1箇所",
           COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
         }),
-        WALL_POS:new THREE.Vector2(0,0),
-        FLOOR_POS:new THREE.Vector2(0,0),
+        WALL_POS:new THREE.Vector3(0,0,0),
+        FLOOR_POS:new THREE.Vector3(0,0,0),
       }
     );
 
@@ -170,6 +170,13 @@ class dataManager {
    */
   GetNowModelPath() {
     return this.itemInfoArray[this.nowItemID].ModelPath;
+  }
+
+  GetNowModelWallPos(){
+    return this.itemInfoArray[this.nowItemID].WALL_POS;
+  }
+  GetNowModelFloorPos(){
+    return this.itemInfoArray[this.nowItemID].FLOOR_POS;
   }
 
   /**

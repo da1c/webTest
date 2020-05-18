@@ -92,7 +92,7 @@ class flow {
     let modelViewWnd = this.GetModelViewWindow();
     this.indexWnd.dataMng.nowItemID = id;
     // モデルウィンドウのモデル更新
-    modelViewWnd.modelview.SetModel( this.indexWnd.dataMng.GetNowModelPath() );
+    modelViewWnd.modelview.SetModel( this.indexWnd.dataMng.GetNowModelPath(), this.indexWnd.dataMng.GetNowModelWallPos(), this.indexWnd.dataMng.GetNowModelFloorPos() );
 
 　　// メニュー部分の商材名更新
     this.GetMenuWindow().$(".ItemName").html( this.indexWnd.dataMng.GetNowItemName() );

@@ -93,32 +93,33 @@ class modelView {
 
 　　// 壁メッシュと床メッシュの作成
     let geometry = new THREE.PlaneGeometry( 1000, 500, 1 );
-
-
-    let test = geometry.faceVertexUvs;
-    for (const item of test) {
-       console.log(item);
-    }
-
+    // テクスチャローダー作成
     this.textureLoader = new THREE.TextureLoader();
 
     // テクスチャロード
+    // 床
     this.textureLoader.load("./../img/floor.png", (texture)=>{
-      let floor_mat = new THREE.MeshBasicMaterial( {map: texture, side: THREE.DoubleSide} );
+      let floor_mat = new THREE.MeshBasicMaterial( {map: texture, side: THREE.FrontSide} );
       floor_mat.map.wrapS = THREE.RepeatWrapping;
       floor_mat.map.wrapT = THREE.RepeatWrapping;
       floor_mat.map.repeat.set(32,32);
       this.floorObj = new THREE.Mesh( geometry, floor_mat );
-      this.floorObj.rotation.set(Math.PI/2,0,Math.PI);
+      this.floorObj.rotation.set(-Math.PI/2,0,0);
+      // 
+      let pos = window.top.dataMng.GetNowModelFloorPos();
+      this.floorObj.position.set( pos.x, pos.y, pos.z );
       this.scene.add( this.floorObj );
     });
 
+    // 壁
     this.textureLoader.load("./../img/wall.png", (texture)=>{
-      let wall_mat = new THREE.MeshBasicMaterial( {map: texture, side: THREE.DoubleSide} );
+      let wall_mat = new THREE.MeshBasicMaterial( {map: texture, side: THREE.FrontSide} );
       wall_mat.map.wrapS = THREE.RepeatWrapping;
       wall_mat.map.wrapT = THREE.RepeatWrapping;
       wall_mat.map.repeat.set(32,32);
       this.wallObj = new THREE.Mesh( geometry, wall_mat );
+      let pos = window.top.dataMng.GetNowModelWallPos();
+      this.wallObj.position.set( pos.x, pos.y, pos.z );
       this.scene.add( this.wallObj );
     });
 
@@ -143,7 +144,7 @@ class modelView {
    * @param {*} id
    */
 
-  SetModel(modelPath) {
+  SetModel(modelPath, wallPos, floorPos) {
     // 現在のモデルを削除
     this.scene.remove(this.nowMesh);
     //this.nowMesh.material.dispose();
@@ -156,6 +157,10 @@ class modelView {
       this.nowMesh = obj;
 
       this.scene.add(this.nowMesh);
+
+      // 床、壁の座標移動
+      this.wallObj.position.set( wallPos.x, wallPos.y, wallPos.z );
+      this.floorObj.position.set( floorPos.x, floorPos.y, floorPos.z );
     });
   }
 }
