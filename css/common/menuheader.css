@@ -32,9 +32,10 @@
 .ItemNameArea{
   width: 100%;
   height: 50px;
-  font-size: 25px;
+  font-size: 1.5rem;
   color:white;
   background-color: black;
+  white-space: nowrap;
 }
 
 /*機能一覧表示ボタン*/
