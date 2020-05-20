@@ -102,7 +102,7 @@ class modelView {
       let floor_mat = new THREE.MeshBasicMaterial( {map: texture, side: THREE.FrontSide} );
       floor_mat.map.wrapS = THREE.RepeatWrapping;
       floor_mat.map.wrapT = THREE.RepeatWrapping;
-      floor_mat.map.repeat.set(32,32);
+      floor_mat.map.repeat.set(16,16);
       this.floorObj = new THREE.Mesh( geometry, floor_mat );
       this.floorObj.rotation.set(-Math.PI/2,0,0);
       // 
@@ -116,7 +116,7 @@ class modelView {
       let wall_mat = new THREE.MeshBasicMaterial( {map: texture, side: THREE.FrontSide} );
       wall_mat.map.wrapS = THREE.RepeatWrapping;
       wall_mat.map.wrapT = THREE.RepeatWrapping;
-      wall_mat.map.repeat.set(32,32);
+      wall_mat.map.repeat.set(16,16);
       this.wallObj = new THREE.Mesh( geometry, wall_mat );
       let pos = window.top.dataMng.GetNowModelWallPos();
       this.wallObj.position.set( pos.x, pos.y, pos.z );
