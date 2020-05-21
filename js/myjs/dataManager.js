@@ -35,7 +35,7 @@ class dataManager {
           { TYPE: this.SrcType.IMG, SRC: "img/kitchen/8.png", NAME: "8" },
           { TYPE: this.SrcType.IMG, SRC: "img/kitchen/9.png", NAME: "9" },
           { TYPE: this.SrcType.IMG, SRC: "img/kitchen/10.png", NAME: "10" },
-          { TYPE:this.SrcType.VIDEO, SRC: "https://www.youtube-nocookie.com/embed/U5ltyDw43lg", NAME:"1"}
+          { TYPE:this.SrcType.VIDEO, SRC: "img/toire/10.png", NAME:1}
         ),
         ARURL: "",
         COLOR: new Array(
@@ -52,6 +52,8 @@ class dataManager {
             COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
           }
         ),
+        WALL_TEXTURE_PATH : "",
+        FLOOR_TEXTURE_PATH : "",
         WALL_POS:new THREE.Vector3(0,0,0),
         FLOOR_POS:new THREE.Vector3(0,0,0),
       },
@@ -86,6 +88,8 @@ class dataManager {
             COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
           }
         ),
+        WALL_TEXTURE_PATH : "",
+        FLOOR_TEXTURE_PATH : "",
         WALL_POS:new THREE.Vector3(0,0,0),
         FLOOR_POS:new THREE.Vector3(0,0,0),
       },
@@ -120,6 +124,8 @@ class dataManager {
             COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
           }
         ),
+        WALL_TEXTURE_PATH : "",
+        FLOOR_TEXTURE_PATH : "",
         WALL_POS:new THREE.Vector3(0,0,0),
         FLOOR_POS:new THREE.Vector3(0,0,0),
       },
@@ -144,6 +150,8 @@ class dataManager {
           COLOR_CATEGORY: "カラー1箇所",
           COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
         }),
+        WALL_TEXTURE_PATH : "",
+        FLOOR_TEXTURE_PATH : "",
         WALL_POS:new THREE.Vector3(0,0,0),
         FLOOR_POS:new THREE.Vector3(0,0,0),
       }
@@ -161,6 +169,9 @@ class dataManager {
       { ID: 9, SRC: "img/toire/9.png", NAME: "9" },
       { ID: 10, SRC: "img/toire/10.png", NAME: "10" }
     );
+
+    this.videoInfoArray= new Array(
+      { ID:1, SRC:"https://www.youtube-nocookie.com/embed/U5ltyDw43lg", IMG:"img/toire/10.png"} );
   }
 
   /**
@@ -244,6 +255,16 @@ class dataManager {
 
   CheckIMGSrcType( check ){
      return this.SrcType.IMG == check;
+  }
+
+  GetVideoInfo(videoID){
+    for (let index = 0; index < this.videoInfoArray.length; index++) {
+      if (videoID == this.videoInfoArray[index].ID) {
+        return this.videoInfoArray[index];
+      }
+    }
+
+    return null;
   }
 
 }

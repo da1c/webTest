@@ -34,6 +34,10 @@ class flow {
     this.indexWnd.$(".itemSelectModal").fadeOut();
   }
 
+  ClickCloseVideo(){
+    this.indexWnd.$(".videoModal").fadeOut();
+  }
+
   GetMenuWindow() {
     return this.indexWnd.frames.menu;
   }
@@ -188,13 +192,13 @@ class flow {
     let element_str = "";
 
     for (let index = 0; index < itemInfo.length; index++) {
-      const element = itemInfo[index].SRC;
 
       if( this.indexWnd.dataMng.CheckIMGSrcType(itemInfo[index].TYPE)){
-          element_str += this.CreateIMGElement(element);
+          element_str += this.CreateIMGElement(itemInfo[index].SRC);
       }
       else{
-        element_str += this.CreateVideoElement(element);
+        let src = itemInfo[index].SRC;
+        element_str += this.CreateVideoElement(src, itemInfo[index].NAME);
       }
     }
 
@@ -206,8 +210,8 @@ class flow {
   CreateIMGElement(src){
     return "<li class=\"SlickElement ContentsParent\"><img class=\"SlickElementImg ContentsChild\" src=\"../" + src + "\"></li>";
   }
-  CreateVideoElement(src){
-    return "<li class=\"SlickElement ContentsParent\"><iframe class=\"SlickElementImg ContentsChild\" src=\""+ src +"\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
+  CreateVideoElement(src, videoID){
+    return "<li class=\"SlickElement ContentsParent\"><img class=\"SlickElementImg ContentsChild\" src=\"../" + src + "\" onclick=\"window.top.Flow.ClickVideo(" + videoID + ")\"></li>";
   }
 
 
@@ -271,6 +275,32 @@ class flow {
     let menuWnd = this.GetMenuWindow();
 
     menuWnd.location.href = "./../colorPickUp/colorPickUp.html";
+  }
+
+
+  // 機能の動画を選択
+  ClickVideo(ID){
+    let info = this.indexWnd.dataMng.GetVideoInfo(ID);
+
+    // video の情報を設定
+    console.log(ID);
+
+    //     return "<li class=\"SlickElement ContentsParent\"><iframe class=\"SlickElementImg ContentsChild\" src=\""+ src +"\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
+
+    // メニューモーダルの子要素に動画のIframeを追加
+    // Video要素追加先
+    let dstEle = this.indexWnd.$(".modal_video");
+
+    // Video情報の取得
+    dstEle.append("<iframe class=\"VideoContent ContentsChild\" src=\""+ info.SRC +"\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>");
+
+    // メニューのモーダル表示をフェードＩＮ
+    this.indexWnd.$(".videoModal").fadeIn();
+  }
+
+  ClickCloseVideo(){
+    this.indexWnd.$(".videoModal").fadeOut();
+    this.indexWnd.$(".VideoContent").remove();
   }
 
 
