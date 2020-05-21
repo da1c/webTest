@@ -305,4 +305,21 @@ class flow {
   }
 
 
+  
+  /**
+   *Webカタログバナーをクリックした際の処理
+   *
+   * @memberof flow
+   */
+  ClickWebCatalogCategory(){
+    let url = this.indexWnd.dataMng.GetWebCataroguURL();
+    this.indexWnd.open(url);
+  }
+
+  ClickHomePage(){
+    let url = this.indexWnd.dataMng.GetHomePageURL();
+    this.indexWnd.open(url);
+  }
+
+
 }

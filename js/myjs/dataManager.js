@@ -10,6 +10,9 @@ class dataManager {
     this.selectDetailID = -1;
     this.selectColorTypeID = -1;
     this.SrcType = { IMG : 1, VIDEO : 2 };
+    this.videoInfoArray = null;
+    this.webCatarogURL = "";
+    this.homePageURL = "";
   }
 
   /**
@@ -265,6 +268,14 @@ class dataManager {
     }
 
     return null;
+  }
+
+  GetWebCataroguURL(){
+    return this.webCatarogURL;
+  }
+
+  GetHomePageURL(){
+    return this.homePageURL;
   }
 
 }
