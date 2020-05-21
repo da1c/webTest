@@ -31,6 +31,12 @@
         // 読み込み時にCanvas3Dのサイズをウィンドウサイズに合わせる
         resize();
       });
+
+      function resize(){
+        $("#Canvas3D").css("height", $(window).innerHeight());
+        $("#Canvas3D").css("width", $(window).innerWidth());
+      }
+
     </script>
 
   </body>
