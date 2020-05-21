@@ -31,18 +31,6 @@
         // 読み込み時にCanvas3Dのサイズをウィンドウサイズに合わせる
         resize();
       });
-
-      // ウィンドウサイズ更新時に、サイズ更新
-      $(window).resize( function(){
-        resize();
-      } );
-
-      function resize(){
-        $("#Canvas3D").css("height", $(window).innerHeight());
-        $("#Canvas3D").css("width", $(window).innerWidth());
-      }
-
-      var testMenu = new menuTest("modelView.htmlの変数");
     </script>
 
   </body>
