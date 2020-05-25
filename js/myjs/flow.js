@@ -195,7 +195,13 @@ class flow {
     for (let index = 0; index < itemInfo.length; index++) {
 
       if( this.indexWnd.dataMng.CheckIMGSrcType(itemInfo[index].TYPE)){
+
+        if( this.indexWnd.dataMng.CheckDispSize(itemInfo[index].DISP_SIZE))
+        {
           element_str += this.CreateIMGElement(itemInfo[index].SRC);
+        }else{
+          element_str += this.CreateWideIMGElement(itemInfo[index].SRC);
+        }
       }
       else{
         let src = itemInfo[index].SRC;
@@ -209,10 +215,15 @@ class flow {
   }
 
   CreateIMGElement(src){
-    return "<li class=\"SlickElement ContentsParent\"><img class=\"SlickElementImg ContentsChild\" src=\"../" + src + "\"></li>";
+    return "<li><div class=\"SlickElement\"><img class=\"SlickElementImg \" src=\"../" + src + "\"></div></li>";
   }
+
+  CreateWideIMGElement(src){
+    return "<li><div class=\"SlickElement\"><img class=\"SlickElementWideImg \" src=\"../" + src + "\"></div></li>";
+  }
+
   CreateVideoElement(src, videoID){
-    return "<li class=\"SlickElement ContentsParent\"><img class=\"SlickElementImg ContentsChild\" src=\"../" + src + "\" onclick=\"window.top.Flow.ClickVideo(" + videoID + ")\"></li>";
+    return "<li ><div class=\"SlickElement\"><img class=\"SlickElementImg\" src=\"../" + src + "\" onclick=\"window.top.Flow.ClickVideo(" + videoID + ")\"></div></li>";
   }
 
 

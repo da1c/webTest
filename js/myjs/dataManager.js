@@ -13,6 +13,7 @@ class dataManager {
     this.videoInfoArray = null;
     this.webCatarogURL = "";
     this.homePageURL = "";
+    this.DISPSIZE = { NORMAL : 1, WIDE : 2 };
   }
 
   /**
@@ -28,17 +29,17 @@ class dataManager {
         ModelPath: "model/kitchen.fbx",
         ItemName: "キッチン",
         DetailIDArray: new Array(
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/1.png", NAME: "1" },
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/2.png", NAME: "2" },
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/3.png", NAME: "3" },
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/4.png", NAME: "4" },
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/5.png", NAME: "5" },
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/6.png", NAME: "6" },
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/7.png", NAME: "7" },
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/8.png", NAME: "8" },
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/9.png", NAME: "9" },
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/10.png", NAME: "10" },
-          { TYPE:this.SrcType.VIDEO, SRC: "img/toire/10.png", NAME:1}
+          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/1.png", NAME: "1", DISP_SIZE : this.DISPSIZE.WIDE},
+          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/2.png", NAME: "2", DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/3.png", NAME: "3", DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/4.png", NAME: "4" , DISP_SIZE : this.DISPSIZE.WIDE},
+          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/5.png", NAME: "5" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/6.png", NAME: "6" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/7.png", NAME: "7" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/8.png", NAME: "8" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/9.png", NAME: "9" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/10.png", NAME: "10", DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE:this.SrcType.VIDEO, SRC: "img/toire/10.png", NAME:"1", DISP_SIZE : this.DISPSIZE.NORMAL}
         ),
         ARURL: "",
         COLOR: new Array(
@@ -65,16 +66,16 @@ class dataManager {
         ModelPath: "model/bathroom.fbx",
         ItemName: "バスルーム",
         DetailIDArray: new Array(
-          { TYPE: this.SrcType.IMG,SRC: "img/bath/1.png", NAME: "1" },
-          { TYPE: this.SrcType.IMG,SRC: "img/bath/2.png", NAME: "2" },
-          { TYPE: this.SrcType.IMG,SRC: "img/bath/3.png", NAME: "3" },
-          { TYPE: this.SrcType.IMG,SRC: "img/bath/4.png", NAME: "4" },
-          { TYPE: this.SrcType.IMG,SRC: "img/bath/5.png", NAME: "5" },
-          { TYPE: this.SrcType.IMG,SRC: "img/bath/6.png", NAME: "6" },
-          { TYPE: this.SrcType.IMG,SRC: "img/bath/7.png", NAME: "7" },
-          { TYPE: this.SrcType.IMG,SRC: "img/bath/8.png", NAME: "8" },
-          { TYPE: this.SrcType.IMG,SRC: "img/bath/9.png", NAME: "9" },
-          { TYPE: this.SrcType.IMG,SRC: "img/bath/10.png", NAME: "10" }
+          { TYPE: this.SrcType.IMG,SRC: "img/bath/1.png", NAME: "1" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/bath/2.png", NAME: "2" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/bath/3.png", NAME: "3" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/bath/4.png", NAME: "4" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/bath/5.png", NAME: "5" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/bath/6.png", NAME: "6" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/bath/7.png", NAME: "7" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/bath/8.png", NAME: "8" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/bath/9.png", NAME: "9" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/bath/10.png", NAME: "10" , DISP_SIZE : this.DISPSIZE.NORMAL}
         ),
         ARURL: "",
         COLOR: new Array(
@@ -101,16 +102,16 @@ class dataManager {
         ModelPath: "model/makebase.fbx",
         ItemName: "化粧台",
         DetailIDArray: new Array(
-          { TYPE: this.SrcType.IMG,SRC: "img/senmen/1.png", NAME: "1" },
-          { TYPE: this.SrcType.IMG,SRC: "img/senmen/2.png", NAME: "2" },
-          { TYPE: this.SrcType.IMG,SRC: "img/senmen/3.png", NAME: "3" },
-          { TYPE: this.SrcType.IMG,SRC: "img/senmen/4.png", NAME: "4" },
-          { TYPE: this.SrcType.IMG,SRC: "img/senmen/5.png", NAME: "5" },
-          { TYPE: this.SrcType.IMG,SRC: "img/senmen/6.png", NAME: "6" },
-          { TYPE: this.SrcType.IMG,SRC: "img/senmen/7.png", NAME: "7" },
-          { TYPE: this.SrcType.IMG,SRC: "img/senmen/8.png", NAME: "8" },
-          { TYPE: this.SrcType.IMG,SRC: "img/senmen/9.png", NAME: "9" },
-          { TYPE: this.SrcType.IMG,SRC: "img/senmen/10.png", NAME: "10" }
+          { TYPE: this.SrcType.IMG,SRC: "img/senmen/1.png", NAME: "1" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/senmen/2.png", NAME: "2" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/senmen/3.png", NAME: "3" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/senmen/4.png", NAME: "4" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/senmen/5.png", NAME: "5" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/senmen/6.png", NAME: "6" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/senmen/7.png", NAME: "7" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/senmen/8.png", NAME: "8" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/senmen/9.png", NAME: "9" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/senmen/10.png", NAME: "10" , DISP_SIZE : this.DISPSIZE.NORMAL}
         ),
         ARURL: "",
         COLOR: new Array(
@@ -137,16 +138,16 @@ class dataManager {
         ModelPath: "model/toilet.fbx",
         ItemName: "トイレ",
         DetailIDArray: new Array(
-          { TYPE: this.SrcType.IMG,SRC: "img/toire/1.png", NAME: "1" },
-          { TYPE: this.SrcType.IMG,SRC: "img/toire/2.png", NAME: "2" },
-          { TYPE: this.SrcType.IMG,SRC: "img/toire/3.png", NAME: "3" },
-          { TYPE: this.SrcType.IMG,SRC: "img/toire/4.png", NAME: "4" },
-          { TYPE: this.SrcType.IMG,SRC: "img/toire/5.png", NAME: "5" },
-          { TYPE: this.SrcType.IMG,SRC: "img/toire/6.png", NAME: "6" },
-          { TYPE: this.SrcType.IMG,SRC: "img/toire/7.png", NAME: "7" },
-          { TYPE: this.SrcType.IMG,SRC: "img/toire/8.png", NAME: "8" },
-          { TYPE: this.SrcType.IMG,SRC: "img/toire/9.png", NAME: "9" },
-          { TYPE: this.SrcType.IMG,SRC: "img/toire/10.png", NAME: "10" }
+          { TYPE: this.SrcType.IMG,SRC: "img/toire/1.png", NAME: "1" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/toire/2.png", NAME: "2" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/toire/3.png", NAME: "3" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/toire/4.png", NAME: "4" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/toire/5.png", NAME: "5" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/toire/6.png", NAME: "6" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/toire/7.png", NAME: "7" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/toire/8.png", NAME: "8" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/toire/9.png", NAME: "9" , DISP_SIZE : this.DISPSIZE.NORMAL},
+          { TYPE: this.SrcType.IMG,SRC: "img/toire/10.png", NAME: "10" , DISP_SIZE : this.DISPSIZE.NORMAL}
         ),
         ARURL: "",
         COLOR: new Array({
@@ -276,6 +277,11 @@ class dataManager {
 
   GetHomePageURL(){
     return this.homePageURL;
+  }
+
+
+  CheckDispSize( check ){
+    return this.DISPSIZE.NORMAL == check;
   }
 
 }
