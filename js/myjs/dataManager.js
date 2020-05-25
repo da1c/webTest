@@ -60,6 +60,8 @@ class dataManager {
         FLOOR_TEXTURE_PATH : "",
         WALL_POS:new THREE.Vector3(0,0,0),
         FLOOR_POS:new THREE.Vector3(0,0,0),
+        WEB_CATAROG_URL:"",
+        INSTRUCTION_URL:"",
       },
       {
         ID: 2,
@@ -96,6 +98,8 @@ class dataManager {
         FLOOR_TEXTURE_PATH : "",
         WALL_POS:new THREE.Vector3(0,0,0),
         FLOOR_POS:new THREE.Vector3(0,0,0),
+        WEB_CATAROG_URL:"",
+        INSTRUCTION_URL:"",
       },
       {
         ID: 3,
@@ -132,6 +136,8 @@ class dataManager {
         FLOOR_TEXTURE_PATH : "",
         WALL_POS:new THREE.Vector3(0,0,0),
         FLOOR_POS:new THREE.Vector3(0,0,0),
+        WEB_CATAROG_URL:"",
+        INSTRUCTION_URL:"",
       },
       {
         ID: 4,
@@ -158,6 +164,8 @@ class dataManager {
         FLOOR_TEXTURE_PATH : "",
         WALL_POS:new THREE.Vector3(0,0,0),
         FLOOR_POS:new THREE.Vector3(0,0,0),
+        WEB_CATAROG_URL:"",
+        INSTRUCTION_URL:"",
       }
     );
 
@@ -272,7 +280,7 @@ class dataManager {
   }
 
   GetWebCataroguURL(){
-    return this.webCatarogURL;
+    return this.itemInfoArray[this.nowItemID].WEB_CATAROG_URL;
   }
 
   GetHomePageURL(){
@@ -282,6 +290,10 @@ class dataManager {
 
   CheckDispSize( check ){
     return this.DISPSIZE.NORMAL == check;
+  }
+
+  GetInstructionURL(){
+    return this.itemInfoArray[this.nowItemID].INSTRUCTION_URL;
   }
 
 }

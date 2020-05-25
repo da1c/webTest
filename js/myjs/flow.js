@@ -332,5 +332,9 @@ class flow {
     this.indexWnd.open(url);
   }
 
+  ClickInstructionCategory(){
+    let url = this.indexWnd.dataMng.GetInstructionURL();
+    this.indexWnd.open(url);
+  }
 
 }
