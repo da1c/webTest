@@ -184,6 +184,11 @@ class flow {
     menuWnd.location.href = "./../colorTypeSelect/colorSelectType.html";
   }
 
+
+  /**
+   *機能選択初期化
+   * @memberof flow
+   */
   InitItemPickUp(){
     // メニュー部分のwindowオブジェクトの取得
     let wnd = this.GetMenuWindow();
@@ -258,6 +263,11 @@ class flow {
 
   }
 
+
+  /**
+   *カラー選択画面初期化
+   * @memberof flow
+   */
   InitColorTypeSelect(){
     // Menu部分のウィンドウ取得
     let wnd = this.GetMenuWindow();
@@ -279,6 +289,13 @@ class flow {
 
   }
 
+
+  /**
+   *カラータイプクリック
+   *(場所)
+   * @param {*} ID
+   * @memberof flow
+   */
   ClickColorType(ID){
 
     this.indexWnd.dataMng.SetSelectColorType(ID);
@@ -310,6 +327,12 @@ class flow {
     this.indexWnd.$(".videoModal").fadeIn();
   }
 
+
+  /**
+   *ビデオクローズ
+   *
+   * @memberof flow
+   */
   ClickCloseVideo(){
     this.indexWnd.$(".videoModal").fadeOut();
     this.indexWnd.$(".VideoContent").remove();
@@ -327,11 +350,23 @@ class flow {
     this.indexWnd.open(url);
   }
 
+
+  /**
+   *ホームページボタンクリック
+   *
+   * @memberof flow
+   */
   ClickHomePage(){
     let url = this.indexWnd.dataMng.GetHomePageURL();
     this.indexWnd.open(url);
   }
 
+
+  /**
+   *説明書クリック
+   *
+   * @memberof flow
+   */
   ClickInstructionCategory(){
     let url = this.indexWnd.dataMng.GetInstructionURL();
     this.indexWnd.open(url);
