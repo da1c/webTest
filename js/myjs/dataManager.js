@@ -187,7 +187,7 @@ class dataManager {
     );
 
     this.videoInfoArray= new Array(
-      { ID:1, SRC:"https://www.youtube-nocookie.com/embed/U5ltyDw43lg", IMG:"img/toire/10.png"} );
+      { ID:1, SRC:"https://www.youtube-nocookie.com/embed/U5ltyDw43lg", NAME:"てすと"} );
   }
 
   /**

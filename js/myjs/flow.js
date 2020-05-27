@@ -314,8 +314,7 @@ class flow {
   ClickVideo(ID){
     let info = this.indexWnd.dataMng.GetVideoInfo(ID);
 
-    // video の情報を設定
-    console.log(ID);
+    this.SetVideoNameText(info.NAME);
     this.SetVideoView( info.SRC );
 
     // メニューのモーダル表示をフェードＩＮ
@@ -331,6 +330,10 @@ class flow {
 
   VideoViewFideOut(){
     this.indexWnd.$(".VideoArea").fadeOut();
+  }
+
+  SetVideoNameText(text){
+    this.indexWnd.$(".VideoName").text(text);
   }
 
   /**
@@ -351,9 +354,9 @@ class flow {
    */
   ClickWebCatalogCategory(){
     let url = this.indexWnd.dataMng.GetWebCataroguURL();
+    this.SetVideoNameText("Webカタログ");
     this.SetVideoView(url);
     this.VideoViewFadeIn();
-    //this.indexWnd.open(url);
   }
 
 
@@ -375,7 +378,9 @@ class flow {
    */
   ClickInstructionCategory(){
     let url = this.indexWnd.dataMng.GetInstructionURL();
-    this.indexWnd.open(url);
+    this.SetVideoNameText("取扱説明書");
+    this.SetVideoView(url);
+    this.VideoViewFadeIn();
   }
 
 }

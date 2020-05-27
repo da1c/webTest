@@ -171,7 +171,14 @@
   padding: auto;
   position: absolute;
   top:50%;
-  transform: translateY(-50%);
+  right: 0%;
+  transform: translate( -20%,-50%);
+}
+.VideoName{
+  padding: auto;
+  position: absolute;
+  top:50%;
+  transform: translate( 10%,-50%);
 }
 
 .VideoView{
