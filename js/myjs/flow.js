@@ -339,7 +339,7 @@ class flow {
    * @memberof flow
    */
   ClickCloseVideo(){
-    this.VideoViewFideOut;
+    this.VideoViewFideOut();
     this.SetVideoView("");
   }
 
