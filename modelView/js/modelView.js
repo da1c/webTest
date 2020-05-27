@@ -35,6 +35,8 @@ class modelView {
     this.wallObj = null;
     // 床メッシュ
     this.floorObj = null;
+    // 平行光源
+    this.dirLight = null;
 
   }
 
@@ -78,11 +80,11 @@ class modelView {
     orbit.enablePan = true;
 
     // 平行光源
-    const light = new THREE.DirectionalLight(0xffffff);
-    light.intensity = 1; // 光の強さを倍に
-    light.position.set(1, 1, 1);
+    this.dirLight = new THREE.DirectionalLight(0xffffff);
+    this.dirLight.intensity = window.top.dataMng.GetDirLightIntensity();
+    this.dirLight.position.set(1, 1, 1);
 
-    this.scene.add(light);
+    this.scene.add(this.dirLight);
     // 画面サイズ設定
     Resize();
 
@@ -163,6 +165,17 @@ class modelView {
       this.floorObj.position.set( floorPos.x, floorPos.y, floorPos.z );
     });
   }
+  
+
+  /**
+   *平行光源の強さ設定
+   *
+   * @memberof modelView
+   */
+  SetDirLightIntensity(intensity){
+    this.dirLight.intensity = intensity;
+  }
+
 }
 
 // 画面リサイズ時の処理

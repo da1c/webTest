@@ -99,6 +99,10 @@ class flow {
     // モデルウィンドウのモデル更新
     modelViewWnd.modelview.SetModel( this.indexWnd.dataMng.GetNowModelPath(), this.indexWnd.dataMng.GetNowModelWallPos(), this.indexWnd.dataMng.GetNowModelFloorPos() );
 
+    // 平行光源の強さ設定
+    let intensity = this.indexWnd.dataMng.GetDirLightIntensity();
+    modelViewWnd.modelview.SetDirLightIntensity(intensity);
+
 　　// メニュー部分の商材名更新
     this.GetMenuWindow().$(".ItemName").html( this.indexWnd.dataMng.GetNowItemName() );
 

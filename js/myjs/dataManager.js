@@ -62,6 +62,7 @@ class dataManager {
         FLOOR_POS:new THREE.Vector3(0,0,0),
         WEB_CATAROG_URL:"",
         INSTRUCTION_URL:"",
+        DIR_LIGHT_INTENSITY : 3,
       },
       {
         ID: 2,
@@ -100,6 +101,7 @@ class dataManager {
         FLOOR_POS:new THREE.Vector3(0,0,0),
         WEB_CATAROG_URL:"",
         INSTRUCTION_URL:"",
+        DIR_LIGHT_INTENSITY : 0.5,
       },
       {
         ID: 3,
@@ -138,6 +140,7 @@ class dataManager {
         FLOOR_POS:new THREE.Vector3(0,0,0),
         WEB_CATAROG_URL:"",
         INSTRUCTION_URL:"",
+        DIR_LIGHT_INTENSITY : 0.5,
       },
       {
         ID: 4,
@@ -166,6 +169,7 @@ class dataManager {
         FLOOR_POS:new THREE.Vector3(0,0,0),
         WEB_CATAROG_URL:"",
         INSTRUCTION_URL:"",
+        DIR_LIGHT_INTENSITY : 0.5,
       }
     );
 
@@ -294,6 +298,17 @@ class dataManager {
 
   GetInstructionURL(){
     return this.itemInfoArray[this.nowItemID].INSTRUCTION_URL;
+  }
+
+
+  /**
+   *選択中の商材の平行光源の強さを取得
+   *
+   * @returns
+   * @memberof dataManager
+   */
+  GetDirLightIntensity(){
+    return this.itemInfoArray[this.nowItemID].DIR_LIGHT_INTENSITY;
   }
 
 }
