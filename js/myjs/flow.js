@@ -24,7 +24,6 @@ class flow {
     this.modelWnd = wnd;
   }
 
-
   // 遷移などをここに実装
   ClickItemCategory() {
     this.GetMenuWindow().location.href = "./../itemPickUp/itemPickUp.html";
@@ -317,20 +316,22 @@ class flow {
 
     // video の情報を設定
     console.log(ID);
-
-    //     return "<li class=\"SlickElement ContentsParent\"><iframe class=\"SlickElementImg ContentsChild\" src=\""+ src +"\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
-
-    // メニューモーダルの子要素に動画のIframeを追加
-    // Video要素追加先
-    let dstEle = this.indexWnd.$(".modal_video");
-
-    // Video情報の取得
-    dstEle.append("<iframe class=\"VideoContent ContentsChild\" src=\""+ info.SRC +"\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>");
+    this.SetVideoView( info.SRC );
 
     // メニューのモーダル表示をフェードＩＮ
-    this.indexWnd.$(".videoModal").fadeIn();
+    this.VideoViewFadeIn();
   }
 
+  SetVideoView(src){
+    this.indexWnd.$(".VideoView").attr("src", src);
+  }
+  VideoViewFadeIn(){
+    this.indexWnd.$(".VideoArea").fadeIn();
+  }
+
+  VideoViewFideOut(){
+    this.indexWnd.$(".VideoArea").fadeOut();
+  }
 
   /**
    *ビデオクローズ
@@ -338,10 +339,9 @@ class flow {
    * @memberof flow
    */
   ClickCloseVideo(){
-    this.indexWnd.$(".videoModal").fadeOut();
-    this.indexWnd.$(".VideoContent").remove();
+    this.VideoViewFideOut;
+    this.SetVideoView("");
   }
-
 
   
   /**
@@ -351,7 +351,9 @@ class flow {
    */
   ClickWebCatalogCategory(){
     let url = this.indexWnd.dataMng.GetWebCataroguURL();
-    this.indexWnd.open(url);
+    this.SetVideoView(url);
+    this.VideoViewFadeIn();
+    //this.indexWnd.open(url);
   }
 
 
