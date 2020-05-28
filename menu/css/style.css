@@ -21,13 +21,14 @@ body{
 .CategoryBanner {
     width: 100%;
     margin: 0%;
-    position: relative;
-    outline: auto 3px;
+
+    outline-style: auto;
+    outline-width: 3px;
+    outline-color: black;
     padding: 0%;
     margin: 0%;
     background-color: #f9f6f4;
-    left: 50%;
-    transform: translateX(-50%);
+
 }
 
 .CategoryBanner div{
