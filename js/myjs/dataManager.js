@@ -6,7 +6,7 @@ class dataManager {
   constructor() {
     this.itemInfoArray = null;
     this.colorInfoArray = null;
-    this.nowItemID = -1;
+    this.nowItemID = 0;
     this.selectDetailID = -1;
     this.selectColorTypeID = -1;
     this.SrcType = { IMG : 1, VIDEO : 2 };
