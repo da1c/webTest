@@ -202,18 +202,26 @@ class flow {
 
     for (let index = 0; index < itemInfo.length; index++) {
 
-      if( this.indexWnd.dataMng.CheckIMGSrcType(itemInfo[index].TYPE)){
+      let imgType ="";
 
-        if( this.indexWnd.dataMng.CheckDispSize(itemInfo[index].DISP_SIZE))
-        {
-          element_str += this.CreateIMGElement(itemInfo[index].SRC);
-        }else{
-          element_str += this.CreateWideIMGElement(itemInfo[index].SRC);
-        }
+      // 画像のサイズ確認
+      if( this.indexWnd.dataMng.CheckDispSize(itemInfo[index].DISP_SIZE))
+      {
+        // 通常サイズ
+        imgType = "SlickElementImg";
+      }else{
+        // 横長サイズ
+        imgType = "SlickElementWideImg";
+      }
+
+      // タイプの確認
+      if( this.indexWnd.dataMng.CheckIMGSrcType(itemInfo[index].TYPE)){
+        // 通常
+        element_str += this.CreateIMGElement( itemInfo[index].SRC, imgType );
       }
       else{
-        let src = itemInfo[index].SRC;
-        element_str += this.CreateVideoElement(src, itemInfo[index].NAME);
+        // 動画リンクの場合
+        element_str += this.CreateVideoElement(itemInfo[index].SRC, imgType, itemInfo[index].NAME);
       }
     }
 
@@ -222,16 +230,12 @@ class flow {
     dstElement.append(element_str);
   }
 
-  CreateIMGElement(src){
-    return "<li><div class=\"SlickElement\"><img class=\"SlickElementImg \" src=\"../" + src + "\"></div></li>";
+  CreateIMGElement(src, imgType){
+    return "<li><div class=\"SlickElement\"><img class=\""+ imgType+ " \" src=\"../" + src + "\"></div></li>";
   }
 
-  CreateWideIMGElement(src){
-    return "<li><div class=\"SlickElement\"><img class=\"SlickElementWideImg \" src=\"../" + src + "\"></div></li>";
-  }
-
-  CreateVideoElement(src, videoID){
-    return "<li ><div class=\"SlickElement\"><img class=\"SlickElementImg\" src=\"../" + src + "\" onclick=\"window.top.Flow.ClickVideo(" + videoID + ")\"></div></li>";
+  CreateVideoElement(src, imgType, videoID){
+    return "<li ><div class=\"SlickElement\"><div><img class=\""+ imgType + "\" src=\"../" + src + "\" onclick=\"window.top.Flow.ClickVideo(" + videoID + ")\"><img class=\"MovieIcon\" src=\"../img/movie_icon.png\"></div></div></li>";
   }
 
 
