@@ -313,9 +313,7 @@ class flow {
   // 機能の動画を選択
   ClickVideo(ID){
     let info = this.indexWnd.dataMng.GetVideoInfo(ID);
-
-    this.SetVideoNameText(info.NAME);
-    this.SetVideoView( info.SRC );
+    this.indexWnd.open(info.SRC);
 
     // メニューのモーダル表示をフェードＩＮ
     this.VideoViewFadeIn();
@@ -354,9 +352,7 @@ class flow {
    */
   ClickWebCatalogCategory(){
     let url = this.indexWnd.dataMng.GetWebCataroguURL();
-    this.SetVideoNameText("Webカタログ");
-    this.SetVideoView(url);
-    this.VideoViewFadeIn();
+    this.indexWnd.open(url);
   }
 
 
@@ -378,9 +374,7 @@ class flow {
    */
   ClickInstructionCategory(){
     let url = this.indexWnd.dataMng.GetInstructionURL();
-    this.SetVideoNameText("取扱説明書");
-    this.SetVideoView(url);
-    this.VideoViewFadeIn();
+    this.indexWnd.open(url);
   }
 
 }
