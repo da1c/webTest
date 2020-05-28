@@ -27,16 +27,16 @@
 .SlickElementImg{
     display: block;
     width: 50vw;
-    height: 90%;
-    object-fit: contain;
+    height: 100%;
+    object-fit: fill;
 
 }
 
 .SlickElementWideImg{
     display: block;
     width: 85vw;                                                                                                                                    
-    height: 90%;
-    object-fit: contain;
+    height: 100%;
+    object-fit: fill;
 }
 
 .MovieIcon{

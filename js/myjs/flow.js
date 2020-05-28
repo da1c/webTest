@@ -235,7 +235,7 @@ class flow {
   }
 
   CreateVideoElement(src, imgType, videoID){
-    return "<li ><div class=\"SlickElement\"><div><img class=\""+ imgType + "\" src=\"../" + src + "\" onclick=\"window.top.Flow.ClickVideo(" + videoID + ")\"><img class=\"MovieIcon\" src=\"../img/movie_icon.png\"></div></div></li>";
+    return "<li><div class=\"SlickElement\"><img class=\""+ imgType + "\" src=\"../" + src + "\" onclick=\"window.top.Flow.ClickVideo(" + videoID + ")\"><img class=\"MovieIcon\" src=\"../img/movie_icon.png\"></div></li>";
   }
 
 
