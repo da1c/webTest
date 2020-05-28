@@ -1,5 +1,10 @@
 "use strict";
 
+function ModelViewRender(){
+  requestAnimationFrame(ModelViewRender);
+  Flow.modelView.Render();
+}
+
 class flow {
   /**
    *Creates an instance of flow.
@@ -8,8 +13,16 @@ class flow {
   constructor() {
     this.indexWnd = null;
     this.menuWnd = null;
-    this.modelWnd = null;
     this.menuAreaHeight = 0.0;
+
+    this.modelView = null;
+  }
+
+  Init(){
+    this.modelView = new ModelView();
+    this.modelView.Init( window.innerWidth, this.GetScreenHarfSize() );
+
+    ModelViewRender();
   }
 
   SetIndexWindow(wnd) {
@@ -93,14 +106,13 @@ class flow {
   ClickItemButton(id) {
     // モデルビュー更新
     // モデルビューのウィンドウ取得
-    let modelViewWnd = this.GetModelViewWindow();
     this.indexWnd.dataMng.nowItemID = id;
     // モデルウィンドウのモデル更新
-    modelViewWnd.modelview.SetModel( this.indexWnd.dataMng.GetNowModelPath(), this.indexWnd.dataMng.GetNowModelWallPos(), this.indexWnd.dataMng.GetNowModelFloorPos() );
+    this.modelView.SetModel( this.indexWnd.dataMng.GetNowModelPath(), this.indexWnd.dataMng.GetNowModelWallPos(), this.indexWnd.dataMng.GetNowModelFloorPos() );
 
     // 平行光源の強さ設定
     let intensity = this.indexWnd.dataMng.GetDirLightIntensity();
-    modelViewWnd.modelview.SetDirLightIntensity(intensity);
+    this.modelView.SetDirLightIntensity(intensity);
 
     // menuエリアの表示をカテゴリー選択画面に設定
     this.GetMenuWindow().location.href = "./menu/menu.html";
@@ -168,14 +180,19 @@ class flow {
 
   Resize(){
     let screenHegiht = $(window).innerHeight();
-    let screenHarfHegiht = screenHegiht * 0.47;
+    let screenHarfHegiht = this.GetScreenHarfSize();
 
     // Index.htmlの各要素のサイズ設定
-    this.indexWnd.$("#modelView").css("height", screenHarfHegiht + "px");
+    this.indexWnd.$("#Canvas3D").css("height", screenHarfHegiht + "px");
     this.indexWnd.$("#menu").css("height", screenHarfHegiht + "px");
     this.indexWnd.$("#header").css("height", screenHegiht * 0.06 + "px");
     // メニュー部分のサイズを保存
     this.menuAreaHeight = screenHarfHegiht;
+  }
+
+  GetScreenHarfSize(){
+    let screenHegiht = $(window).innerHeight();
+    return screenHegiht * 0.47;
   }
 
   // カテゴリーのカラーを選択

@@ -43,6 +43,8 @@ class ModelView {
     this.camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
     this.camera.position.set(0, 100, 100);
 
+    this.Resize(width,height);
+
     var orbit = new THREE.OrbitControls(this.camera, canvas3D);
     orbit.target.set(0, 0, 0);
 
@@ -57,7 +59,7 @@ class ModelView {
 
     // 平行光源
     this.dirLight = new THREE.DirectionalLight(0xffffff);
-    this.dirLight.intensity = window.top.dataMng.GetDirLightIntensity();
+    this.dirLight.intensity = window.dataMng.GetDirLightIntensity();
     this.dirLight.position.set(1, 1, 1);
 
     this.scene.add(this.dirLight);
@@ -83,7 +85,7 @@ class ModelView {
       this.floorObj = new THREE.Mesh(geometry, floor_mat);
       this.floorObj.rotation.set(-Math.PI / 2, 0, 0);
       //
-      let pos = window.top.dataMng.GetNowModelFloorPos();
+      let pos = window.dataMng.GetNowModelFloorPos();
       this.floorObj.position.set(pos.x, pos.y, pos.z);
       this.scene.add(this.floorObj);
     });
@@ -98,7 +100,7 @@ class ModelView {
       wall_mat.map.wrapT = THREE.RepeatWrapping;
       wall_mat.map.repeat.set(16, 16);
       this.wallObj = new THREE.Mesh(geometry, wall_mat);
-      let pos = window.top.dataMng.GetNowModelWallPos();
+      let pos = window.dataMng.GetNowModelWallPos();
       this.wallObj.position.set(pos.x, pos.y, pos.z);
       this.scene.add(this.wallObj);
     });
@@ -114,7 +116,6 @@ class ModelView {
       this.nowMesh = obj;
       // シーンに追加
       this.scene.add(this.nowMesh);
-      Animation();
     });
   }
   /**
@@ -152,19 +153,21 @@ class ModelView {
     this.dirLight.intensity = intensity;
   }
 
-  Reize(width, height) {
+  Resize(width, height) {
     // デバイスピクセル比の設定
-    modelview.renderer.setPixelRatio(window.devicePixelRatio);
+    this.renderer.setPixelRatio(window.devicePixelRatio);
     // レンダラーのサイズ指定
-    modelview.renderer.setSize(width, height);
+    this.renderer.setSize(width, height);
 
     // カメラ修正
-    modelview.camera.aspect = width / height;
-    modelview.camera.updateProjectionMatrix();
+    this.camera.aspect = width / height;
+    this.camera.updateProjectionMatrix();
   }
+
+  // 描画
+  Render(){
+    this.renderer.render(this.scene, this.camera);
+  }
+
 }
-// レンダリング
-function Animation() {
-  requestAnimationFrame(Animation);
-  modelview.renderer.render(modelview.scene, modelview.camera);
-}
+
