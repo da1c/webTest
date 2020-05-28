@@ -26,7 +26,7 @@
 
 .SlickElementImg{
     display: block;
-    width: 50vw;
+    width: 200px;
     height: 100%;
     object-fit: fill;
 
@@ -34,7 +34,7 @@
 
 .SlickElementWideImg{
     display: block;
-    width: 85vw;                                                                                                                                    
+    width: 400px;                                                                                                                                    
     height: 100%;
     object-fit: fill;
 }
