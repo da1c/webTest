@@ -1,0 +1,61 @@
+.Header {
+    width: 100%;
+    height: 80px;
+    padding: 0%;
+    background-color: #f9f6f4;;
+    position: relative;
+}
+
+
+/*ヘッダー下部罫線*/
+.Boarder{
+    margin: 0%;
+    padding: 0%;
+    height: 2px;
+    width: 95%;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate( -50%,-100%);
+
+}
+
+/*パンくずの親要素*/
+.breadcrumb{
+   position: absolute;
+   top: 100%;
+    left: 2%;
+   transform: translateY(-115%);
+}
+
+/*商材名領域*/
+.ItemNameArea{
+  width: 100%;
+  height: 50px;
+  font-size: 1.5rem;
+  color:white;
+  background-color: black;
+  white-space: nowrap;
+}
+
+/*機能一覧表示ボタン*/
+.itemDetailListButton{
+    position: absolute;
+    top: 100%;
+    left: 100%;
+    transform: translate(-110%,-115%);
+    width: 120px;
+    text-decoration: underline;
+    text-align: right;
+}
+
+.ItemSelectButton{
+    height: 50%;
+    width: auto;
+    padding: auto;
+    margin: 0%;
+    position: absolute;
+    right: 0%;
+    top: 50%;
+    transform: translateY(-50%);
+}
