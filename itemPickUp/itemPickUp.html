@@ -25,6 +25,8 @@
       // 選択中の商品の機能分要素追加
       window.top.Flow.InitItemPickUp();
 
+      Resize();
+
       // slick初期化
       $(".slick-box").slick({
         centerMode: true,
@@ -43,7 +45,7 @@
       // 商材名、設定
       $(".ItemName").html(window.top.dataMng.GetNowItemName());
 
-      Resize();
+
 
       $(window).resize(function () {
         Resize();
@@ -52,11 +54,13 @@
       function Resize() {
         let height = window.top.Flow.GetMenuAreaHeight();
 
+        console.log( "MenuHeight", height + "px" );
         let headerSize = height * 0.3;
         $(".Header").css("height", headerSize + "px");
-
+        console.log( "Headerheight", headerSize + "px" );
         let slickAreaSize = height * 0.7;
         $(".SlickElement").css("height", slickAreaSize + "px");
+        console.log( "SLickheight", slickAreaSize + "px" );
       }
 
     });
