@@ -12,20 +12,11 @@
     margin: 0%;
     padding: 0%;
     height: 2px;
-    width: 95%;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translate( -50%,-100%);
-
+    width: 100%;
 }
 
-/*パンくずの親要素*/
-.breadcrumb{
-   position: absolute;
-   top: 100%;
-    left: 2%;
-   transform: translateY(-115%);
+.breadArea{
+    width: 100%;
 }
 
 /*商材名領域*/
