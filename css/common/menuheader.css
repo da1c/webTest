@@ -15,8 +15,10 @@
     width: 100%;
 }
 
-.breadArea{
-    width: 100%;
+.breadcrumb{
+    padding-top: 10px;
+    padding-left: 10px;
+    margin: 0%;
 }
 
 /*商材名領域*/
