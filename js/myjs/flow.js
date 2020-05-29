@@ -102,9 +102,8 @@ class flow {
     let intensity = this.indexWnd.dataMng.GetDirLightIntensity();
     modelViewWnd.modelview.SetDirLightIntensity(intensity);
 
-　　// メニュー部分の商材名更新
-    this.GetMenuWindow().$(".ItemName").html( this.indexWnd.dataMng.GetNowItemName() );
-
+    // menuエリアの表示をカテゴリー選択画面に設定
+    this.GetMenuWindow().location.href = "./menu/menu.html";
     // フェードアウトさせる
     this.indexWnd.$(".itemSelectModal").fadeOut();
   }
