@@ -30,3 +30,14 @@
     color: black;
     text-decoration: none;
   }
+
+
+  .BreadCrumb div:last-child:after {
+    content: '';
+  }
+
+  /*現在位置*/
+  .BreadCrumbCurrent{
+    color: black;
+    text-decoration: none;
+  }

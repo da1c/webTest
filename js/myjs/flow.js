@@ -185,7 +185,7 @@ class flow {
     // Index.htmlの各要素のサイズ設定
     this.indexWnd.$("#Canvas3D").css("height", screenHarfHegiht + "px");
     this.indexWnd.$("#menu").css("height", screenHarfHegiht + "px");
-    this.indexWnd.$("#header").css("height", screenHegiht * 0.06 + "px");
+    this.indexWnd.$("#Header").css("height", screenHegiht * 0.06 + "px");
     // メニュー部分のサイズを保存
     this.menuAreaHeight = screenHarfHegiht;
   }
@@ -386,7 +386,6 @@ class flow {
     this.indexWnd.open(url);
   }
 
-
   /**
    *説明書クリック
    *
@@ -395,6 +394,50 @@ class flow {
   ClickInstructionCategory(){
     let url = this.indexWnd.dataMng.GetInstructionURL();
     this.indexWnd.open(url);
+  }
+
+  // ここで各画面の遷移
+
+  // メニューに切り替え
+  ChangeCategoryState(){
+
+    // メニュー表示設定
+    
+
+  }
+
+  EndCategoryState(){
+
+  }
+
+  // カテゴリー選択メニュー
+
+  // 機能一覧メニュー
+  ChangeItemPickUpState(){
+
+  }
+
+  // アイテム選択ステート
+  EndItemPickUpState(){
+
+  }
+
+  // カラーカテゴリー選択
+  ChangeColorCategoryState(){
+
+  }
+
+  EndColorCategoryState(){
+
+  }
+
+  // カラー選択
+  ChangeColorPickUpState(){
+
+  }
+
+  EndColorPickUpState(){
+
   }
 
 }
