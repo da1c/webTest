@@ -184,7 +184,6 @@ html, body{
   width: 200px;
   height: 100%;
   object-fit: fill;
-
 }
 
 .SlickElementWideImg{
@@ -205,4 +204,18 @@ html, body{
   right: 0%;
   transform: translate( -30%, -130%);
 }
+
+.SlickElementColorImg{
+  display: block;
+  width: 80%;
+  height: 60%;
+}
+
+.ColorName{
+  margin: 5% 0%;
+  width: 100%;
+  font-size: 1rem;
+  text-align: center;
+}
+
 

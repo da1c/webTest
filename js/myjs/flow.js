@@ -52,6 +52,12 @@ class flow {
     this.ChangeState( this.MenuStateID.ITEM_PICKUP );
   }
 
+  // カテゴリーのカラーを選択
+  ClickColorCategory() {
+    // ステートをカラーカテゴリーに変更
+    this.ChangeState(this.MenuStateID.COLOR_TYPE);
+  }
+
   ClickClose() {
     this.indexWnd.$(".itemSelectModal").fadeOut();
   }
@@ -78,6 +84,52 @@ class flow {
     //this.indexWnd.$()
     this.indexWnd.$(".itemSelectModal").fadeIn();
   }
+
+  /**
+   *カラータイプクリック
+   *(場所)
+   * @param {*} ID
+   * @memberof flow
+   */
+  ClickColorType(ID) {
+    this.indexWnd.dataMng.SetSelectColorType(ID);
+
+    // カラーピックアップステートに移行
+    this.ChangeState(this.MenuStateID.COLOR_PICKUP);
+  }
+
+
+  /**
+   *Webカタログバナーをクリックした際の処理
+   *
+   * @memberof flow
+   */
+  ClickWebCatalogCategory() {
+    let url = this.indexWnd.dataMng.GetWebCataroguURL();
+    this.indexWnd.open(url);
+  }
+
+  /**
+   *ホームページボタンクリック
+   *
+   * @memberof flow
+   */
+  ClickHomePage() {
+    let url = this.indexWnd.dataMng.GetHomePageURL();
+    this.indexWnd.open(url);
+  }
+
+  /**
+   *説明書クリック
+   *
+   * @memberof flow
+   */
+  ClickInstructionCategory() {
+    let url = this.indexWnd.dataMng.GetInstructionURL();
+    this.indexWnd.open(url);
+  }
+
+
 
   // ボタンクリック
   ClickMenuButton() {
@@ -208,11 +260,7 @@ class flow {
     return screenHegiht * 0.47;
   }
 
-  // カテゴリーのカラーを選択
-  ClickColorCategory() {
-    // ステートをカラーカテゴリーに変更
-    this.ChangeState(this.MenuStateID.COLOR_TYPE);
-  }
+
 
   /**
    *機能選択初期化
@@ -299,18 +347,15 @@ class flow {
    * @memberof flow
    */
   InitColorPickUp() {
-    // カラー一覧の初期化
-    let wnd = this.GetMenuWindow();
 
     // 選択中の商材のカラー情報を取得
     let colorInfo = this.indexWnd.dataMng.GetSelectColorTypeInfo();
 
     // パンくずに選択したカラー箇所名を設定
-    let bread = wnd.$(".breadcrumb_current");
-    bread.html(colorInfo.COLOR_CATEGORY);
+    //let bread = wndow.$(".breadcrumb_current");
+    //bread.html(colorInfo.COLOR_CATEGORY);
 
     // 追加先の要素を取得
-    let dstElement = wnd.$(".slick-box");
     let element_str = "";
 
     // カラー情報分、スクロール要素配下に要素を追加
@@ -321,12 +366,24 @@ class flow {
       element_str +=
         '<li class="SlickElement ContentsParent"><div class="ColorName">' +
         element.NAME +
-        '</div><img class="SlickElementImg ContentsChild" src="' +
+        '</div><img class="SlickElementColorImg ContentsChild" src="' +
         element.SRC +
         '" /></li>';
     }
 
-    dstElement.append(element_str);
+    this.menuParent.append(element_str);
+
+    this.menuParent.slick({
+      centerMode: true,
+      centerPadding: "20%",
+      dots: false,
+      infinite: false,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      speed: 300,
+      adaptiveHeight: true,
+      arrows: false
+    });
   }
 
   /**
@@ -356,20 +413,7 @@ class flow {
     this.menuParent.append(element_str);
   }
 
-  /**
-   *カラータイプクリック
-   *(場所)
-   * @param {*} ID
-   * @memberof flow
-   */
-  ClickColorType(ID) {
-    this.indexWnd.dataMng.SetSelectColorType(ID);
 
-    // カラーカテゴリー選択
-    let menuWnd = this.GetMenuWindow();
-
-    menuWnd.location.href = "./../colorPickUp/colorPickUp.html";
-  }
 
   // 機能の動画を選択
   ClickVideo(ID) {
@@ -405,35 +449,6 @@ class flow {
     this.SetVideoView("");
   }
 
-  /**
-   *Webカタログバナーをクリックした際の処理
-   *
-   * @memberof flow
-   */
-  ClickWebCatalogCategory() {
-    let url = this.indexWnd.dataMng.GetWebCataroguURL();
-    this.indexWnd.open(url);
-  }
-
-  /**
-   *ホームページボタンクリック
-   *
-   * @memberof flow
-   */
-  ClickHomePage() {
-    let url = this.indexWnd.dataMng.GetHomePageURL();
-    this.indexWnd.open(url);
-  }
-
-  /**
-   *説明書クリック
-   *
-   * @memberof flow
-   */
-  ClickInstructionCategory() {
-    let url = this.indexWnd.dataMng.GetInstructionURL();
-    this.indexWnd.open(url);
-  }
 
   // ここで各画面の遷移
   ChangeState(nextStateID) {
@@ -524,10 +539,17 @@ class flow {
   }
 
   // カラー選択
-  ChangeColorPickUpState() {}
+  ChangeColorPickUpState() {
+    this.InitColorPickUp();
+    // メニュー表示設定
+    this.menuParent.show();
+  }
 
   EndColorPickUpState() {
+    // sulick解除
+    this.menuParent.slick("unslick");
     // MenuParent配下を削除
     this.ResetMenuElement();
   }
+
 }
