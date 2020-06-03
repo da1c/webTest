@@ -23,14 +23,25 @@ class flow {
       COLOR_PICKUP: 3,
     };
     this.nowMenuStateID = this.MenuStateID.CATEGORY;
-
+    this.prevMenuStateID = this.MenuStateID.CATEGORY;
     this.menuParent = null;
+
+    this.breadCrumbObjArray = null;
+    this.breadCrumbNameObjArray = null;
   }
 
   Init() {
-
     // メニューの親要素を取得
     this.menuParent = window.$(".MenuParent");
+
+    // パンくずのOBJを取得
+    this.breadCrumbObjArray = new Array(
+      window.$(".BreadCrumbChild1"),
+      window.$(".BreadCrumbChild2"),
+      window.$(".BreadCrumbChild3")
+    );
+
+    this.breadCrumbNameObjArray = new Array( window.$(".BreadCrumbText1"), window.$(".BreadCrumbText2"), window.$(".BreadCrumbText3"));
 
     // 3D空間初期化
     this.modelView = new ModelView();
@@ -39,7 +50,7 @@ class flow {
     ModelViewRender();
 
     // 商材名設定
-    let itemName = window.top.dataMng.GetNowItemName()
+    let itemName = window.top.dataMng.GetNowItemName();
     this.UpdateItemName(itemName);
   }
 
@@ -49,7 +60,7 @@ class flow {
 
   // 遷移などをここに実装
   ClickItemCategory() {
-    this.ChangeState( this.MenuStateID.ITEM_PICKUP );
+    this.ChangeState(this.MenuStateID.ITEM_PICKUP);
   }
 
   // カテゴリーのカラーを選択
@@ -98,7 +109,6 @@ class flow {
     this.ChangeState(this.MenuStateID.COLOR_PICKUP);
   }
 
-
   /**
    *Webカタログバナーをクリックした際の処理
    *
@@ -128,8 +138,6 @@ class flow {
     let url = this.indexWnd.dataMng.GetInstructionURL();
     this.indexWnd.open(url);
   }
-
-
 
   // ボタンクリック
   ClickMenuButton() {
@@ -173,20 +181,19 @@ class flow {
     // ステートをカテゴリーに戻す
     this.ChangeState(this.MenuStateID.CATEGORY);
     // 商材名更新
-    let itemName = window.dataMng.GetNowItemName()
+    let itemName = window.dataMng.GetNowItemName();
     this.UpdateItemName(itemName);
 
     // フェードアウトさせる
     this.indexWnd.$(".itemSelectModal").fadeOut();
   }
 
-
   /**
    *商材名表記更新
    * @param {*} itemName
    * @memberof flow
    */
-  UpdateItemName(itemName){
+  UpdateItemName(itemName) {
     window.$(".HeaderItemName").html(itemName);
   }
 
@@ -259,8 +266,6 @@ class flow {
     let screenHegiht = $(window).innerHeight();
     return screenHegiht * 0.47;
   }
-
-
 
   /**
    *機能選択初期化
@@ -347,7 +352,6 @@ class flow {
    * @memberof flow
    */
   InitColorPickUp() {
-
     // 選択中の商材のカラー情報を取得
     let colorInfo = this.indexWnd.dataMng.GetSelectColorTypeInfo();
 
@@ -382,7 +386,7 @@ class flow {
       slidesToScroll: 1,
       speed: 300,
       adaptiveHeight: true,
-      arrows: false
+      arrows: false,
     });
   }
 
@@ -412,8 +416,6 @@ class flow {
 
     this.menuParent.append(element_str);
   }
-
-
 
   // 機能の動画を選択
   ClickVideo(ID) {
@@ -448,7 +450,6 @@ class flow {
     this.VideoViewFideOut();
     this.SetVideoView("");
   }
-
 
   // ここで各画面の遷移
   ChangeState(nextStateID) {
@@ -487,11 +488,11 @@ class flow {
     }
 
     // 現在のステートIDを更新
+    this.prevMenuStateID = this.nowMenuStateID;
     this.nowMenuStateID = nextStateID;
   }
 
-
-  ResetMenuElement(){
+  ResetMenuElement() {
     // 配下の要素削除
     this.menuParent.empty();
     // 表示状態にする
@@ -502,6 +503,9 @@ class flow {
   ChangeCategoryState() {
     // メニュー表示設定
     $(".CategoryList").show();
+
+    // パンくず更新
+    this.ChangeBreadCrumbState(1);
   }
 
   EndCategoryState() {
@@ -515,6 +519,14 @@ class flow {
     this.InitItemPickUp();
     // slickの親を表示状態に変更
     this.menuParent.show();
+
+    // パンくず更新
+    this.ChangeBreadCrumbState(2);
+    this.breadCrumbNameObjArray[1].text("機能");
+
+    // 先頭のパンくずにTOPに戻るonclick時の処理登録
+    this.breadCrumbObjArray[0].attr("onclick", "window.Flow.ChangeState( window.Flow.MenuStateID.CATEGORY)");
+  
   }
 
   // アイテム選択ステート
@@ -531,6 +543,12 @@ class flow {
     this.InitColorTypeSelect();
     // メニュー表示設定
     this.menuParent.show();
+
+    // パンくず更新
+    this.ChangeBreadCrumbState(2);
+    this.breadCrumbNameObjArray[1].text("カラー");
+    // 先頭のパンくずにTOPに戻るonclick時の処理登録
+    this.breadCrumbObjArray[0].attr("onclick", "window.Flow.ChangeState( window.Flow.MenuStateID.CATEGORY)");
   }
 
   EndColorCategoryState() {
@@ -543,6 +561,14 @@ class flow {
     this.InitColorPickUp();
     // メニュー表示設定
     this.menuParent.show();
+    // パンくず更新
+    this.ChangeBreadCrumbState(3);
+
+    // 選択したIDを元に設定
+    let colorInfo = this.indexWnd.dataMng.GetSelectColorTypeInfo();
+    this.breadCrumbNameObjArray[2].text(colorInfo.COLOR_CATEGORY);
+
+    this.breadCrumbObjArray[1].attr("onclick", "window.Flow.ChangeState( window.Flow.MenuStateID.COLOR_TYPE)");
   }
 
   EndColorPickUpState() {
@@ -552,4 +578,76 @@ class flow {
     this.ResetMenuElement();
   }
 
+  // ボタンに登録なのかな
+  // パンくずどうするか
+  // 末尾に追加？
+  // パンくずの要素は保持しておいた方が良いのか？
+  ClickBreadCrumb1() {
+    this.ChangeState(this.MenuStateID.CATEGORY);
+  }
+
+  ClickBreadCrumb2() {
+    // ここは注意
+    this.ChangeState(this.prevMenuStateID);
+  }
+
+  ClickBreadCrumb3() {
+    // 押されることはないはず
+  }
+
+  /**
+   *指定した数のパンくずを有効にする
+   *表示、Classの設定も行う
+   * @param {*} enableNum
+   * @memberof flow
+   */
+  ChangeBreadCrumbState(enableNum) {
+    let enableJudgeIdx = enableNum - 1;
+
+    for (let index = 0; index < this.breadCrumbObjArray.length; index++) {
+      let element = this.breadCrumbObjArray[index];
+
+      // 有効か確認
+      if (index <= enableJudgeIdx) {
+        // 有効の場合
+        // 末尾か確認
+        if (index == enableJudgeIdx) {
+          // 末尾の場合
+          this.UpdateBreadCrumbClass(
+            element,
+            "BreadCrumbCurrent",
+            "BreadCrumbPrev"
+          );
+        } else {
+          this.UpdateBreadCrumbClass(
+            element,
+            "BreadCrumbPrev",
+            "BreadCrumbCurrent"
+          );
+        }
+        element.show();
+      } else {
+        // 無効の場合
+        // 非表示。不要なクラスを削除
+        element.hide();
+        if (element.hasClass("BreadCrumbPrev")) {
+          element.removeClass("BreadCrumbPrev");
+        }
+        // BreadCrumbCurrentクラスがない場合、追加する
+        if (!element.hasClass("BreadCrumbCurrent")) {
+          element.removeClass("BreadCrumbCurrent");
+        }
+      }
+    }
+  }
+
+  UpdateBreadCrumbClass(target, addClassName, removeClassName) {
+    if (target.hasClass(removeClassName)) {
+      target.removeClass(removeClassName);
+    }
+    // BreadCrumbCurrentクラスがない場合、追加する
+    if (!target.hasClass(addClassName)) {
+      target.addClass(addClassName);
+    }
+  }
 }
