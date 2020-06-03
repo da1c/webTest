@@ -17,13 +17,14 @@ class flow {
     this.modelView = null;
 
     this.MenuStateID = {
+      NONE: -1,
       CATEGORY: 0,
       ITEM_PICKUP: 1,
       COLOR_TYPE: 2,
       COLOR_PICKUP: 3,
     };
-    this.nowMenuStateID = this.MenuStateID.CATEGORY;
-    this.prevMenuStateID = this.MenuStateID.CATEGORY;
+    this.nowMenuStateID = this.MenuStateID.NONE;
+    this.prevMenuStateID = this.MenuStateID.NONE;
     this.menuParent = null;
 
     this.breadCrumbObjArray = null;
@@ -41,7 +42,11 @@ class flow {
       window.$(".BreadCrumbChild3")
     );
 
-    this.breadCrumbNameObjArray = new Array( window.$(".BreadCrumbText1"), window.$(".BreadCrumbText2"), window.$(".BreadCrumbText3"));
+    this.breadCrumbNameObjArray = new Array(
+      window.$(".BreadCrumbText1"),
+      window.$(".BreadCrumbText2"),
+      window.$(".BreadCrumbText3")
+    );
 
     // 3D空間初期化
     this.modelView = new ModelView();
@@ -52,6 +57,9 @@ class flow {
     // 商材名設定
     let itemName = window.top.dataMng.GetNowItemName();
     this.UpdateItemName(itemName);
+
+    // カテゴリー選択に設定
+    this.ChangeState(this.MenuStateID.CATEGORY);
   }
 
   SetIndexWindow(wnd) {
@@ -89,10 +97,6 @@ class flow {
 
   // 商材切り替えボタンクリック
   ClickItemSelectButton() {
-    //this.indexWnd.
-    // 商材切り替えウィンドウを表示
-    // これでアクセスできるっぽい
-    //this.indexWnd.$()
     this.indexWnd.$(".itemSelectModal").fadeIn();
   }
 
@@ -525,8 +529,14 @@ class flow {
     this.breadCrumbNameObjArray[1].text("機能");
 
     // 先頭のパンくずにTOPに戻るonclick時の処理登録
-    this.breadCrumbObjArray[0].attr("onclick", "window.Flow.ChangeState( window.Flow.MenuStateID.CATEGORY)");
-  
+    this.breadCrumbObjArray[0].attr(
+      "onclick",
+      "window.Flow.ChangeState( window.Flow.MenuStateID.CATEGORY)"
+    );
+    this.breadCrumbObjArray[1].attr(
+      "onclick",
+      ""
+    );
   }
 
   // アイテム選択ステート
@@ -548,7 +558,14 @@ class flow {
     this.ChangeBreadCrumbState(2);
     this.breadCrumbNameObjArray[1].text("カラー");
     // 先頭のパンくずにTOPに戻るonclick時の処理登録
-    this.breadCrumbObjArray[0].attr("onclick", "window.Flow.ChangeState( window.Flow.MenuStateID.CATEGORY)");
+    this.breadCrumbObjArray[0].attr(
+      "onclick",
+      "window.Flow.ChangeState( window.Flow.MenuStateID.CATEGORY)"
+    );
+    this.breadCrumbObjArray[1].attr(
+      "onclick",
+      ""
+    );
   }
 
   EndColorCategoryState() {
@@ -568,7 +585,10 @@ class flow {
     let colorInfo = this.indexWnd.dataMng.GetSelectColorTypeInfo();
     this.breadCrumbNameObjArray[2].text(colorInfo.COLOR_CATEGORY);
 
-    this.breadCrumbObjArray[1].attr("onclick", "window.Flow.ChangeState( window.Flow.MenuStateID.COLOR_TYPE)");
+    this.breadCrumbObjArray[1].attr(
+      "onclick",
+      "window.Flow.ChangeState( window.Flow.MenuStateID.COLOR_TYPE)"
+    );
   }
 
   EndColorPickUpState() {
@@ -584,15 +604,6 @@ class flow {
   // パンくずの要素は保持しておいた方が良いのか？
   ClickBreadCrumb1() {
     this.ChangeState(this.MenuStateID.CATEGORY);
-  }
-
-  ClickBreadCrumb2() {
-    // ここは注意
-    this.ChangeState(this.prevMenuStateID);
-  }
-
-  ClickBreadCrumb3() {
-    // 押されることはないはず
   }
 
   /**
