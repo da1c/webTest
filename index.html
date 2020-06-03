@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8" />
 
@@ -12,37 +11,95 @@
   <script src="./js/common/jq/jquery-3.5.0.js"></script>
   <script src="./js/common/slick/slick.js"></script>
   <script src="./js/common/three.min.js"></script>
+    <script src="./js/common/FBXLoader.js"></script>
+    <script src="./js/common/inflate.min.js"></script>
+    <script src="./js/common/OrbitControls.js"></script>
+
 
   <script src="./js/myjs/flow.js?DATE=20200528a"></script>
   <script src="./js/myjs/dataManager.js?DATE=20200528"></script>
+  <script src="./js/myjs/modelView.js?DATE=20200528"></script>
+  <script src="./js/myjs/selectCSS.js?DATE=20200529"></script>
+
 
   <link rel="stylesheet" type="text/css" href="./css/slick/slick.css" media="screen" />
   <link rel="stylesheet" type="text/css" href="./css/slick/slick-theme.css" media="screen" />
 
   <!--リセット用のスタイルシート-->
+  <link rel="stylesheet" type="text/css" href="./css/initstyle.css?DATE=20200528" media="screen" />
   <link rel="stylesheet" type="text/css" href="./css/style.css?DATE=20200528" media="screen" />
-
   <link rel="stylesheet" type="text/css" href="./css/modalstyle.css?DATE=20200528" media="screen" />
-  <link rel="stylesheet" type="text/css" href="./css/header.css?DATE=20200528" media="screen" />
-
+  <link rel="stylesheet" type="text/css" href="./css/breadcrumb.css?DATE=20200528" media="screen" />
   <link rel="stylesheet" type="text/css" href="./css/common/common.css?DATE=20200528" media="screen" />
 </head>
 
 <body>
   <!--ヘッダ-->
-  <header class="Header" id="header" width="100%" height="10%">
-    <img class="ItemSelectButton" src="./img/ItemSelectButton.png" onclick="Flow.ClickMenuButton()" />
+  <header class="Header" id="Header" width="100%" height="10%">
+    <img class="HeaderMenuButton" src="./img/ItemSelectButton.png" onclick="Flow.ClickMenuButton()" />
     <div class="HeaderLogo ContentsParent">
       <img class="HeaderLogoImg ContentsChild" src="./img/h_logo.png" />
     </div>
   </header>
   <!--3Dモデル表示領域-->
   <div class="ContentsParent">
-    <iframe id="modelView" name="modelView" src="./modelView/modelView.html" width="100%" height="45%"></iframe>
+    <canvas id="Canvas3D" class="Canvas3D"></canvas>
     <img class="arButton" src="./img/ar_button.png" onclick="Flow.ClickARButton()">
   </div>
   <!--メニュー表示領域-->
-  <iframe id="menu" name="menu" src="./menu/menu.html?20200529a" width="100%" height="45%"></iframe>
+  <div class="ItemHeader" >
+    <div class="ItemHeaderNameArea ContentsParent">
+      <div class="HeaderItemName ContentsChild" id="ItemName"></div>
+      <img class="ItemSelectButton" src="./img/item_select_button.png"
+        onclick="window.top.Flow.ClickItemSelectButton()">
+    </div>
+
+    <!--パンくず-->
+    <div class="BreadCrumb">
+        <div class="BreadCrumbChild1"><div class="BreadCrumbText1">商材情報</div></div>
+        <div class="BreadCrumbChild2"><div class="BreadCrumbText2">商材情報1</div></div>
+        <div class="BreadCrumbChild3"><div class="BreadCrumbText3">商材情報2</div></div>
+    </div>
+    <hr class="Boarder" size="2px" />
+  </div>
+
+  
+  <div id="MenuArea" class="MenuArea">
+    <!-- カテゴリー選択メニュー -->
+    <ul class="CategoryList ContentsParent">
+      <div class="CategoryBanner" onclick="window.top.Flow.ClickItemCategory()">
+        <div class="CategoryGuide">
+          <img class="CategoryBannerIcon" src="./img/menu/item_icon.png"></img>
+          <div class="CategoryBannerName">機能</div>
+        </div>
+        <div class="CategoryBannerMark">></div>
+      </div>
+      <div class="CategoryBanner" onclick="window.top.Flow.ClickColorCategory()">
+        <div class="CategoryGuide">
+          <img class="CategoryBannerIcon" src="./img/menu/color_icon.png"></img>
+          <div class="CategoryBannerName">カラー</div>
+        </div>
+        <div class="CategoryBannerMark">></div>
+      </div>
+      <div class="CategoryBanner" onclick="window.top.Flow.ClickWebCatalogCategory()">
+        <div class="CategoryGuide">
+          <img class="CategoryBannerIcon" src="./img/menu/catalog_icon.png"></img>
+          <div class="CategoryBannerName">WEBカタログ</div>
+        </div>
+        <div class="CategoryBannerMark">></div>
+      </div>
+      <div class="CategoryBanner" onclick="window.top.Flow.ClickInstructionCategory()">
+        <div class="CategoryGuide">
+          <img class="CategoryBannerIcon" src="./img/menu/instruction_icon.png"></img>
+          <div class="CategoryBannerName">取扱い説明書</div>
+        </div>
+        <div class="CategoryBannerMark">></div>
+      </div>
+    </ul>
+    <!--他メニューの親-->
+    <div class="MenuParent"></div>
+
+  </div>
 
   <!--メニュー-->
   <div class="modal menuModal">
@@ -173,22 +230,14 @@
     <!--modal__inner-->
   </div>
 
-  <!--動画表示用-->
-  <!--
-  <div class="VideoArea">
-    <div class="VideoHader">
-      <div class="VideoName"></div>
-      <div class="VideoCloseButton" onclick="Flow.ClickCloseVideo()">✖</div>
-    </div>
-    <iframe class="VideoView" name="VideoView" src=""></iframe>
-  </div>
--->
-
   <script>
+    // 端末に合わせてCSSを読み込む
+    SelectMenuHaderCSS();
     // Flow作成
     var Flow = new flow();
     // データマネージャー作成
     var dataMng = new dataManager();
+
 
     $(function () {
       // データマネージャー初期化
@@ -196,16 +245,18 @@
       // 初期商材はkitchenを指定
       dataMng.nowItemID = 0;
 
+      Flow.Init();
+
       // フローにwindowオブジェクトを登録
       Flow.SetIndexWindow(window);
 
       // サイズ設定
-      Flow.Resize();
+      //Flow.Resize();
     });
 
     // 画面サイズ更新時の処理を設定
     $(window).resize(function () {
-      Flow.Resize();
+     // Flow.Resize();
     });
   </script>
 </body>

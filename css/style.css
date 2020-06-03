@@ -1,61 +1,221 @@
-@charset "utf-8";
-/* CSS Document */
-
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
+html, body{
+  overflow: hidden;
 }
 
-/* 20170622
-*/
-
-body  {
-	max-width: 960px;
-	margin: auto;
-	padding: 0px;
-	overflow: hidden;
+/* ヘッダ部分↓ */
+.HeaderMenuButton{
+  height: 100%;
+  width: auto;
+  float: left;
 }
+
+.HeaderLogo{
+
+  height: 100%;
+  width: 30%;
+}
+
+.HeaderLogoImg{
+  height: 80%;
+  width: auto;
+}
+
+/* ヘッダ部分↑ */
+
+/*仮でここにARボタン*/
+.arButton{
+  width: auto;
+  height: 15%;
+  top: 5%;
+  right: 5%;
+  position: absolute;
+}
+
+
+#Header{
+  width: 100%;
+  height: 6vh;
+  padding: 0%;
+  background-color: #f9f6f4;
+  position: relative;
+}
+
+
+/*3D描画領域*/
+.Canvas3D{
+  width: 100%;
+  height: 47vh;
+}
+
+/*メニューエリア↓*/
+.MenuArea{
+  width: 100%;
+  height: 40vh;
+}
+
+/* --------カテゴリー選択↓*/
+.CategoryList{
+  margin: 0%;
+  padding: 0%;
+  width: 100%;
+}
+
+.CategoryBanner {
+  width: 95%;
+  margin: auto;
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+  padding: 0%;
+  background-color: #f9f6f4;
+}
+
+.CategoryBanner +.CategoryBanner{
+  /*隣接するCategorybannerの上部のボーダーを非表示*/
+  border-top: none;
+}
+
+.CategoryBanner div{
+  display: inline-block;
+}
+
+.CategoryGuide{
+  padding: 10px;
+}
+
+.CategoryBannerMark{
+  position: absolute;
+  display: block;
+  left: 100%;
+  transform: translateX(-200%);
+  padding: 10px;
+  color: coral;
+}
+
+.CategoryBannerIcon{
+  height: 15px;
+  width: auto;
+}
+/* --------カテゴリー選択↑*/
+
+
+/*メニューエリア↑*/
+
+
+/* メニューのヘッダ↓ */
+
+.ItemHeader{
+  width: 100%;
+  height: 10vh;
+  position: relative;
+  background-color: #f9f6f4;
+}
+
+/*商材名領域*/
+.ItemHeaderNameArea{
+  width: 100%;
+  height: 7vh;
+  font-size: 1.5rem;
+  color:white;
+  background-color: black;
+  white-space: nowrap;
+}
+
+/*機能一覧表示ボタン*/
+.itemDetailListButton{
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  transform: translate(-110%,-115%);
+  width: 120px;
+  text-decoration: underline;
+  text-align: right;
+}
+
+
+.ItemSelectButton{
+  height: 50%;
+  width: auto;
+  padding: auto;
+  margin: 0%;
+  position: absolute;
+  right: 0%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+/* メニューのヘッダ↑ */
+.MenuParent{
+  background-color: #f9f6f4;;
+}
+
+
+/*slick 削除予定*/
+
+.MenuParent{
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  padding: 0%;
+}
+
+.MenuParent li{
+  height: 60%;
+  width: 50%;
+}
+
+.MenuParent a{
+  height: 100%;
+  width: 100%;
+}
+
+.SlickElement{
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #f9f6f4;;
+  position: relative;
+}
+
+
+.SlickElementImg{
+  display: block;
+  width: 200px;
+  height: 100%;
+  object-fit: fill;
+}
+
+.SlickElementWideImg{
+  display: block;
+  width: 400px;                                                                                                                                    
+  height: 100%;
+  object-fit: fill;
+}
+
+.MovieIcon{
+  padding: 0%;
+  margin: 0%;                           
+  width: 15%;
+  height: 15%;
+  object-fit: contain;
+  position: absolute;
+  top:100%;
+  right: 0%;
+  transform: translate( -30%, -130%);
+}
+
+.SlickElementColorImg{
+  display: block;
+  width: 80%;
+  height: 60%;
+}
+
+.ColorName{
+  margin: 5% 0%;
+  width: 100%;
+  font-size: 1rem;
+  text-align: center;
+}
+
+
