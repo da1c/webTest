@@ -23,9 +23,16 @@ class flow {
       COLOR_PICKUP: 3,
     };
     this.nowMenuStateID = this.MenuStateID.CATEGORY;
+
+    this.menuParent = null;
   }
 
   Init() {
+
+    // メニューの親要素を取得
+    this.menuParent = window.$(".MenuParent");
+
+    // 3D空間初期化
     this.modelView = new ModelView();
     this.modelView.Init(window.innerWidth, this.GetScreenHarfSize());
 
@@ -203,10 +210,8 @@ class flow {
 
   // カテゴリーのカラーを選択
   ClickColorCategory() {
-    // カラーカテゴリー選択
-    let menuWnd = this.GetMenuWindow();
-
-    menuWnd.location.href = "./../colorTypeSelect/colorSelectType.html";
+    // ステートをカラーカテゴリーに変更
+    this.ChangeState(this.MenuStateID.COLOR_TYPE);
   }
 
   /**
@@ -247,11 +252,11 @@ class flow {
       }
     }
 
-    // 追加先の要素を取得
-    let dstElement = wnd.$(".MenuParent");
-    dstElement.append(element_str);
+    // 作成した要素を追加
+    this.menuParent.append(element_str);
 
-    dstElement.slick({
+    // slick初期化
+    this.menuParent.slick({
       centerMode: true,
       centerPadding: "15%",
       dots: false,
@@ -330,12 +335,10 @@ class flow {
    */
   InitColorTypeSelect() {
     // Menu部分のウィンドウ取得
-    let wnd = this.GetMenuWindow();
+    let wnd = window;
 
     // 選択中の商材のカラー情報を取得
     let colorInfo = this.indexWnd.dataMng.GetSelectColorInfo();
-
-    let dstElement = wnd.$(".CategoryList");
 
     let element_str = "";
 
@@ -343,14 +346,14 @@ class flow {
     for (let index = 0; index < colorInfo.length; ++index) {
       const element = colorInfo[index];
       element_str +=
-        '<div class="CategoryBanner" onclick="window.top.Flow.ClickColorType(' +
+        '<div class="CategoryBanner" onclick="window.Flow.ClickColorType(' +
         index +
         ')"><div class="CategoryGuide"><div class="CategoryBannerName">' +
         element.COLOR_CATEGORY +
         '</div></div><div class="CategoryBannerMark">></div></div>';
     }
 
-    dstElement.append(element_str);
+    this.menuParent.append(element_str);
   }
 
   /**
@@ -472,6 +475,14 @@ class flow {
     this.nowMenuStateID = nextStateID;
   }
 
+
+  ResetMenuElement(){
+    // 配下の要素削除
+    this.menuParent.empty();
+    // 表示状態にする
+    this.menuParent.hide();
+  }
+
   // メニューに切り替え
   ChangeCategoryState() {
     // メニュー表示設定
@@ -487,31 +498,36 @@ class flow {
   ChangeItemPickUpState() {
     // 機能一覧を作成
     this.InitItemPickUp();
-
     // slickの親を表示状態に変更
-    let slickParent = window.$(".MenuParent");
-    slickParent.show();
+    this.menuParent.show();
   }
 
   // アイテム選択ステート
   EndItemPickUpState() {
-    let slickParent = window.$(".MenuParent");
-
     // sulick解除
-    slickParent.slick("unslick");
-    // 配下の要素削除
-    slickParent.empty();
-    // 表示状態にする
-    slickParent.hide();
+    this.menuParent.slick("unslick");
+    // MenuParent配下を削除
+    this.ResetMenuElement();
   }
 
   // カラーカテゴリー選択
-  ChangeColorCategoryState() {}
+  ChangeColorCategoryState() {
+    // カラーイプの作成
+    this.InitColorTypeSelect();
+    // メニュー表示設定
+    this.menuParent.show();
+  }
 
-  EndColorCategoryState() {}
+  EndColorCategoryState() {
+    // MenuParent配下を削除
+    this.ResetMenuElement();
+  }
 
   // カラー選択
   ChangeColorPickUpState() {}
 
-  EndColorPickUpState() {}
+  EndColorPickUpState() {
+    // MenuParent配下を削除
+    this.ResetMenuElement();
+  }
 }

@@ -57,12 +57,12 @@ html, body{
 .CategoryList{
   margin: 0%;
   padding: 0%;
-  width: 95%;
+  width: 100%;
 }
 
 .CategoryBanner {
-  width: 100%;
-  margin: 0%;
+  width: 95%;
+  margin: auto;
   border-style: solid;
   border-color: black;
   border-width: 2px;
