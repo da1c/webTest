@@ -359,10 +359,6 @@ class flow {
     // 選択中の商材のカラー情報を取得
     let colorInfo = this.indexWnd.dataMng.GetSelectColorTypeInfo();
 
-    // パンくずに選択したカラー箇所名を設定
-    //let bread = wndow.$(".breadcrumb_current");
-    //bread.html(colorInfo.COLOR_CATEGORY);
-
     // 追加先の要素を取得
     let element_str = "";
 
