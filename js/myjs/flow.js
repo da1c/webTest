@@ -37,7 +37,7 @@ class flow {
     this.menuParent = window.$(".MenuParent");
     // スクロールメニューの親OBJ取得
     this.scrollParent = window.$("#ScrollParent");
-
+    this.holizontalParent = window.$(".HolizonScrollParent");
     // パンくずのOBJを取得
     this.breadCrumbObjArray = new Array(
       window.$(".BreadCrumbChild1"),
@@ -481,7 +481,7 @@ class flow {
 
   ResetScrollElement(){
     this.scrollParent.empty();
-    this.scrollParent.hide();
+    this.holizontalParent.hide();
   }
 
   // メニューに切り替え
@@ -501,7 +501,7 @@ class flow {
   // 機能一覧メニュー
   ChangeItemPickUpState() {
     // slickの親を表示状態に変更
-    this.scrollParent.show();
+    this.holizontalParent.show();
     // 機能一覧を作成
     this.InitItemPickUp();
 
@@ -557,7 +557,7 @@ class flow {
   ChangeColorPickUpState() {
     this.InitColorPickUp();
     // メニュー表示設定
-    this.scrollParent.show();
+    this.holizontalParent.show();
     // パンくず更新
     this.ChangeBreadCrumbState(3);
 
