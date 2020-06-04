@@ -305,18 +305,20 @@ class flow {
       // タイプの確認
       if (this.indexWnd.dataMng.CheckIMGSrcType(itemInfo[index].TYPE)) {
         // 通常
-        element_str += this.CreateIMGElement(itemInfo[index].SRC, imgType);
+        element_str = this.CreateIMGElement(itemInfo[index].SRC, imgType);
       } else {
         // 動画リンクの場合
-        element_str += this.CreateVideoElement(
+        element_str = this.CreateVideoElement(
           itemInfo[index].SRC,
           imgType,
           itemInfo[index].NAME
         );
       }
+
+      this.scrollParent.append(element_str);
     }
     // 作成した要素を追加
-    this.scrollParent.append(element_str);
+    //this.scrollParent.append(element_str);
   }
 
   CreateIMGElement(src, imgType) {
