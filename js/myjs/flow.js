@@ -34,7 +34,7 @@ class flow {
   Init() {
     // メニューの親要素を取得
     this.menuParent = window.$(".MenuParent");
-
+    this.menuParent.hide();
     // パンくずのOBJを取得
     this.breadCrumbObjArray = new Array(
       window.$(".BreadCrumbChild1"),
