@@ -362,7 +362,7 @@ class flow {
         colorInfo.COLOR_ID_ARRAY[index]
       );
       element_str +=
-        '<li class="SlickElement"><div class="ColorName">' +
+        '<li class="SlickElement"><div class="ColorName NoSelectText">' +
         element.NAME +
         '</div><img class="SlickElementColorImg" src="' +
         element.SRC +

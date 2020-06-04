@@ -1,24 +1,23 @@
-html, body{
+html,
+body {
   overflow: hidden;
   height: 100%;
   background-color: #f9f6f4;
 }
 
-
 /* ヘッダ部分↓ */
-.HeaderMenuButton{
+.HeaderMenuButton {
   height: 100%;
   width: auto;
   float: left;
 }
 
-.HeaderLogo{
-
+.HeaderLogo {
   height: 100%;
   width: 30%;
 }
 
-.HeaderLogoImg{
+.HeaderLogoImg {
   height: 80%;
   width: auto;
 }
@@ -26,7 +25,7 @@ html, body{
 /* ヘッダ部分↑ */
 
 /*仮でここにARボタン*/
-.arButton{
+.arButton {
   width: auto;
   height: 15%;
   top: 5%;
@@ -34,8 +33,7 @@ html, body{
   position: absolute;
 }
 
-
-#Header{
+#Header {
   width: 100%;
   height: 6vh;
   padding: 0%;
@@ -43,21 +41,20 @@ html, body{
   position: relative;
 }
 
-
 /*3D描画領域*/
-.Canvas3D{
+.Canvas3D {
   width: 100%;
   height: 47%;
 }
 
 /*メニューエリア↓*/
-.MenuArea{
+.MenuArea {
   width: 100%;
   height: 40%;
 }
 
 /* --------カテゴリー選択↓*/
-.CategoryList{
+.CategoryList {
   margin: 0%;
   padding: 0%;
   width: 100%;
@@ -73,20 +70,20 @@ html, body{
   background-color: #f9f6f4;
 }
 
-.CategoryBanner +.CategoryBanner{
+.CategoryBanner + .CategoryBanner {
   /*隣接するCategorybannerの上部のボーダーを非表示*/
   border-top: none;
 }
 
-.CategoryBanner div{
+.CategoryBanner div {
   display: inline-block;
 }
 
-.CategoryGuide{
+.CategoryGuide {
   padding: 10px;
 }
 
-.CategoryBannerMark{
+.CategoryBannerMark {
   position: absolute;
   display: block;
   left: 100%;
@@ -95,19 +92,27 @@ html, body{
   color: coral;
 }
 
-.CategoryBannerIcon{
+.CategoryBannerIcon {
+  height: 15px;
+  width: auto;
+}
+
+.CategoryBannerBlankIcon {
+  position: absolute;
+  left: 100%;
+  transform: translateX(-200%);
+  padding: 10px;
+  color: coral;
   height: 15px;
   width: auto;
 }
 /* --------カテゴリー選択↑*/
 
-
 /*メニューエリア↑*/
-
 
 /* メニューのヘッダ↓ */
 
-.ItemHeader{
+.ItemHeader {
   width: 100%;
   height: 10vh;
   position: relative;
@@ -115,28 +120,27 @@ html, body{
 }
 
 /*商材名領域*/
-.ItemHeaderNameArea{
+.ItemHeaderNameArea {
   width: 100%;
   height: 7vh;
   font-size: 1.5rem;
-  color:white;
+  color: white;
   background-color: black;
   white-space: nowrap;
 }
 
 /*機能一覧表示ボタン*/
-.itemDetailListButton{
+.itemDetailListButton {
   position: absolute;
   top: 100%;
   left: 100%;
-  transform: translate(-110%,-115%);
+  transform: translate(-110%, -115%);
   width: 120px;
   text-decoration: underline;
   text-align: right;
 }
 
-
-.ItemSelectButton{
+.ItemSelectButton {
   height: 50%;
   width: auto;
   padding: auto;
@@ -147,10 +151,16 @@ html, body{
   transform: translateY(-50%);
 }
 
-
 /* メニューのヘッダ↑ */
-.MenuParent{
-  background-color: #f9f6f4;;
+.MenuParent {
+  background-color: #f9f6f4;
 }
 
-
+/* テキスト選択不可 */
+.NoSelectText {
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer */
+  -khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
+  -webkit-user-select: none; /* Chrome, Safari, and Opera */
+  -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+}
