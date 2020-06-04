@@ -359,26 +359,15 @@ class flow {
         colorInfo.COLOR_ID_ARRAY[index]
       );
       element_str +=
-        '<li class="SlickElement ContentsParent"><div class="ColorName">' +
+        '<li class="SlickElement"><div class="ColorName">' +
         element.NAME +
-        '</div><img class="SlickElementColorImg ContentsChild" src="' +
+        '</div><img class="SlickElementColorImg" src="' +
         element.SRC +
         '" /></li>';
     }
 
+    element_str = "<div class=\"HolizonScrollParent\"><div class=\"ScrollNav\"><ul>" + element_str + "</ul></div></div>";
     this.menuParent.append(element_str);
-
-    this.menuParent.slick({
-      centerMode: true,
-      centerPadding: "20%",
-      dots: false,
-      infinite: false,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      speed: 300,
-      adaptiveHeight: true,
-      arrows: false,
-    });
   }
 
   /**
@@ -578,8 +567,6 @@ class flow {
   }
 
   EndColorPickUpState() {
-    // sulick解除
-    this.menuParent.slick("unslick");
     // MenuParent配下を削除
     this.ResetMenuElement();
   }

@@ -69,9 +69,12 @@
   
   /*カラー表示用の画像*/
   .SlickElementColorImg{
-    display: block;
+
     width: 80%;
     height: 60%;
+    padding-left: 10%;
+    padding-right: 10%;
+
   }
   
   /*カラー名*/
