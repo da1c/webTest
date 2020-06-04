@@ -1,6 +1,8 @@
 
 /*親*/
 .HolizonScrollParent{
+    width: 100%;
+    height: 100%;
     position: relative;
   
 }
@@ -14,7 +16,7 @@
 }
 
 /*スクロール部分*/
-.scrollnav ul{
+.ScrollNav ul{
     max-width: 50000px;
     min-width: 1000px;
     height: 100%;
@@ -27,26 +29,27 @@
 /*内部に配置する子 */
 .SlickElement{
     display: inline-block;
-    width: 100%;
-    height: 100%;
     background-color: #f9f6f4;;
     position: relative;
+    height: 100%;
   }
   
   /* 通常サイズの画像*/
   .SlickElementImg{
     display: block;
-    width: 200px;
+    width: 60vw;
     height: 100%;
-    object-fit: fill;
+    object-fit: contain;
+
   }
   
   /*横長サイズの画像*/
   .SlickElementWideImg{
+    padding: 0%;
     display: block;
-    width: 400px;                                                                                                                                    
+    width: 80vw;                                                                                                                                    
     height: 100%;
-    object-fit: fill;
+    object-fit: contain;
   }
   
   /*動画有りマーク*/

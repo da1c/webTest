@@ -151,23 +151,3 @@ html, body{
 }
 
 
-/*slick 削除予定*/
-
-.MenuParent{
-  height: 100%;
-  width: 100%;
-  margin: auto;
-  padding: 0%;
-}
-
-.MenuParent li{
-  height: 60%;
-  width: 50%;
-}
-
-.MenuParent a{
-  height: 100%;
-  width: 100%;
-}
-
-

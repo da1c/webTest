@@ -309,43 +309,30 @@ class flow {
       }
     }
 
+    element_str = "<div class=\"HolizonScrollParent\"><div class=\"ScrollNav\"><ul>" + element_str + "</ul></div></div>";
     // 作成した要素を追加
     this.menuParent.append(element_str);
-
-    // slick初期化
-    this.menuParent.slick({
-      centerMode: true,
-      centerPadding: "15%",
-      dots: false,
-      infinite: false,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      speed: 300,
-      adaptiveHeight: true,
-      arrows: false,
-      variableWidth: true,
-    });
   }
 
   CreateIMGElement(src, imgType) {
     return (
-      '<li><div class="SlickElement"><img class="' +
+      '<li class="SlickElement"><img class="' +
       imgType +
       ' " src="' +
       src +
-      '"></div></li>'
+      '"></li>'
     );
   }
 
   CreateVideoElement(src, imgType, videoID) {
     return (
-      '<li><div class="SlickElement"><img class="' +
+      '<li class="SlickElement"><img class="' +
       imgType +
       '" src="' +
       src +
       '" onclick="window.top.Flow.ClickVideo(' +
       videoID +
-      ')"><img class="MovieIcon" src="./img/movie_icon.png"></div></li>'
+      ')"><img class="MovieIcon" src="./img/movie_icon.png"></li>'
     );
   }
 
@@ -537,8 +524,6 @@ class flow {
 
   // アイテム選択ステート
   EndItemPickUpState() {
-    // sulick解除
-    this.menuParent.slick("unslick");
     // MenuParent配下を削除
     this.ResetMenuElement();
   }
