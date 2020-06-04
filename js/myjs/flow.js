@@ -255,7 +255,11 @@ class flow {
   }
 
   Resize() {
-    let screenHegiht = $(window).innerHeight();
+    let screenHegiht = document.body.clientHeight;
+
+    console.error( screenHegiht );
+    console.error($(window).height());
+    console.error($(window).innerHeight());
     let screenHarfHegiht = this.GetScreenHarfSize();
 
     // Index.htmlの各要素のサイズ設定
@@ -267,7 +271,7 @@ class flow {
   }
 
   GetScreenHarfSize() {
-    let screenHegiht = $(window).innerHeight();
+    let screenHegiht = document.body.clientHeight;
     return screenHegiht * 0.47;
   }
 
