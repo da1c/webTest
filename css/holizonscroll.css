@@ -23,6 +23,7 @@
     margin: 0%;
     list-style: none;
     white-space: nowrap;
+    line-height: 100%;
 }
 
 
@@ -32,6 +33,7 @@
     background-color: #f9f6f4;;
     position: relative;
     height: 100%;
+    vertical-align: middle;
   }
   
   /* 通常サイズの画像*/
