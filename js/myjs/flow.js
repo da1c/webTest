@@ -502,10 +502,11 @@ class flow {
   // カテゴリー選択メニュー
   // 機能一覧メニュー
   ChangeItemPickUpState() {
-    // 機能一覧を作成
-    this.InitItemPickUp();
     // slickの親を表示状態に変更
     this.menuParent.show();
+    // 機能一覧を作成
+    this.InitItemPickUp();
+
 
     // パンくず更新
     this.ChangeBreadCrumbState(2);
