@@ -26,6 +26,7 @@ class flow {
     this.nowMenuStateID = this.MenuStateID.NONE;
     this.prevMenuStateID = this.MenuStateID.NONE;
     this.menuParent = null;
+    this.scrollParent = null;
 
     this.breadCrumbObjArray = null;
     this.breadCrumbNameObjArray = null;
@@ -34,7 +35,9 @@ class flow {
   Init() {
     // メニューの親要素を取得
     this.menuParent = window.$(".MenuParent");
-    this.menuParent.hide();
+    // スクロールメニューの親OBJ取得
+    this.scrollParent = window.$("#ScrollParent");
+
     // パンくずのOBJを取得
     this.breadCrumbObjArray = new Array(
       window.$(".BreadCrumbChild1"),
@@ -312,10 +315,8 @@ class flow {
         );
       }
     }
-
-    element_str = "<div class=\"HolizonScrollParent\"><div class=\"ScrollNav\"><ul>" + element_str + "</ul></div></div>";
     // 作成した要素を追加
-    this.menuParent.append(element_str);
+    this.scrollParent.append(element_str);
   }
 
   CreateIMGElement(src, imgType) {
@@ -366,8 +367,7 @@ class flow {
         '" /></li>';
     }
 
-    element_str = "<div class=\"HolizonScrollParent\"><div class=\"ScrollNav\"><ul>" + element_str + "</ul></div></div>";
-    this.menuParent.append(element_str);
+    this.scrollParent.append(element_str);
   }
 
   /**
@@ -479,6 +479,11 @@ class flow {
     this.menuParent.hide();
   }
 
+  ResetScrollElement(){
+    this.scrollParent.empty();
+    this.scrollParent.hide();
+  }
+
   // メニューに切り替え
   ChangeCategoryState() {
     // メニュー表示設定
@@ -496,7 +501,7 @@ class flow {
   // 機能一覧メニュー
   ChangeItemPickUpState() {
     // slickの親を表示状態に変更
-    this.menuParent.show();
+    this.scrollParent.show();
     // 機能一覧を作成
     this.InitItemPickUp();
 
@@ -518,8 +523,8 @@ class flow {
 
   // アイテム選択ステート
   EndItemPickUpState() {
-    // MenuParent配下を削除
-    this.ResetMenuElement();
+    // ScrollParent配下を削除
+    this.ResetScrollElement();
   }
 
   // カラーカテゴリー選択
@@ -552,7 +557,7 @@ class flow {
   ChangeColorPickUpState() {
     this.InitColorPickUp();
     // メニュー表示設定
-    this.menuParent.show();
+    this.scrollParent.show();
     // パンくず更新
     this.ChangeBreadCrumbState(3);
 
@@ -567,8 +572,8 @@ class flow {
   }
 
   EndColorPickUpState() {
-    // MenuParent配下を削除
-    this.ResetMenuElement();
+    // ScrollParent配下を削除
+    this.ResetScrollElement();
   }
 
   // ボタンに登録なのかな
