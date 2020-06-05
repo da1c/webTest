@@ -69,10 +69,10 @@
   /*カラー表示用の画像*/
   .SlickElementColorImg{
 
-    width: 80%;
+    width: 60vw;
     height: 60%;
-    padding-left: 10%;
-    padding-right: 10%;
+    padding-left: 10vw;
+    padding-right: 10vw;
 
   }
   
