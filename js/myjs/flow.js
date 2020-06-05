@@ -264,7 +264,7 @@ class flow {
 
     // Index.htmlの各要素のサイズ設定
     this.indexWnd.$("#Canvas3D").css("height", screenHegiht * 0.4 + "px");
-    this.indexWnd.$("#MenuArea").css("height", screenHegiht * 0.4 +"px");
+    this.indexWnd.$("#MenuArea").css("height", screenHegiht * 0.39 +"px");
     this.indexWnd.$(".ItemHeader").css("height", screenHegiht * 0.14 +"px");
     this.indexWnd.$("#Header").css("height", screenHegiht * 0.06 + "px");
 
