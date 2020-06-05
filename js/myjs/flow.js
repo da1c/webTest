@@ -290,6 +290,8 @@ class flow {
     let itemInfo = this.indexWnd.dataMng.GetNowItemDetailInfo();
     let element_str = "";
 
+    let elementHegiht = this.indexWnd.$(".MenuArea").height();
+    let cssText = 'style="height: ' + elementHegiht +'px"';
     for (let index = 0; index < itemInfo.length; index++) {
       let imgType = "";
 
@@ -305,12 +307,13 @@ class flow {
       // タイプの確認
       if (this.indexWnd.dataMng.CheckIMGSrcType(itemInfo[index].TYPE)) {
         // 通常
-        element_str = this.CreateIMGElement(itemInfo[index].SRC, imgType);
+        element_str = this.CreateIMGElement(itemInfo[index].SRC, imgType, cssText);
       } else {
         // 動画リンクの場合
         element_str = this.CreateVideoElement(
           itemInfo[index].SRC,
           imgType,
+          cssText,
           itemInfo[index].NAME
         );
       }
@@ -321,9 +324,9 @@ class flow {
     //this.scrollParent.append(element_str);
   }
 
-  CreateIMGElement(src, imgType) {
+  CreateIMGElement(src, imgType, cssText) {
     return (
-      '<li class="SlickElement"><img class="' +
+      '<li class="SlickElement"' + cssText +'><img class="' +
       imgType +
       ' " src="' +
       src +
@@ -331,9 +334,9 @@ class flow {
     );
   }
 
-  CreateVideoElement(src, imgType, videoID) {
+  CreateVideoElement(src, imgType, cssText, videoID ) {
     return (
-      '<li class="SlickElement"><img class="' +
+      '<li class="SlickElement"' + cssText +'><img class="' +
       imgType +
       '" src="' +
       src +
