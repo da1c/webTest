@@ -18,22 +18,21 @@
 
 /*スクロール部分*/
 .ScrollNav ul{
+  display:-webkit-flex;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-flow: nowrap;
     max-width: 50000px;
     min-width: 1000px;
-    margin: 0%;
-    list-style: none;
-    white-space: nowrap;
-    line-height: 100%;
+    margin: 0%;;
 }
 
 
 /*内部に配置する子 */
 .SlickElement{
-    display: inline-block;
-    background-color: #f9f6f4;;
+    background-color: #f9f6f4;
     position: relative;
-    height: 100%;
-    vertical-align: middle;
   }
   
   /* 通常サイズの画像*/
@@ -64,7 +63,7 @@
     position: absolute;
     bottom:0%;
     right: 0%;
-    transform: translate( -30%, -150%);
+    transform: translate( -30%, -80%);
   }
   
   /*カラー表示用の画像*/

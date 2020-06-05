@@ -260,17 +260,16 @@ class flow {
   Resize() {
     let screenHegiht = window.innerHeight;
 
-    console.error( screenHegiht );
-    console.error($(window).height());
-    console.error($(window).innerHeight());
     let screenHarfHegiht = this.GetScreenHarfSize();
 
     // Index.htmlの各要素のサイズ設定
-    this.indexWnd.$("#Canvas3D").css("height", screenHarfHegiht + "px");
-    this.indexWnd.$("#MenuArea").css("height", screenHarfHegiht + "px");
+    this.indexWnd.$("#Canvas3D").css("height", screenHegiht * 0.4 + "px");
+    this.indexWnd.$("#MenuArea").css("height", screenHegiht * 0.4 +"px");
+    this.indexWnd.$(".ItemHeader").css("height", screenHegiht * 0.14 +"px");
     this.indexWnd.$("#Header").css("height", screenHegiht * 0.06 + "px");
+
     // メニュー部分のサイズを保存
-    this.menuAreaHeight = screenHarfHegiht;
+    this.menuAreaHeight = screenHegiht * 0.30 ;
   }
 
   GetScreenHarfSize() {
