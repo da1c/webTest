@@ -100,6 +100,9 @@ class flow {
 
   // 商材切り替えボタンクリック
   ClickItemSelectButton() {
+
+    window.$(".itemSelectList").show();
+    window.$(".StyleSelectList").hide();
     this.indexWnd.$(".itemSelectModal").fadeIn();
   }
 
@@ -203,6 +206,21 @@ class flow {
   UpdateItemName(itemName) {
     window.$(".HeaderItemName").html(itemName);
   }
+
+  ClickStyleSelect(){
+
+    // ここで
+    window.$(".itemSelectList").hide();
+    window.$(".StyleSelectList").show();
+
+  }
+
+  SelectStyle(id){
+    // ここで
+    window.$(".StyleSelectList").hide();
+    window.$(".itemSelectList").show();
+  }
+
 
   /**
    *小組一覧表示ボタンクリック時の処理
