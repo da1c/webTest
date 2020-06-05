@@ -290,8 +290,8 @@ class flow {
     let itemInfo = this.indexWnd.dataMng.GetNowItemDetailInfo();
     let element_str = "";
 
-    let elementHegiht = this.indexWnd.$(".MenuArea").height();
-    let cssText = 'style="height: ' + elementHegiht +'px"';
+
+    let cssText = this.GetScrollElementHeightText();
     for (let index = 0; index < itemInfo.length; index++) {
       let imgType = "";
 
@@ -307,21 +307,19 @@ class flow {
       // タイプの確認
       if (this.indexWnd.dataMng.CheckIMGSrcType(itemInfo[index].TYPE)) {
         // 通常
-        element_str = this.CreateIMGElement(itemInfo[index].SRC, imgType, cssText);
+        element_str += this.CreateIMGElement(itemInfo[index].SRC, imgType, cssText);
       } else {
         // 動画リンクの場合
-        element_str = this.CreateVideoElement(
+        element_str += this.CreateVideoElement(
           itemInfo[index].SRC,
           imgType,
           cssText,
           itemInfo[index].NAME
         );
       }
-
-      this.scrollParent.append(element_str);
     }
     // 作成した要素を追加
-    //this.scrollParent.append(element_str);
+    this.scrollParent.append(element_str);
   }
 
   CreateIMGElement(src, imgType, cssText) {
@@ -346,6 +344,11 @@ class flow {
     );
   }
 
+  GetScrollElementHeightText(){
+    let elementHegiht = this.indexWnd.$(".MenuArea").height();
+    return 'style="height: ' + elementHegiht +'px"';
+  }
+
   /**
    *colorPickUpの初期化処理
    *と見込み完了時に実行する
@@ -358,14 +361,15 @@ class flow {
 
     // 追加先の要素を取得
     let element_str = "";
-
+    // 高さ設定用のテキスト取得
+    let cssText = this.GetScrollElementHeightText();
     // カラー情報分、スクロール要素配下に要素を追加
     for (let index = 0; index < colorInfo.COLOR_ID_ARRAY.length; ++index) {
       const element = this.indexWnd.dataMng.GetColorInfo(
         colorInfo.COLOR_ID_ARRAY[index]
       );
       element_str +=
-        '<li class="SlickElement"><div class="ColorName NoSelectText">' +
+        '<li class="SlickElement"'+ cssText +'><div class="ColorName NoSelectText">' +
         element.NAME +
         '</div><img class="SlickElementColorImg" src="' +
         element.SRC +
