@@ -258,7 +258,7 @@ class flow {
   }
 
   Resize() {
-    let screenHegiht = document.body.clientHeight;
+    let screenHegiht = window.innerHeight;
 
     console.error( screenHegiht );
     console.error($(window).height());
@@ -274,7 +274,7 @@ class flow {
   }
 
   GetScreenHarfSize() {
-    let screenHegiht = document.body.clientHeight;
+    let screenHegiht = window.innerHeight;
     return screenHegiht * 0.47;
   }
 
