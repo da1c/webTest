@@ -62,9 +62,9 @@
     height: 15%;
     object-fit: contain;
     position: absolute;
-    top:100%;
+    bottom:0%;
     right: 0%;
-    transform: translate( -30%, -130%);
+    transform: translate( -30%, -50%);
   }
   
   /*カラー表示用の画像*/
