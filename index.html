@@ -9,7 +9,6 @@
   <meta http-equiv="Cache-Control" content="no-cache">
   <!--非圧縮版をとりあえず読み込み-->
   <script src="./js/common/jq/jquery-3.5.0.js"></script>
-  <script src="./js/common/slick/slick.js"></script>
   <script src="./js/common/three.min.js"></script>
     <script src="./js/common/FBXLoader.js"></script>
     <script src="./js/common/inflate.min.js"></script>
@@ -170,26 +169,6 @@
             <div class="ItemName ContentsLeftChild NoSelectText">スタイルを選ぶ</div>
           </div>
         </div>
-        <div class="itemselectbanner" onclick="Flow.SelectStyle(1)">
-          <div class="StyleNameArea ContentsParent">
-            <div class="ItemName ContentsLeftChild NoSelectText">GRACE STYLE</div>
-          </div>
-        </div>
-        <div class="itemselectbanner" onclick="Flow.SelectStyle(2)">
-          <div class="StyleNameArea ContentsParent">
-            <div class="ItemName ContentsLeftChild NoSelectText">INDIVITY STYLE industrial</div>
-          </div>
-        </div>
-        <div class="itemselectbanner" onclick="Flow.SelectStyle(3)">
-          <div class="StyleNameArea ContentsParent">
-            <div class="ItemName ContentsLeftChild NoSelectText">PLAN STYLE NATURAL CONSCIOUS</div>
-          </div>
-        </div>
-        <div class="itemselectbanner" onclick="Flow.SelectStyle(4)">
-          <div class="StyleNameArea ContentsParent">
-            <div class="ItemName ContentsLeftChild NoSelectText">MINIMAL STYLE</div>
-          </div>
-        </div>
       </ul>
     </div>
     <!--modal__inner-->
@@ -270,10 +249,9 @@
       // 初期商材はkitchenを指定
       dataMng.nowItemID = 0;
 
-      Flow.Init();
-
       // フローにwindowオブジェクトを登録
       Flow.SetIndexWindow(window);
+      Flow.Init();
 
       // サイズ設定
       Flow.Resize();

@@ -4,7 +4,9 @@ class dataManager {
    * @memberof dataManager
    */
   constructor() {
+    this.StyleInfoArray = null;
     this.itemInfoArray = null;
+    this.nowStyleID = 1;
     this.colorInfoArray = null;
     this.nowItemID = 0;
     this.selectDetailID = -1;
@@ -14,7 +16,31 @@ class dataManager {
     this.webCatarogURL = "";
     this.homePageURL = "";
     this.DISPSIZE = { NORMAL : 1, WIDE : 2 };
+
+    // 現在のseriesのID
+    this.nowItemIDArray = null;
+
   }
+
+  SelectStyleID(selectID){
+    // 選択中のスタイルID更新
+    this.nowStyleID = selectID;
+    // 選択中の更新行っておくか
+    for (let itemIdx = 0; itemIdx < this.StyleInfoArray.length; itemIdx++) {
+      let element = this.StyleInfoArray[itemIdx];
+      
+      // 指定したスタイルIDと一致するか確認
+      if(element.ID == selectID){
+        // 
+        this.nowItemIDArray = element.ITEM_ID;
+        return;
+      }
+    }
+    // 
+    console.error("指定したIDのスタイル無し");
+
+  }
+
 
   /**
    *初期化処理
@@ -22,6 +48,32 @@ class dataManager {
    * @memberof dataManager
    */
   Init() {
+
+    this.StyleInfoArray = new Array(
+
+      {
+        ID : 1, // ID
+        NAME : "スタイル1", // スタイル名
+        ITEM_ID : new Array( 1, 2, 3, 4),
+      },
+      {
+        ID : 2, // ID
+        NAME : "スタイル2", // スタイル名
+        ITEM_ID : new Array( 4, 3, 2, 1),
+      },
+      {
+        ID : 3, // ID
+        NAME : "スタイル3", // スタイル名
+        ITEM_ID : new Array( 1, 2, 3, 4),
+      },
+      {
+        ID : 4, // ID
+        NAME : "スタイル4", // スタイル名
+        ITEM_ID : new Array( 2, 2, 2, 2),
+      }
+    );
+
+
     // モデルパスリストの用意(modelView.htmlからの相対パス)
     this.itemInfoArray = new Array(
       {
@@ -196,14 +248,15 @@ class dataManager {
    * @memberof dataManager
    */
   GetNowModelPath() {
-    return this.itemInfoArray[this.nowItemID].ModelPath;
+    return this.nowItemInfo.ModelPath;
+
   }
 
   GetNowModelWallPos(){
-    return this.itemInfoArray[this.nowItemID].WALL_POS;
+    return this.nowItemInfo.WALL_POS;
   }
   GetNowModelFloorPos(){
-    return this.itemInfoArray[this.nowItemID].FLOOR_POS;
+    return this.nowItemInfo.FLOOR_POS;
   }
 
   /**
@@ -213,7 +266,7 @@ class dataManager {
    * @memberof dataManager
    */
   GetNowItemName() {
-    return this.itemInfoArray[this.nowItemID].ItemName;
+    return this.nowItemInfo.ItemName;
   }
 
   /**
@@ -223,17 +276,17 @@ class dataManager {
    * @memberof dataManager
    */
   GetNowItemDetailInfo() {
-    return this.itemInfoArray[this.nowItemID].DetailIDArray;
+    return this.nowItemInfo.DetailIDArray;
   }
 
   GetSelectItemDetailInfo() {
-    return this.itemInfoArray[this.nowItemID].DetailIDArray[
+    return this.nowItemInfo.DetailIDArray[
       this.selectDetailID
     ];
   }
 
   GetSelectItemARUrl() {
-    return this.itemInfoArray[this.nowItemID].ARURL;
+    return this.nowItemInfo.ARURL;
   }
   /**
    *現在選択中商材のカラー箇所が複数か確認
@@ -242,12 +295,12 @@ class dataManager {
    */
 
   CheckSelectItemMultiColor() {
-　　return this.itemInfoArray[this.nowItemID].COLOR.length > 1;
+　　return this.nowItemInfo.COLOR.length > 1;
   }
 
 
   GetSelectColorInfo() {
-    return this.itemInfoArray[this.nowItemID].COLOR;
+    return this.nowItemInfo.COLOR;
   }
 
   SetSelectColorType(ID){
@@ -255,7 +308,7 @@ class dataManager {
   }
 
   GetSelectColorTypeInfo(){
-    return this.itemInfoArray[this.nowItemID].COLOR[ this.selectColorTypeID];
+    return this.nowItemInfo.COLOR[ this.selectColorTypeID];
   }
 
   GetColorInfo(colorID){
@@ -270,7 +323,7 @@ class dataManager {
 
 
   CheckIMGSrcType( check ){
-     return this.SrcType.IMG == check;
+    return this.SrcType.IMG == check;
   }
 
   GetVideoInfo(videoID){
@@ -284,7 +337,7 @@ class dataManager {
   }
 
   GetWebCataroguURL(){
-    return this.itemInfoArray[this.nowItemID].WEB_CATAROG_URL;
+    return this.nowItemInfo.WEB_CATAROG_URL;
   }
 
   GetHomePageURL(){
@@ -297,7 +350,7 @@ class dataManager {
   }
 
   GetInstructionURL(){
-    return this.itemInfoArray[this.nowItemID].INSTRUCTION_URL;
+    return this.nowItemInfo.INSTRUCTION_URL;
   }
 
 
@@ -308,7 +361,34 @@ class dataManager {
    * @memberof dataManager
    */
   GetDirLightIntensity(){
-    return this.itemInfoArray[this.nowItemID].DIR_LIGHT_INTENSITY;
+    return this.nowItemInfo.DIR_LIGHT_INTENSITY;
+  }
+
+  /**
+   *スタイル情報取得
+   *
+   * @returns
+   * @memberof dataManager
+   */
+  GetStyleInfoArray(){
+    return this.StyleInfoArray;
+  }
+
+  // 選択した商材情報を取得
+  SetSelectItemID(idx){
+    // 現状は配列
+    let itemID = this.nowItemIDArray[idx];
+
+    for (let itemIdx = 0; itemIdx < this.itemInfoArray.length; itemIdx++) {
+      const element = this.itemInfoArray[itemIdx];
+      if( element.ID == itemID ){
+        this.nowItemID = itemID;
+        this.nowItemInfo = this.itemInfoArray[itemIdx];
+        return;
+      }
+    }
+
+    console.error("選択した情報なし");
   }
 
 }

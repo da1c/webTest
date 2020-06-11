@@ -51,6 +51,10 @@ class flow {
       window.$(".BreadCrumbText3")
     );
 
+    // 初期値を設定
+    this.indexWnd.dataMng.SelectStyleID(1);
+    this.indexWnd.dataMng.SetSelectItemID(0);
+
     // 3D空間初期化
     this.modelView = new ModelView();
     this.modelView.Init(window.innerWidth, this.GetScreenHarfSize());
@@ -63,6 +67,9 @@ class flow {
 
     // カテゴリー選択に設定
     this.ChangeState(this.MenuStateID.CATEGORY);
+
+    // スタイル選択一覧作成
+    this.CreateStyleSelectUI();
   }
 
   SetIndexWindow(wnd) {
@@ -175,8 +182,9 @@ class flow {
    */
   ClickItemButton(id) {
     // モデルビュー更新
-    // モデルビューのウィンドウ取得
-    this.indexWnd.dataMng.nowItemID = id;
+    // ここで設定
+    this.indexWnd.dataMng.SetSelectItemID(id);
+
     // モデルウィンドウのモデル更新
     this.modelView.SetModel(
       this.indexWnd.dataMng.GetNowModelPath(),
@@ -209,14 +217,15 @@ class flow {
 
   ClickStyleSelect(){
 
-    // ここで
     window.$(".itemSelectList").hide();
     window.$(".StyleSelectList").show();
 
   }
 
   SelectStyle(id){
-    // ここで
+    // スタイルID切り替え
+    window.dataMng.SelectStyleID(id);
+
     window.$(".StyleSelectList").hide();
     window.$(".itemSelectList").show();
   }
@@ -665,4 +674,30 @@ class flow {
       target.addClass(addClassName);
     }
   }
+
+   
+  /**
+   *スタイル選択UI作成
+   *初回初期化時に行う
+   * @memberof flow
+   */
+  CreateStyleSelectUI(){
+    // これ初回で行うだけで十分
+    let styleInfoArray = window.dataMng.GetStyleInfoArray();
+
+    let dstElement = window.$(".StyleSelectList");
+    let addElement = "";
+
+    for (let styleIdx = 0; styleIdx < styleInfoArray.length; styleIdx++) {
+      let element = styleInfoArray[styleIdx];
+      addElement += '<div class="itemselectbanner" onclick="Flow.SelectStyle(' + element.ID +')"><div class="StyleNameArea ContentsParent"><div class="ItemName ContentsLeftChild NoSelectText StyleName">'+ element.NAME +'</div></div></div>';
+    }
+
+    // 要素追加
+    dstElement.append(addElement);
+  }
+  
+  // 現在取得しているスタイルの情報を取得
+
+
 }
