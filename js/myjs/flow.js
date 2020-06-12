@@ -30,6 +30,14 @@ class flow {
 
     this.breadCrumbObjArray = null;
     this.breadCrumbNameObjArray = null;
+
+    // モデル描画領域のサイズ
+    this.modelViewWidth = window.innerWidth;
+    this.modelViewHeight = window.innerHeight * 0.4;
+    this.modelViewWipeWidth = this.modelViewWidth * 0.3;
+    this.modelViewWipeHeight = this.modelViewHeight * 0.3;
+    this.modelViewDiffHeight = this.modelViewHeight - this.modelViewWipeHeight;
+    this.modelViewDiffWidth = this.modelViewWidth - this.modelViewWipeWidth;
   }
 
   Init() {
@@ -57,7 +65,7 @@ class flow {
 
     // 3D空間初期化
     this.modelView = new ModelView();
-    this.modelView.Init(window.innerWidth, this.GetScreenHarfSize());
+    this.modelView.Init(this.modelViewWidth, this.modelViewHeight);
 
     ModelViewRender();
 
@@ -287,10 +295,8 @@ class flow {
   Resize() {
     let screenHegiht = window.innerHeight;
 
-    let screenHarfHegiht = this.GetScreenHarfSize();
-
     // Index.htmlの各要素のサイズ設定
-    this.indexWnd.$("#Canvas3D").css("height", screenHegiht * 0.4 + "px");
+    this.indexWnd.$("#Canvas3D").css("height", this.modelViewHeight + "px");
     this.indexWnd.$("#MenuArea").css("height", screenHegiht * 0.39 +"px");
     this.indexWnd.$(".ItemHeader").css("height", screenHegiht * 0.14 +"px");
     this.indexWnd.$("#Header").css("height", screenHegiht * 0.06 + "px");
@@ -301,7 +307,7 @@ class flow {
 
   GetScreenHarfSize() {
     let screenHegiht = window.innerHeight;
-    return screenHegiht * 0.47;
+    return screenHegiht * 0.4;
   }
 
   /**
@@ -698,6 +704,13 @@ class flow {
   }
   
   // 現在取得しているスタイルの情報を取得
+  ChangeSize(now){
 
+    let nowWidth = this.modelViewWidth - ( this.modelViewDiffWidth * now );
+    let nowHeight = this.modelViewHeight - ( this.modelViewDiffHeight * now );
+    let area3D = this.indexWnd.$(".Canvas3D");
+    area3D.css( { width: nowWidth+"px",
+                  height : nowHeight + "px" } );
+  }
 
 }

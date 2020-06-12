@@ -35,7 +35,7 @@
 
   <div class="ModelViewArea">
     <canvas id="Canvas3D" class="Canvas3D"></canvas>
-    <img class="arButton" src="./img/ar_button.png" onclick="Flow.ClickARButton()">
+    <img class="arButton" src="./img/ar_button.png" onclick="disp_move_test()">
   </div>
 
   <!--メニュー表示領域-->
@@ -259,8 +259,33 @@
       Flow.Resize();
     });
 
-    function disp_test(){
-      this.indexWnd.$("#Canvas3D").css("height", screenHegiht * 0.4 + "px")
+    function disp_move_test(){
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+      $(".ModelViewArea").animate(
+        {
+          top: height * 0.8 + "px",
+          left: width * 0.65 + "px"
+        }
+        , 500, "swing");
+      // サイズ修正
+      $(".arButton").css("zIndex", "0");
+      $(".arButton").animate({ zIndex:1}, 
+      {
+        duration:500,
+        step:function(now){
+          Flow.ChangeSize(now);
+        },
+        complete:function(){
+          $(".arButton").css("zIndex", "0");
+        }
+      });
+      
+
+      //$(".ModelViewArea").css("top", "80%");
+      //$(".ModelViewArea").css("left", "0%");
+      $(".ModelViewArea").css("zIndex", "2");
+      $(".arButton").hide();
     }
 
     // 画面サイズ更新時の処理を設定
