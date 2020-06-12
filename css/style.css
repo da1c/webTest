@@ -177,3 +177,12 @@ body {
   -webkit-user-select: none; /* Chrome, Safari, and Opera */
   -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
 }
+
+
+.detailArea{
+  width: 100%;
+  height: 100%;
+  background-color: aqua;
+  position: absolute;
+  top: 100%;
+}

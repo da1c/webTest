@@ -703,14 +703,103 @@ class flow {
     dstElement.append(addElement);
   }
   
-  // 現在取得しているスタイルの情報を取得
-  ChangeSize(now){
 
+
+  /**
+   *モデル表示領域をワイプサイズに変更開始
+   *
+   * @memberof flow
+   */
+  StartChangeModelViewWipe(){
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    $(".ModelViewArea").animate(
+      {
+        top: height * 0.8 + "px",
+        left: width * 0.65 + "px"
+      }
+      , 500, "swing");
+    // サイズ修正
+    $(".arButton").css("zIndex", "0");
+    $(".arButton").animate({ zIndex:1}, 
+    {
+      duration:500,
+      step:function(now){
+        Flow.ChangeWipeSize(now);
+      },
+      complete:function(){
+        $(".arButton").css("zIndex", "0");
+      }
+    });
+
+    $(".detailArea").animate({top:"6%"}, 500, "swing");
+    
+    $(".ModelViewArea").css("zIndex", "2");
+    $(".arButton").hide();
+  }
+
+   StartChangeModelViewNormal(){
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    $(".ModelViewArea").animate(
+      {
+        top: height * 0.06 + "px",
+        left: "0px"
+      }
+      , 500, "swing");
+    // サイズ修正
+    $(".arButton").css("zIndex", "0");
+    $(".arButton").animate({ zIndex:1}, 
+    {
+      duration:500,
+      step:function(now){
+        Flow.ChangeNormalSize(now);
+      },
+      complete:function(){
+        $(".arButton").css("zIndex", "0");
+        $(".ModelViewArea").css("zIndex", "0");
+      }
+    });
+
+    $(".detailArea").animate({top:"100%"}, 500, "swing");
+    
+    $(".arButton").show();
+   }
+
+  /**
+   *ワイプサイズへ変更処理
+   *
+   * @param {*} now
+   * @memberof flow
+   */
+  ChangeWipeSize(now){
     let nowWidth = this.modelViewWidth - ( this.modelViewDiffWidth * now );
     let nowHeight = this.modelViewHeight - ( this.modelViewDiffHeight * now );
+    this.ChangeModelViewSize( nowWidth, nowHeight );
+  }
+  /**
+   *ノーマルへ変更処理
+   *
+   * @param {*} now
+   * @memberof flow
+   */
+  ChangeNormalSize(now){
+    let nowWidth = this.modelViewWipeWidth + ( this.modelViewDiffWidth * now );
+    let nowHeight = this.modelViewWipeHeight + ( this.modelViewDiffHeight * now );
+    this.ChangeModelViewSize( nowWidth, nowHeight );
+  }
+
+  /**
+   *モデル表示領域のサイズ設定
+   *
+   * @param {*} width
+   * @param {*} heigth
+   * @memberof flow
+   */
+  ChangeModelViewSize( width, heigth ){
     let area3D = this.indexWnd.$(".Canvas3D");
-    area3D.css( { width: nowWidth+"px",
-                  height : nowHeight + "px" } );
+    area3D.css( { width: width+"px",
+                  height : heigth + "px" } );
   }
 
 }
