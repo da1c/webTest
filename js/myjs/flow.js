@@ -360,7 +360,7 @@ class flow {
       imgType +
       ' " src="' +
       src +
-      '"></li>'
+      '"onclick="Flow.StartChangeModelViewWipe()"></li>'
     );
   }
 
