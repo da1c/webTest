@@ -32,10 +32,12 @@
     </div>
   </header>
   <!--3Dモデル表示領域-->
-  <div class="ContentsParent">
+
+  <div class="ModelViewArea">
     <canvas id="Canvas3D" class="Canvas3D"></canvas>
     <img class="arButton" src="./img/ar_button.png" onclick="Flow.ClickARButton()">
   </div>
+
   <!--メニュー表示領域-->
   <div class="ItemHeader" >
     <div class="ItemHeaderNameArea ContentsParent">
@@ -251,11 +253,15 @@
 
       // フローにwindowオブジェクトを登録
       Flow.SetIndexWindow(window);
-      Flow.Init();
+      Flow.Init(); 
 
       // サイズ設定
       Flow.Resize();
     });
+
+    function disp_test(){
+      this.indexWnd.$("#Canvas3D").css("height", screenHegiht * 0.4 + "px")
+    }
 
     // 画面サイズ更新時の処理を設定
     $(window).resize(function () {
