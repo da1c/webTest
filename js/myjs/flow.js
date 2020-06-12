@@ -732,6 +732,7 @@ class flow {
       }
     });
 
+    $(".detailArea").show();
     $(".detailArea").animate({top:"6%"}, 500, "swing");
     
     $(".ModelViewArea").css("zIndex", "2");
@@ -761,7 +762,14 @@ class flow {
       }
     });
 
-    $(".detailArea").animate({top:"100%"}, 500, "swing");
+    $(".detailArea").animate({top:"100%"}, 
+    {
+      duration : 500,
+      complete : function(){
+        $(".detailArea").hide();
+      }
+
+    } );
     
     $(".arButton").show();
    }

@@ -185,4 +185,5 @@ body {
   background-color: aqua;
   position: absolute;
   top: 100%;
+  display: none;
 }
