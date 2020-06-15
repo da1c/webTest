@@ -21,7 +21,7 @@ class ModelView {
     this.dirLight = null;
   }
 
-  Init(width, height, cameraPos, cameraRot) {
+  Init(width, height, cameraPos, cameraTargetPos) {
     var canvas3D = document.querySelector("#Canvas3D");
     // レンダラー作成
     this.renderer = new THREE.WebGLRenderer({
@@ -42,12 +42,11 @@ class ModelView {
     // カメラ作成
     this.camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
     this.camera.position.set(cameraPos.x, cameraPos.y, cameraPos.z);
-    //this.camera.rotation.set(cameraRot.x, cameraRot.y, cameraRot.z);
 
     this.Resize(width,height);
 
     this.orbit = new THREE.OrbitControls(this.camera, canvas3D);
-    this.orbit.target.set(0, 0, 0);
+    this.orbit.target.set(cameraTargetPos.x, cameraTargetPos.y, cameraTargetPos.z);
 
     this.orbit.enableDamping = true;
     this.orbit.dampingFactor = 0.05;
@@ -157,14 +156,14 @@ class ModelView {
   }
 
   /**
-   *カメラの角度設定
+   *カメラの注視点設定
    *
    * @param {*} rot
    * @memberof ModelView
    */
-  SetCameraRot(rot){
+  SetCameraTargetPos(rot){
+
     this.orbit.target.set( rot.x, rot.y, rot.z);
-    //this.camera.rotation.set( rot.x, rot.y, rot.z);
   }
 
   /**

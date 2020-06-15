@@ -208,7 +208,7 @@ class flow {
     let pos = this.indexWnd.dataMng.GetCameraPos();
     let rot = this.indexWnd.dataMng.GetCameraRot();
     this.modelView.SetCameraPos(pos);
-    this.modelView.SetCameraRot(rot);
+    this.modelView.SetCameraTargetPos(rot);
 
     // ステートをカテゴリーに戻す
     this.ChangeState(this.MenuStateID.CATEGORY);
