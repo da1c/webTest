@@ -65,7 +65,7 @@ class flow {
 
     // 3D空間初期化
     this.modelView = new ModelView();
-    this.modelView.Init(this.modelViewWidth, this.modelViewHeight);
+    this.modelView.Init(this.modelViewWidth, this.modelViewHeight, this.indexWnd.dataMng.GetCameraPos(), this.indexWnd.dataMng.GetCameraRot());
 
     ModelViewRender();
 
@@ -203,6 +203,12 @@ class flow {
     // 平行光源の強さ設定
     let intensity = this.indexWnd.dataMng.GetDirLightIntensity();
     this.modelView.SetDirLightIntensity(intensity);
+
+    // 選択した商材のカメラの初期座標、角度を設定する
+    let pos = this.indexWnd.dataMng.GetCameraPos();
+    let rot = this.indexWnd.dataMng.GetCameraRot();
+    this.modelView.SetCameraPos(pos);
+    this.modelView.SetCameraRot(rot);
 
     // ステートをカテゴリーに戻す
     this.ChangeState(this.MenuStateID.CATEGORY);

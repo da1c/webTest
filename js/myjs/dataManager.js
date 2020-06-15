@@ -115,6 +115,8 @@ class dataManager {
         WEB_CATAROG_URL:"",
         INSTRUCTION_URL:"",
         DIR_LIGHT_INTENSITY : 3,
+        CAMERA_POS : new THREE.Vector3( 0, 100, 100 ),
+        CAMERA_ROT : new THREE.Vector3( 10, 0, 0 )
       },
       {
         ID: 2,
@@ -154,6 +156,8 @@ class dataManager {
         WEB_CATAROG_URL:"",
         INSTRUCTION_URL:"",
         DIR_LIGHT_INTENSITY : 0.5,
+        CAMERA_POS : new THREE.Vector3( 0, 100, 100 ),
+        CAMERA_ROT : new THREE.Vector3( 0, 0, 0 )
       },
       {
         ID: 3,
@@ -193,6 +197,8 @@ class dataManager {
         WEB_CATAROG_URL:"",
         INSTRUCTION_URL:"",
         DIR_LIGHT_INTENSITY : 0.5,
+        CAMERA_POS : new THREE.Vector3( 0, 100, 100 ),
+        CAMERA_ROT : new THREE.Vector3( 0, 0, 0 )
       },
       {
         ID: 4,
@@ -222,6 +228,8 @@ class dataManager {
         WEB_CATAROG_URL:"",
         INSTRUCTION_URL:"",
         DIR_LIGHT_INTENSITY : 0.5,
+        CAMERA_POS : new THREE.Vector3( 0, 100, 100 ),
+        CAMERA_ROT : new THREE.Vector3( 0, 0, 0 )
       }
     );
 
@@ -389,6 +397,27 @@ class dataManager {
     }
 
     console.error("選択した情報なし");
+  }
+
+  
+  /**
+   *商材のカメラの初期座標取得
+   *
+   * @returns
+   * @memberof dataManager
+   */
+  GetCameraPos(){
+    return this.nowItemInfo.CAMERA_POS;
+  }
+
+    /**
+   *商材のカメラの初期角度取得
+   *
+   * @returns
+   * @memberof dataManager
+   */
+  GetCameraRot(){
+    return this.nowItemInfo.CAMERA_ROT;
   }
 
 }

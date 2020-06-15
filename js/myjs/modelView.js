@@ -21,7 +21,7 @@ class ModelView {
     this.dirLight = null;
   }
 
-  Init(width, height) {
+  Init(width, height, cameraPos, cameraRot) {
     var canvas3D = document.querySelector("#Canvas3D");
     // レンダラー作成
     this.renderer = new THREE.WebGLRenderer({
@@ -41,21 +41,22 @@ class ModelView {
 
     // カメラ作成
     this.camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
-    this.camera.position.set(0, 100, 100);
-
+    this.camera.position.set(cameraPos.x, cameraPos.y, cameraPos.z);
+    this.camera.rotation.set(cameraRot.x, cameraRot.y, cameraRot.z);
+    
     this.Resize(width,height);
 
-    var orbit = new THREE.OrbitControls(this.camera, canvas3D);
-    orbit.target.set(0, 0, 0);
+    this.orbit = new THREE.OrbitControls(this.camera, canvas3D);
+    this.orbit.target.set(0, 0, 0);
 
-    orbit.enableDamping = true;
-    orbit.dampingFactor = 0.05;
-    orbit.screenSpacePanning = false;
+    this.orbit.enableDamping = true;
+    this.orbit.dampingFactor = 0.05;
+    this.orbit.screenSpacePanning = false;
 
-    orbit.minDistance = 100;
-    orbit.maxDistance = 500;
+    this.orbit.minDistance = 10;
+    this.orbit.maxDistance = 500;
     // パンの無効化
-    orbit.enablePan = true;
+    this.orbit.enablePan = true;
 
     // 平行光源
     this.dirLight = new THREE.DirectionalLight(0xffffff);
@@ -144,6 +145,27 @@ class ModelView {
     });
   }
 
+
+  /**
+   *カメラの座標設定
+   *
+   * @param {*} pos
+   * @memberof ModelView
+   */
+  SetCameraPos(pos){
+    this.camera.position.set( pos.x, pos.y, pos.z);
+  }
+
+  /**
+   *カメラの角度設定
+   *
+   * @param {*} rot
+   * @memberof ModelView
+   */
+  SetCameraRot(rot){
+    this.camera.rotation.set( rot.x, rot.y, rot.z);
+  }
+
   /**
    *平行光源の強さ設定
    *
@@ -166,6 +188,8 @@ class ModelView {
 
   // 描画
   Render(){
+    this.orbit.update();
+
     this.renderer.render(this.scene, this.camera);
   }
 
