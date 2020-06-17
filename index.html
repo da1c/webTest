@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8" />
 
@@ -10,9 +11,9 @@
   <!--非圧縮版をとりあえず読み込み-->
   <script src="./js/common/jq/jquery-3.5.0.js"></script>
   <script src="./js/common/three.min.js"></script>
-    <script src="./js/common/FBXLoader.js"></script>
-    <script src="./js/common/inflate.min.js"></script>
-    <script src="./js/common/OrbitControls.js"></script>
+  <script src="./js/common/FBXLoader.js"></script>
+  <script src="./js/common/inflate.min.js"></script>
+  <script src="./js/common/OrbitControls.js"></script>
 
 
   <script src="./js/myjs/flow.js?DATE=20200528a"></script>
@@ -39,22 +40,29 @@
   </div>
 
   <!--メニュー表示領域-->
-  <div class="ItemHeader" >
+  <div class="ItemHeader">
     <div class="ItemHeaderNameArea ContentsParent">
-      <div class="HeaderItemName ContentsChild NoSelectText" id="ItemName" onclick="window.top.Flow.ClickItemSelectButton()"></div>
+      <div class="HeaderItemName ContentsChild NoSelectText" id="ItemName"
+        onclick="window.top.Flow.ClickItemSelectButton()"></div>
       <img class="ItemSelectButton" src="./img/item_select_button.png"
         onclick="window.top.Flow.ClickItemSelectButton()">
     </div>
 
     <!--パンくず-->
     <div class="BreadCrumb">
-        <div class="BreadCrumbChild1"><div class="BreadCrumbText1 NoSelectText">商材情報</div></div>
-        <div class="BreadCrumbChild2"><div class="BreadCrumbText2 NoSelectText"></div></div>
-        <div class="BreadCrumbChild3"><div class="BreadCrumbText3 NoSelectText"></div></div>
+      <div class="BreadCrumbChild1">
+        <div class="BreadCrumbText1 NoSelectText">商材情報</div>
+      </div>
+      <div class="BreadCrumbChild2">
+        <div class="BreadCrumbText2 NoSelectText"></div>
+      </div>
+      <div class="BreadCrumbChild3">
+        <div class="BreadCrumbText3 NoSelectText"></div>
+      </div>
     </div>
     <hr class="Boarder" size="2px" />
   </div>
-  
+
   <div id="MenuArea" class="MenuArea">
     <!-- カテゴリー選択メニュー -->
     <ul class="CategoryList ContentsParent">
@@ -89,7 +97,11 @@
     </ul>
     <!--他メニューの親-->
     <div class="MenuParent"></div>
-    <div class="HolizonScrollParent"><div class="ScrollNav"><ul id="ScrollParent"></ul></div></div>
+    <div class="HolizonScrollParent">
+      <div class="ScrollNav">
+        <ul id="ScrollParent"></ul>
+      </div>
+    </div>
   </div>
 
   <!--メニュー-->
@@ -238,15 +250,9 @@
 
   <div class="detailArea">
     <button class="backButton" onclick="Flow.StartChangeModelViewNormal()">戻る</button>
-    <div class="detailInfoArea">
-      <img src="img/bath.PNG">
-      <img src="img/bath.PNG">
-      <img src="img/bath.PNG">
-      <img src="img/bath.PNG">
-      <img src="img/bath.PNG">
-    </div>
-
-  </button>
+    <div class="detailInfoArea"></div>
+    <div class="detailButtomBlank" ></div>
+  </div>
 
   <script>
     // 端末に合わせてCSSを読み込む
@@ -265,7 +271,7 @@
 
       // フローにwindowオブジェクトを登録
       Flow.SetIndexWindow(window);
-      Flow.Init(); 
+      Flow.Init();
 
       // サイズ設定
       Flow.Resize();

@@ -190,10 +190,4 @@ body {
   overflow-x: hidden;
 }
 
-.detailInfoArea{
-  display:-webkit-flex;
-  display: flex;
-  flex-direction: column;
-  align-self: center;
 
-}

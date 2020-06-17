@@ -345,7 +345,7 @@ class flow {
       // タイプの確認
       if (this.indexWnd.dataMng.CheckIMGSrcType(itemInfo[index].TYPE)) {
         // 通常
-        element_str += this.CreateIMGElement(itemInfo[index].SRC, imgType, cssText);
+        element_str += this.CreateIMGElement(itemInfo[index].SRC, imgType, cssText, index);
       } else {
         // 動画リンクの場合
         element_str += this.CreateVideoElement(
@@ -360,13 +360,13 @@ class flow {
     this.scrollParent.append(element_str);
   }
 
-  CreateIMGElement(src, imgType, cssText) {
+  CreateIMGElement(src, imgType, cssText, idx) {
     return (
       '<li class="SlickElement"' + cssText +'><img class="' +
       imgType +
       ' " src="' +
       src +
-      '"onclick="Flow.StartChangeModelViewWipe()"></li>'
+      '"onclick="Flow.DispItemDetail(' + idx + ')"></li>'
     );
   }
 
@@ -711,6 +711,15 @@ class flow {
   
 
 
+  DispItemDetail(idx){
+
+    // 詳細表示の内容を設定
+    let itemInfo = this.indexWnd.dataMng.GetNowItemDetailInfo();
+
+    this.indexWnd.$(".detailInfoArea").append(itemInfo[idx].DETAIL_VALUE);
+    this.StartChangeModelViewWipe();
+  }
+
   /**
    *モデル表示領域をワイプサイズに変更開始
    *
@@ -745,6 +754,8 @@ class flow {
     $(".arButton").hide();
   }
 
+
+
    StartChangeModelViewNormal(){
     let width = window.innerWidth;
     let height = window.innerHeight;
@@ -773,6 +784,7 @@ class flow {
       duration : 500,
       complete : function(){
         $(".detailArea").hide();
+        $(".detailInfoArea").empty();
       }
 
     } );

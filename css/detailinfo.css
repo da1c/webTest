@@ -1,0 +1,37 @@
+
+/*詳細情報表示領域*/
+.detailInfoArea{
+    display:-webkit-flex;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+/*詳細情報要素*/ 
+.detailInfoElement{
+    width: 100%;
+    padding: 0%;
+    margin: 0%;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+/*詳細情報の画像*/
+.detailInfoImage{
+    width: 100%;
+    height: 50vh;
+    object-fit: contain;
+}
+
+/*詳細情報の動画*/
+.detailInfoMovie{
+    width: 100%;
+    height: 60vh;
+    
+}
+
+.detailButtomBlank{
+    width: 100%;
+    height: 20%;
+}
