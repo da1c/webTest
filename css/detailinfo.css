@@ -26,12 +26,15 @@
 
 /*詳細情報の動画*/
 .detailInfoMovie{
-    width: 100%;
-    height: 60vh;
-    
+    text-align: center;
 }
 
 .detailButtomBlank{
     width: 100%;
     height: 20%;
+}
+
+.detailIfarme{
+    width: 80%;
+    height: 50vh;
 }
