@@ -38,8 +38,16 @@ class flow {
     this.modelViewWipeHeight = this.modelViewHeight * 0.3;
     this.modelViewDiffHeight = this.modelViewHeight - this.modelViewWipeHeight;
     this.modelViewDiffWidth = this.modelViewWidth - this.modelViewWipeWidth;
+    // 商材切り替え用関数
+    this.changeItemFunc = this.DispSelectItem;
   }
 
+
+  /**
+   *初期化処理
+   *
+   * @memberof flow
+   */
   Init() {
     // メニューの親要素を取得
     this.menuParent = window.$(".MenuParent");
@@ -116,10 +124,12 @@ class flow {
   // 商材切り替えボタンクリック
   ClickItemSelectButton() {
 
-    window.$(".itemSelectList").show();
-    window.$(".StyleSelectList").hide();
+    //
+    this.changeItemFunc();
     this.indexWnd.$(".itemSelectModal").fadeIn();
   }
+
+
 
   /**
    *カラータイプクリック
@@ -231,15 +241,27 @@ class flow {
 
   ClickStyleSelect(){
 
-    window.$(".itemSelectList").hide();
-    window.$(".StyleSelectList").show();
+    // スタイル選択のUI表示
+    this.DispSelectStyle();
 
+    this.changeItemFunc = this.DispSelectStyle;
   }
 
   SelectStyle(id){
     // スタイルID切り替え
     window.dataMng.SelectStyleID(id);
 
+    this.DispSelectItem();
+
+    this.changeItemFunc = this.DispSelectItem;
+  }
+
+  DispSelectStyle(){
+    window.$(".itemSelectList").hide();
+    window.$(".StyleSelectList").show();
+  }
+
+  DispSelectItem(){
     window.$(".StyleSelectList").hide();
     window.$(".itemSelectList").show();
   }
