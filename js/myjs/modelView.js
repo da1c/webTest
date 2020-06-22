@@ -74,7 +74,7 @@ class ModelView {
 
     // テクスチャロード
     // 床
-    this.textureLoader.load("./img/floor.png", (texture) => {
+    this.textureLoader.load(window.dataMng.GetNowStyleFloorTexturePath(), (texture) => {
       let floor_mat = new THREE.MeshBasicMaterial({
         map: texture,
         side: THREE.FrontSide,
@@ -91,7 +91,7 @@ class ModelView {
     });
 
     // 壁
-    this.textureLoader.load("./img/wall.png", (texture) => {
+    this.textureLoader.load(window.dataMng.GetNowStyleWallTexturePath(), (texture) => {
       let wall_mat = new THREE.MeshBasicMaterial({
         map: texture,
         side: THREE.FrontSide,
@@ -143,6 +143,37 @@ class ModelView {
       this.floorObj.position.set(floorPos.x, floorPos.y, floorPos.z);
     });
   }
+
+  ChangeWallTexture(path){
+    this.textureLoader.load(path, 
+      (texture) => 
+      { 
+        // 現在のテクスチャを開放
+        this.wallObj.material.map.dispose();
+        // 読み込んだテクスチャを設定
+        this.wallObj.material.map = texture;
+
+        this.wallObj.material.map.wrapS = THREE.RepeatWrapping;
+        this.wallObj.material.map.wrapT = THREE.RepeatWrapping;
+        this.wallObj.material.map.repeat.set(16, 16);
+      });
+  }
+
+  ChangeFloorTexture(path){
+    this.textureLoader.load(path, 
+      (texture) => 
+      { 
+        // 現在のテクスチャを開放
+        this.floorObj.material.map.dispose();
+        // 読み込んだテクスチャを設定
+        this.floorObj.material.map = texture;
+
+        this.floorObj.material.map.wrapS = THREE.RepeatWrapping;
+        this.floorObj.material.map.wrapT = THREE.RepeatWrapping;
+        this.floorObj.material.map.repeat.set(16, 16);
+      });
+  }
+
 
 
   /**

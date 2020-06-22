@@ -7,6 +7,7 @@ class dataManager {
     this.StyleInfoArray = null;
     this.itemInfoArray = null;
     this.nowStyleID = 1;
+    this.prevStyleID = 0;
     this.colorInfoArray = null;
     this.nowItemID = 0;
     this.selectDetailID = -1;
@@ -24,21 +25,59 @@ class dataManager {
 
   SelectStyleID(selectID){
     // 選択中のスタイルID更新
+    this.prevStyleID = this.nowStyleID;
     this.nowStyleID = selectID;
     // 選択中の更新行っておくか
+
+    if( this.findStyle( (checkEle)=>{ return checkEle.ID == selectID; }, (targetEle)=>{ this.nowItemIDArray = targetEle.ITEM_ID; } )){
+      return;
+    }
+
+    console.error("指定したIDのスタイル無し");
+  }
+
+  /**
+   *スタイルが切り替わったか確認
+   *
+   * @returns
+   * @memberof dataManager
+   */
+  CheckChangeStyle(){
+    return this.nowStyleID != this.prevStyleID;
+  }
+
+  findStyle(findFunc, resultFunc){
     for (let itemIdx = 0; itemIdx < this.StyleInfoArray.length; itemIdx++) {
       let element = this.StyleInfoArray[itemIdx];
       
       // 指定したスタイルIDと一致するか確認
-      if(element.ID == selectID){
-        // 
-        this.nowItemIDArray = element.ITEM_ID;
-        return;
+      if(findFunc(element)){
+        resultFunc(element);
+        return true;
       }
     }
-    // 
-    console.error("指定したIDのスタイル無し");
 
+    return false;
+  }
+
+  GetNowStyleWallTexturePath(){
+    let path = "";
+    if( this.findStyle( (checkEle)=>{ return checkEle.ID == this.nowStyleID; }, (targetEle)=>{ path = targetEle.WALL_TEXTURE_PATH; } )){
+      return path;
+    }
+
+    console.error("指定したIDのスタイル無し");
+    return "";
+  }
+
+  GetNowStyleFloorTexturePath(){
+    let path = "";
+    if( this.findStyle( (checkEle)=>{ return checkEle.ID == this.nowStyleID; }, (targetEle)=>{ path = targetEle.FLOOR_TEXTURE_PATH; } )){
+      return path;
+    }
+
+    console.error("指定したIDのスタイル無し");
+    return "";
   }
 
 
@@ -55,21 +94,29 @@ class dataManager {
         ID : 1, // ID
         NAME : "スタイル1", // スタイル名
         ITEM_ID : new Array( 1, 2, 3, 4),
+        WALL_TEXTURE_PATH : "img/kitchen/1.png",
+        FLOOR_TEXTURE_PATH : "img/kitchen/2.png",
       },
       {
         ID : 2, // ID
         NAME : "スタイル2", // スタイル名
         ITEM_ID : new Array( 4, 3, 2, 1),
+        WALL_TEXTURE_PATH : "img/kitchen/3.png",
+        FLOOR_TEXTURE_PATH : "img/kitchen/4.png",
       },
       {
         ID : 3, // ID
         NAME : "スタイル3", // スタイル名
         ITEM_ID : new Array( 1, 2, 3, 4),
+        WALL_TEXTURE_PATH : "img/kitchen/5.png",
+        FLOOR_TEXTURE_PATH : "img/kitchen/6.png",
       },
       {
         ID : 4, // ID
         NAME : "スタイル4", // スタイル名
         ITEM_ID : new Array( 2, 2, 2, 2),
+        WALL_TEXTURE_PATH : "img/kitchen/7.png",
+        FLOOR_TEXTURE_PATH : "img/kitchen/8.png",
       }
     );
 

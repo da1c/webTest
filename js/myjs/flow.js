@@ -40,6 +40,8 @@ class flow {
     this.modelViewDiffWidth = this.modelViewWidth - this.modelViewWipeWidth;
     // 商材切り替え用関数
     this.changeItemFunc = this.DispSelectItem;
+    // スタイル切り替えフラグ　壁、床の更新に使用
+    this.changeStyleFlag = false;
   }
 
 
@@ -210,6 +212,15 @@ class flow {
       this.indexWnd.dataMng.GetNowModelFloorPos()
     );
 
+    // スタイルが切り替わっていた場合、床、壁のテクスチャを切り替える
+    if( this.changeStyleFlag && window.dataMng.CheckChangeStyle() ){
+      // 切り替えを行う為、切り替えフラグをおろす
+      this.changeStyleFlag = false;
+      // 壁、床のテクスチャ切り替え
+      this.modelView.ChangeWallTexture( window.dataMng.GetNowStyleWallTexturePath() );
+      this.modelView.ChangeFloorTexture( window.dataMng.GetNowStyleFloorTexturePath() );
+    }
+
     // 平行光源の強さ設定
     let intensity = this.indexWnd.dataMng.GetDirLightIntensity();
     this.modelView.SetDirLightIntensity(intensity);
@@ -250,6 +261,9 @@ class flow {
   SelectStyle(id){
     // スタイルID切り替え
     window.dataMng.SelectStyleID(id);
+
+    // スタイルが切り替わったか確認
+    this.changeStyleFlag = window.dataMng.CheckChangeStyle();
 
     this.DispSelectItem();
 
