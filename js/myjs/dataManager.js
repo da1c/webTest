@@ -155,8 +155,8 @@ class dataManager {
             COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
           }
         ),
-        WALL_TEXTURE_PATH : "",
-        FLOOR_TEXTURE_PATH : "",
+        WALL_INFO : new Array({ PATH : "img/kitchen/1.png", POS : new THREE.Vector3( 0,0,0), ROT:new THREE.Vector3(0, 0, 0) }),
+        FLOOR_INFO : new Array({ PATH : "img/kitchen/1.png", POS : new THREE.Vector3( 0,0,0), ROT:new THREE.Vector3(-Math.PI / 2, 0, 0)  }),
         WALL_POS:new THREE.Vector3(0,0,0),
         FLOOR_POS:new THREE.Vector3(0,0,0),
         WEB_CATAROG_URL:"",
@@ -196,10 +196,8 @@ class dataManager {
             COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
           }
         ),
-        WALL_TEXTURE_PATH : "",
-        FLOOR_TEXTURE_PATH : "",
-        WALL_POS:new THREE.Vector3(0,0,0),
-        FLOOR_POS:new THREE.Vector3(0,0,0),
+        WALL_INFO : new Array({ PATH : "img/kitchen/4.png", POS : new THREE.Vector3( 0,0,0), ROT:new THREE.Vector3(0,0,0)  }),
+        FLOOR_INFO : new Array({ PATH : "img/kitchen/4.png", POS : new THREE.Vector3( 0,0,0), ROT:new THREE.Vector3(-Math.PI / 2,0,0)  }),
         WEB_CATAROG_URL:"",
         INSTRUCTION_URL:"",
         DIR_LIGHT_INTENSITY : 0.5,
@@ -237,10 +235,10 @@ class dataManager {
             COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
           }
         ),
-        WALL_TEXTURE_PATH : "",
-        FLOOR_TEXTURE_PATH : "",
-        WALL_POS:new THREE.Vector3(0,0,0),
-        FLOOR_POS:new THREE.Vector3(0,0,0),
+        WALL_INFO : new Array(
+          { PATH : "img/kitchen/2.png", POS : new THREE.Vector3( 0,0,0), ROT:new THREE.Vector3(0,0,0) }, 
+          { PATH : "img/kitchen/3.png", POS : new THREE.Vector3( 0,0,0), ROT:new THREE.Vector3(0,Math.PI / 2,0) }),
+        FLOOR_INFO : new Array({ PATH : "img/kitchen/3.png", POS : new THREE.Vector3( 0,0,0),ROT:new THREE.Vector3(-Math.PI / 2,0,0)  }),
         WEB_CATAROG_URL:"",
         INSTRUCTION_URL:"",
         DIR_LIGHT_INTENSITY : 0.5,
@@ -268,10 +266,8 @@ class dataManager {
           COLOR_CATEGORY: "カラー1箇所",
           COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
         }),
-        WALL_TEXTURE_PATH : "",
-        FLOOR_TEXTURE_PATH : "",
-        WALL_POS:new THREE.Vector3(0,0,0),
-        FLOOR_POS:new THREE.Vector3(0,0,0),
+        WALL_INFO : new Array({ PATH : "img/kitchen/4.png", POS : new THREE.Vector3( 0,0,0), ROT:new THREE.Vector3(0,0,0)  }),
+        FLOOR_INFO : new Array({ PATH : "img/kitchen/5.png", POS : new THREE.Vector3( 0,0,0), ROT:new THREE.Vector3(-Math.PI / 2,0,0)  }),
         WEB_CATAROG_URL:"",
         INSTRUCTION_URL:"",
         DIR_LIGHT_INTENSITY : 0.5,
@@ -307,11 +303,11 @@ class dataManager {
 
   }
 
-  GetNowModelWallPos(){
-    return this.nowItemInfo.WALL_POS;
+  GetNowModelWallInfo(){
+    return this.nowItemInfo.WALL_INFO;
   }
-  GetNowModelFloorPos(){
-    return this.nowItemInfo.FLOOR_POS;
+  GetNowModelFloorInfo(){
+    return this.nowItemInfo.FLOOR_INFO;
   }
 
   /**

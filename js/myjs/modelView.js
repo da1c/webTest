@@ -15,7 +15,7 @@ class ModelView {
     this.loader = null;
     this.textureLoader = null;
     // 壁メッシュ
-    this.wallObj = null;
+    this.wallObjArray = new Array();
     // 床メッシュ
     this.floorObj = null;
     // 平行光源
@@ -73,38 +73,34 @@ class ModelView {
     // テクスチャローダー作成
     this.textureLoader = new THREE.TextureLoader();
 
-    // テクスチャロード
-    // 床
-    this.textureLoader.load(window.dataMng.GetNowStyleFloorTexturePath(), (texture) => {
-      let floor_mat = new THREE.MeshBasicMaterial({
-        map: texture,
-        side: THREE.FrontSide,
-      });
-      floor_mat.map.wrapS = THREE.RepeatWrapping;
-      floor_mat.map.wrapT = THREE.RepeatWrapping;
-      floor_mat.map.repeat.set(16, 16);
-      this.floorObj = new THREE.Mesh(geometry, floor_mat);
-      this.floorObj.rotation.set(-Math.PI / 2, 0, 0);
-      //
-      let pos = window.dataMng.GetNowModelFloorPos();
-      this.floorObj.position.set(pos.x, pos.y, pos.z);
-      this.scene.add(this.floorObj);
-    });
 
-    // 壁
-    this.textureLoader.load(window.dataMng.GetNowStyleWallTexturePath(), (texture) => {
-      let wall_mat = new THREE.MeshBasicMaterial({
-        map: texture,
-        side: THREE.FrontSide,
-      });
-      wall_mat.map.wrapS = THREE.RepeatWrapping;
-      wall_mat.map.wrapT = THREE.RepeatWrapping;
-      wall_mat.map.repeat.set(16, 16);
-      this.wallObj = new THREE.Mesh(geometry, wall_mat);
-      let pos = window.dataMng.GetNowModelWallPos();
-      this.wallObj.position.set(pos.x, pos.y, pos.z);
-      this.scene.add(this.wallObj);
-    });
+    // ダミーのマテリアル作成
+    const material = new THREE.MeshStandardMaterial({ color: 0xffffff});
+    // 床作成
+
+    // 床情報取得
+    let floor_info = window.dataMng.GetNowModelFloorInfo();
+
+    // 床メッシュ作成
+    this.floorObj = new THREE.Mesh(geometry, material);
+    this.floorObj.rotation.set(-Math.PI / 2, 0, 0);
+    this.scene.add(this.floorObj);
+
+    // 床テクスチャ設定
+    this.ChangeFloorTexture(floor_info);
+
+    // 壁用のメッシュ作成(2個)
+    for (let wallIdx = 0; wallIdx < 2; wallIdx++) {
+
+      // 
+      let wallMesh = new THREE.Mesh(geometry, material);
+      wallMesh.name = "" + wallIdx;
+      this.wallObjArray.push( wallMesh);
+      this.scene.add(wallMesh);
+    }
+
+    // 壁設定
+    this.SetWall(window.dataMng.GetNowModelWallInfo());
 
     // モデルの読み込み
     // ローダー作成
@@ -122,8 +118,6 @@ class ModelView {
   SetModel(modelPath, wallPos, floorPos) {
     // 現在のモデルを削除
     this.scene.remove(this.nowMesh);
-    //this.nowMesh.material.dispose();
-    //this.nowMesh.geometry.dispose();
 
     // モデル
     this.loader.load(modelPath, (obj) => {
@@ -139,7 +133,69 @@ class ModelView {
     });
   }
 
-  // どうするか
+  
+  /**
+   *壁の読み込み
+   *
+   * @param {*} WallPathArray
+   * @param {*} posArray
+   * @memberof ModelView
+   */
+  SetWall(WallInfo){
+    // 全部開放して行うか？
+
+    let newWallNum = WallInfo.length;
+
+    for (let wallIdx = 0; wallIdx < this.wallObjArray.length; wallIdx++) {
+      const element = this.wallObjArray[wallIdx];
+
+      // 表示する必要数の確認
+      if( wallIdx < newWallNum ){
+        // 表示設定
+        element.visible = true;
+        // 座標設定
+        element.position.set( WallInfo[wallIdx].POS.x, WallInfo[wallIdx].POS.y, WallInfo[wallIdx].POS.z );
+        element.rotation.set( WallInfo[wallIdx].ROT.x, WallInfo[wallIdx].ROT.y, WallInfo[wallIdx].ROT.z );
+        // テクスチャの読み込み
+        this.textureLoader.load(WallInfo[wallIdx].PATH, 
+          (texture) => 
+          { 
+            // 現在のテクスチャを開放
+            if(element.material.map){
+              element.material.map.dispose();
+            }
+
+            if(element.material)
+            {
+              element.material.dispose();
+            }
+
+            // 読み込んだテクスチャを設定
+            let wall_mat = new THREE.MeshBasicMaterial({
+              map:texture,
+              side: THREE.FrontSide,
+            });
+            element.material = wall_mat;
+            element.material.map.wrapS = THREE.RepeatWrapping;
+            element.material.map.wrapT = THREE.RepeatWrapping;
+            element.material.map.repeat.set(16, 16);
+
+          });
+        continue;
+      }
+      // 表示不要の為、メッシュを非表示にする
+      element.visible = false;
+    }
+
+  }
+
+  
+  /**
+   *モデルの読み込み
+   *
+   * @param {*} modelInfoArray
+   * @memberof ModelView
+   */
   SetModelInfo( modelInfoArray ){
 
     // リストのモデルをすべて破棄
@@ -172,7 +228,9 @@ class ModelView {
       (texture) => 
       { 
         // 現在のテクスチャを開放
-        this.wallObj.material.map.dispose();
+        if(this.wallObj.material.map){
+          this.wallObj.material.map.dispose();
+        }
         // 読み込んだテクスチャを設定
         this.wallObj.material.map = texture;
 
@@ -182,18 +240,29 @@ class ModelView {
       });
   }
 
-  ChangeFloorTexture(path){
-    this.textureLoader.load(path, 
+  ChangeFloorTexture(floorInfo){
+    this.textureLoader.load(floorInfo[0].PATH, 
       (texture) => 
       { 
         // 現在のテクスチャを開放
-        this.floorObj.material.map.dispose();
-        // 読み込んだテクスチャを設定
-        this.floorObj.material.map = texture;
+        if(this.floorObj.material.map){
+          this.floorObj.material.map.dispose();
+        }
 
+        if( this.floorObj.material ){
+          this.floorObj.material.dispose();
+        }
+        // 読み込んだテクスチャを設定
+        let floor_mat = new THREE.MeshBasicMaterial({
+          map:texture,
+          side: THREE.FrontSide,
+        });
+        this.floorObj.material = floor_mat;
         this.floorObj.material.map.wrapS = THREE.RepeatWrapping;
         this.floorObj.material.map.wrapT = THREE.RepeatWrapping;
         this.floorObj.material.map.repeat.set(16, 16);
+        this.floorObj.position.set(floorInfo[0].POS.x, floorInfo[0].POS.y, floorInfo[0].POS.z);
+        this.floorObj.rotation.set(floorInfo[0].ROT.x, floorInfo[0].ROT.y, floorInfo[0].ROT.z);
       });
   }
 

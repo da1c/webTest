@@ -208,14 +208,9 @@ class flow {
     // モデルウィンドウのモデル更新
     this.modelView.SetModelInfo( this.indexWnd.dataMng.GetNowModelPath());
 
-    // スタイルが切り替わっていた場合、床、壁のテクスチャを切り替える
-    if( this.changeStyleFlag && window.dataMng.CheckChangeStyle() ){
-      // 切り替えを行う為、切り替えフラグをおろす
-      this.changeStyleFlag = false;
-      // 壁、床のテクスチャ切り替え
-      this.modelView.ChangeWallTexture( window.dataMng.GetNowStyleWallTexturePath() );
-      this.modelView.ChangeFloorTexture( window.dataMng.GetNowStyleFloorTexturePath() );
-    }
+    // 床、壁の切り替え
+    this.modelView.SetWall( window.dataMng.GetNowModelWallInfo() );
+    this.modelView.ChangeFloorTexture( window.dataMng.GetNowModelFloorInfo() );
 
     // 平行光源の強さ設定
     let intensity = this.indexWnd.dataMng.GetDirLightIntensity();
