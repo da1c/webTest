@@ -38,3 +38,17 @@
     width: 80%;
     height: 50vh;
 }
+
+/*詳細画面 動画のヘッダ*/
+.detailInfoMovieHeader{
+    width: 100%;
+    height: 5vh;
+    background-color: coral;
+}
+
+.detailInfoMovieTitle{
+    color: white;
+    display: block;
+    text-align: left;
+    padding: auto;
+}
