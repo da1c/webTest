@@ -206,11 +206,7 @@ class flow {
     this.indexWnd.dataMng.SetSelectItemID(id);
 
     // モデルウィンドウのモデル更新
-    this.modelView.SetModel(
-      this.indexWnd.dataMng.GetNowModelPath(),
-      this.indexWnd.dataMng.GetNowModelWallPos(),
-      this.indexWnd.dataMng.GetNowModelFloorPos()
-    );
+    this.modelView.SetModelInfo( this.indexWnd.dataMng.GetNowModelPath());
 
     // スタイルが切り替わっていた場合、床、壁のテクスチャを切り替える
     if( this.changeStyleFlag && window.dataMng.CheckChangeStyle() ){

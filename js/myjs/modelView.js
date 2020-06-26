@@ -2,6 +2,7 @@ class ModelView {
   constructor() {
     // 現在表示中のメッシュ
     this.nowMesh = null;
+    this.meshArray = new Array();
 
     // scene
     this.scene = null;
@@ -109,14 +110,8 @@ class ModelView {
     // ローダー作成
     this.loader = new THREE.FBXLoader();
     // モデルのロード
-    var modelPath = window.dataMng.GetNowModelPath();
-    this.loader.load(modelPath, (obj) => {
-      // 読み込んだモデルをcache
-      obj.rotation.set(0, 0, 0);
-      this.nowMesh = obj;
-      // シーンに追加
-      this.scene.add(this.nowMesh);
-    });
+    this.SetModelInfo( window.dataMng.GetNowModelPath() );
+
   }
   /**
    *モデル切り替え
@@ -143,6 +138,34 @@ class ModelView {
       this.floorObj.position.set(floorPos.x, floorPos.y, floorPos.z);
     });
   }
+
+  // どうするか
+  SetModelInfo( modelInfoArray ){
+
+    // リストのモデルをすべて破棄
+    this.meshArray.forEach(element => {
+      this.scene.remove(element);
+    });
+
+    // 配列を空にする
+    this.meshArray.length = 0;
+    // 次のモデルをロードし、配列に登録する
+    for (let modelIdx = 0; modelIdx < modelInfoArray.length; ++modelIdx) {
+      const element = modelInfoArray[modelIdx];
+      // モデル読み込み
+      this.loader.load( element.PATH, (obj)=>{
+        // 読み込んだモデルの座標、角度設定
+        obj.rotation.set(0, 0, 0);
+        obj.position.set(element.POS.x,element.POS.y, element.POS.z);
+
+        // シーンに追加
+        this.scene.add(obj);
+        // 配列にキャッシュ
+        this.meshArray.push(obj);
+      } );
+    }
+  }
+
 
   ChangeWallTexture(path){
     this.textureLoader.load(path, 

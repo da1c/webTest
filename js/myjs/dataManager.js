@@ -125,12 +125,12 @@ class dataManager {
     this.itemInfoArray = new Array(
       {
         ID: 1,
-        ModelPath: "model/kitchen.fbx",
+        ModeInfo: new Array( { PATH : "model/kitchen.fbx", POS : new THREE.Vector3( 0, 0, 0)}),
         ItemName: "キッチン",
         DetailIDArray: new Array(
           { TYPE: this.SrcType.IMG, SRC: "img/kitchen/1.png", NAME: "1", DISP_SIZE : this.DISPSIZE.WIDE, DETAIL_VALUE:'タイトル<img class="detailInfoImage" src="img/kitchen/1.png">'},
           { TYPE: this.SrcType.IMG, SRC: "img/kitchen/2.png", NAME: "2", DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:'<img class="detailInfoImage" src="img/kitchen/2.png">'},
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/3.png", NAME: "3", DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:'<img class="detailInfoImage" src="img/kitchen/2.png"><div class="detailInfoMovie"><iframe class="detailIfarme" src="https://www.youtube.com/embed/U5ltyDw43lg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'},
+          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/3.png", NAME: "3", DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:'<img class="detailInfoImage" src="img/kitchen/2.png">' + CreateVideoLink("https://www.youtube.com/embed/U5ltyDw43lg", "test")},
           { TYPE: this.SrcType.IMG, SRC: "img/kitchen/4.png", NAME: "4" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
           { TYPE: this.SrcType.IMG, SRC: "img/kitchen/5.png", NAME: "5" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
           { TYPE: this.SrcType.IMG, SRC: "img/kitchen/6.png", NAME: "6" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
@@ -167,7 +167,7 @@ class dataManager {
       },
       {
         ID: 2,
-        ModelPath: "model/bathroom.fbx",
+        ModeInfo: new Array( { PATH : "model/bathroom.fbx", POS : new THREE.Vector3( 0, 0, 0)}),
         ItemName: "バスルーム",
         DetailIDArray: new Array(
           { TYPE: this.SrcType.IMG,SRC: "img/bath/1.png", NAME: "1" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
@@ -208,7 +208,7 @@ class dataManager {
       },
       {
         ID: 3,
-        ModelPath: "model/makebase.fbx",
+        ModeInfo: new Array( { PATH : "model/makebase.fbx", POS : new THREE.Vector3( 0, 0, 0)}),
         ItemName: "化粧台",
         DetailIDArray: new Array(
           { TYPE: this.SrcType.IMG,SRC: "img/senmen/1.png", NAME: "1" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
@@ -249,7 +249,7 @@ class dataManager {
       },
       {
         ID: 4,
-        ModelPath: "model/toilet.fbx",
+        ModeInfo: new Array( { PATH : "model/toilet.fbx", POS : new THREE.Vector3( 0, 0, 0)}, { PATH : "model/toilet.fbx", POS : new THREE.Vector3( 100, 0, 0)}),
         ItemName: "トイレ",
         DetailIDArray: new Array(
           { TYPE: this.SrcType.IMG,SRC: "img/toire/1.png", NAME: "1" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
@@ -303,7 +303,7 @@ class dataManager {
    * @memberof dataManager
    */
   GetNowModelPath() {
-    return this.nowItemInfo.ModelPath;
+    return this.nowItemInfo.ModeInfo;
 
   }
 
