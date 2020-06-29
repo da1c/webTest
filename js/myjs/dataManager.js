@@ -130,7 +130,7 @@ class dataManager {
         DetailIDArray: new Array(
           { TYPE: this.SrcType.IMG, SRC: "img/kitchen/1.png", NAME: "1", DISP_SIZE : this.DISPSIZE.WIDE, DETAIL_VALUE:'タイトル<img class="detailInfoImage" src="img/kitchen/1.png">'},
           { TYPE: this.SrcType.IMG, SRC: "img/kitchen/2.png", NAME: "2", DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:'<img class="detailInfoImage" src="img/kitchen/2.png">'},
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/3.png", NAME: "3", DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:'<img class="detailInfoImage" src="img/kitchen/2.png">' + CreateVideoLink("https://www.youtube.com/embed/U5ltyDw43lg", "test")},
+          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/3.png", NAME: "3", DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:'<img class="detailInfoImage" src="img/kitchen/2.png">' + CreateVideoLink("https://www.youtube.com/embed/U5ltyDw43lg", "test<br>test")},
           { TYPE: this.SrcType.IMG, SRC: "img/kitchen/4.png", NAME: "4" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
           { TYPE: this.SrcType.IMG, SRC: "img/kitchen/5.png", NAME: "5" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
           { TYPE: this.SrcType.IMG, SRC: "img/kitchen/6.png", NAME: "6" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},

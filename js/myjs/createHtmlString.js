@@ -8,5 +8,5 @@
  * @returns
  */
 function CreateVideoLink( url, title ){
-    return '<div class="detailInfoMovieHeader"><a class="detailInfoMovieTitle">test</a></div><div class="detailInfoMovie"><iframe class="detailIfarme" src="' + url +'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>';
+    return '<div class="detailInfoMovieHeader"><a class="detailInfoMovieTitle">'+ title +'</a></div><div class="detailInfoMovie"><iframe class="detailIfarme" src="' + url +'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>';
 }

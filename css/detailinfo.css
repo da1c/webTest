@@ -42,13 +42,18 @@
 /*詳細画面 動画のヘッダ*/
 .detailInfoMovieHeader{
     width: 100%;
-    height: 5vh;
+    height: 8vh;
     background-color: coral;
+    text-align: center;
+    position: relative;
 }
 
 .detailInfoMovieTitle{
+    position: absolute;
     color: white;
     display: block;
-    text-align: left;
-    padding: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
 }
