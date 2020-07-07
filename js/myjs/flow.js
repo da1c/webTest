@@ -855,4 +855,12 @@ class flow {
                   height : heigth + "px" } );
   }
 
+
+  test(){
+
+    let area = $(".ModelViewArea");
+    console.log( area.css('top') );
+
+  }
+
 }
