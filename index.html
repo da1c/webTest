@@ -98,11 +98,6 @@
     </ul>
     <!--他メニューの親-->
     <div class="MenuParent"></div>
-    <div class="HolizonScrollParent">
-      <div class="ScrollNav">
-        <ul id="ScrollParent"></ul>
-      </div>
-    </div>
   </div>
 
   <!--メニュー-->
@@ -190,68 +185,24 @@
   </div>
   <!--modal-->
 
-  <!-- 小組一覧 -->
-  <div class="modal itemDetailModal">
-    <div class="modal__bg js-modal-close" onclick="Flow.ClickCloseItemDetailListButton()"></div>
-    <div class="modal__content">
-      <ul class="itemList">
-        <!--商材切り替え用のバナーを配置-->
-        <div class="itembanner DetailBanner" onclick="Flow.ClickDetailListButton(0)">
-          <div class="icon"><img src="" class="iconimg" /></div>
-          <div class="ItemNameArea ContentsParent">
-            <div class="ItemName ContentsLeftChild"></div>
-          </div>
-        </div>
-        <div class="itembanner DetailBanner" onclick="Flow.ClickDetailListButton(1)">
-          <div class="icon"><img src="" class="iconimg" /></div>
-          <div class="ItemNameArea ContentsParent">
-            <div class="ItemName ContentsLeftChild"></div>
-          </div>
-        </div>
-        <div class="itembanner DetailBanner" onclick="Flow.ClickDetailListButton(2)">
-          <div class="icon"><img src="" class="iconimg" /></div>
-          <div class="ItemNameArea ContentsParent">
-            <div class="ItemName ContentsLeftChild"></div>
-          </div>
-        </div>
-        <div class="itembanner DetailBanner" onclick="Flow.ClickDetailListButton(3)">
-          <div class="icon"><img src="" class="iconimg" /></div>
-          <div class="ItemNameArea ContentsParent">
-            <div class="ItemName ContentsLeftChild"></div>
-          </div>
-        </div>
-        <div class="itembanner DetailBanner" onclick="Flow.ClickDetailListButton(4)">
-          <div class="icon"><img src="" class="iconimg" /></div>
-          <div class="ItemNameArea ContentsParent">
-            <div class="ItemName ContentsLeftChild"></div>
-          </div>
-        </div>
-        <div class="itembanner DetailBanner" onclick="Flow.ClickDetailListButton(5)">
-          <div class="icon"><img src="" class="iconimg" /></div>
-          <div class="ItemNameArea ContentsParent">
-            <div class="ItemName ContentsLeftChild"></div>
-          </div>
-        </div>
-        <div class="itembanner DetailBanner" onclick="Flow.ClickDetailListButton(6)">
-          <div class="icon"><img src="" class="iconimg" /></div>
-          <div class="ItemNameArea ContentsParent">
-            <div class="ItemName ContentsLeftChild"></div>
-          </div>
-        </div>
-        <div class="itembanner DetailBanner" onclick="Flow.ClickDetailListButton(7)">
-          <div class="icon"><img src="" class="iconimg" /></div>
-          <div class="ItemNameArea ContentsParent">
-            <div class="ItemName ContentsLeftChild"></div>
-          </div>
-        </div>
-      </ul>
-    </div>
-    <!--modal__inner-->
-  </div>
-
+  <!--詳細表示-->
   <div class="detailArea">
     <button class="backButton" onclick="Flow.StartChangeModelViewNormal()">戻る</button>
     <div class="detailInfoArea"></div>
+    <div class="detailButtomBlank" ></div>
+  </div>
+
+  <!--機能一覧表示領域-->
+  <div class="ItemPickUpArea">
+    <button class="backButton" onclick="Flow.StartChangeModelViewNormal()">戻る</button>
+    <p >注目小組タイトル</p>
+    <div class="PickUpScrollArea">
+
+    </div>
+    <p>その他小組</p>
+    <div class="OtherScrollArea">
+      
+    </div> 
     <div class="detailButtomBlank" ></div>
   </div>
   

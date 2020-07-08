@@ -54,7 +54,7 @@ class flow {
     // メニューの親要素を取得
     this.menuParent = window.$(".MenuParent");
     // スクロールメニューの親OBJ取得
-    this.scrollParent = window.$("#ScrollParent");
+    //this.scrollParent = window.$("#ScrollParent");
     this.holizontalParent = window.$(".HolizonScrollParent");
     // パンくずのOBJを取得
     this.breadCrumbObjArray = new Array(
@@ -271,60 +271,6 @@ class flow {
     window.$(".itemSelectList").show();
   }
 
-
-  /**
-   *小組一覧表示ボタンクリック時の処理
-   *
-   * @memberof flow
-   */
-  ClickItemDetailListButton() {
-    // 現在選択中商材の小組情報一覧を取得
-    let detailInfo = this.indexWnd.dataMng.GetNowItemDetailInfo();
-
-    // 画像を差し替える 小組名も設定
-    this.indexWnd.$(".DetailBanner").each(function () {
-      //
-      let idx = $(this).index();
-
-      // アイコンの要素に画像パスを設定
-      let icon = $(this).children(".icon");
-      let iconImg = icon.children(".iconimg");
-      iconImg.attr("src", detailInfo[idx].SRC);
-
-      // 小組名設定
-      let nameArea = $(this).children(".ItemNameArea");
-      let name = nameArea.children(".ItemName");
-      name.html(detailInfo[idx].NAME);
-    });
-
-    this.indexWnd.$(".itemDetailModal").fadeIn();
-  }
-
-  ClickDetailButton(idx) {
-    console.log(idx);
-    // 選択したIDXを保存
-    this.indexWnd.dataMng.selectDetailID = idx;
-
-    // 商材詳細画面へ遷移
-    this.GetMenuWindow().location.href = "./../itemDetail/itemDetail.html";
-  }
-
-  ClickDetailListButton(idx) {
-    // フェードアウトさせる
-    this.indexWnd.$(".itemDetailModal").fadeOut();
-
-    // 選択したIDXを保存
-    this.indexWnd.dataMng.selectDetailID = idx;
-
-    // 商材詳細画面へ遷移
-    this.GetMenuWindow().location.href = "./itemDetail/itemDetail.html";
-  }
-
-  ClickCloseItemDetailListButton() {
-    // フェードアウトさせる
-    this.indexWnd.$(".itemDetailModal").fadeOut();
-  }
-
   Resize() {
     let screenHegiht = window.innerHeight;
 
@@ -383,8 +329,10 @@ class flow {
         );
       }
     }
+
+    element_str = '<div class="HolizonScrollParent"><div class="ScrollNav"><ul >' + element_str + '</ul></div></div>';
     // 作成した要素を追加
-    this.scrollParent.append(element_str);
+    this.menuParent.append(element_str);
   }
 
   CreateIMGElement(src, imgType, cssText, idx) {
@@ -441,7 +389,9 @@ class flow {
         '" /></li>';
     }
 
-    this.scrollParent.append(element_str);
+    element_str = "<div class=\"HolizonScrollParent\"><div class=\"ScrollNav\"><ul>" + element_str + "</ul></div></div>";
+    // 作成した要素を追加
+    this.menuParent.append(element_str);
   }
 
   /**
@@ -554,8 +504,8 @@ class flow {
   }
 
   ResetScrollElement(){
-    this.scrollParent.empty();
-    this.holizontalParent.hide();
+    this.menuParent.empty();
+    //this.holizontalParent.hide();
   }
 
   // メニューに切り替え
@@ -575,10 +525,9 @@ class flow {
   // 機能一覧メニュー
   ChangeItemPickUpState() {
     // slickの親を表示状態に変更
-    this.holizontalParent.show();
+    this.menuParent.show();
     // 機能一覧を作成
     this.InitItemPickUp();
-
 
     // パンくず更新
     this.ChangeBreadCrumbState(2);
@@ -631,7 +580,7 @@ class flow {
   ChangeColorPickUpState() {
     this.InitColorPickUp();
     // メニュー表示設定
-    this.holizontalParent.show();
+    this.menuParent.show();
     // パンくず更新
     this.ChangeBreadCrumbState(3);
 
@@ -854,6 +803,20 @@ class flow {
     area3D.css( { width: width+"px",
                   height : heigth + "px" } );
   }
+
+
+  test_InitItemPickUp(){
+
+    // 要素追加
+
+    // お気に入りかその他か確認
+
+    // 対象の親に追加
+
+  }
+
+  test_Termi
+
 
 
   test(){
