@@ -53,9 +53,11 @@ class flow {
   Init() {
     // メニューの親要素を取得
     this.menuParent = window.$(".MenuParent");
-    // スクロールメニューの親OBJ取得
-    //this.scrollParent = window.$("#ScrollParent");
-    this.holizontalParent = window.$(".HolizonScrollParent");
+
+    // 機能一覧の親
+    this.itemPickUpScrollParent = window.$(".PickUpScrollArea");
+    this.itemOtherScrollParent = window.$(".OtherScrollArea");
+
     // パンくずのOBJを取得
     this.breadCrumbObjArray = new Array(
       window.$(".BreadCrumbChild1"),
@@ -330,7 +332,7 @@ class flow {
       }
     }
 
-    element_str = '<div class="HolizonScrollParent"><div class="ScrollNav"><ul >' + element_str + '</ul></div></div>';
+    element_str = this.CreateScrollElement(element_str);
     // 作成した要素を追加
     this.menuParent.append(element_str);
   }
@@ -355,6 +357,11 @@ class flow {
       videoID +
       ')"><img class="MovieIcon" src="./img/movie_icon.png"></li>'
     );
+  }
+
+  // スクロール要素作成
+  CreateScrollElement( element_str ){
+    return '<div class="HolizonScrollParent"><div class="ScrollNav"><ul >' + element_str + '</ul></div></div>';
   }
 
   GetScrollElementHeightText(){
@@ -389,7 +396,7 @@ class flow {
         '" /></li>';
     }
 
-    element_str = "<div class=\"HolizonScrollParent\"><div class=\"ScrollNav\"><ul>" + element_str + "</ul></div></div>";
+    element_str = this.CreateScrollElement(element_str);
     // 作成した要素を追加
     this.menuParent.append(element_str);
   }
@@ -470,7 +477,9 @@ class flow {
         this.EndColorCategoryState();
         break;
       case this.MenuStateID.ITEM_PICKUP:
-        this.EndItemPickUpState();
+        // this.EndItemPickUpState();
+        this.test_EndItemPickUp();
+
         break;
     }
 
@@ -487,7 +496,8 @@ class flow {
         this.ChangeColorCategoryState();
         break;
       case this.MenuStateID.ITEM_PICKUP:
-        this.ChangeItemPickUpState();
+        // this.ChangeItemPickUpState();
+        this.test_InitItemPickUp();
         break;
     }
 
@@ -505,7 +515,6 @@ class flow {
 
   ResetScrollElement(){
     this.menuParent.empty();
-    //this.holizontalParent.hide();
   }
 
   // メニューに切り替え
@@ -693,7 +702,8 @@ class flow {
     let itemInfo = this.indexWnd.dataMng.GetNowItemDetailInfo();
 
     this.indexWnd.$(".detailInfoArea").append(itemInfo[idx].DETAIL_VALUE);
-    this.StartChangeModelViewWipe();
+    //this.StartChangeModelViewWipe();
+    this.SlideInDetailArea();
   }
 
   /**
@@ -723,13 +733,16 @@ class flow {
       }
     });
 
-    $(".detailArea").show();
-    $(".detailArea").animate({top:"6%"}, 500, "swing");
+
     
     $(".ModelViewArea").css("zIndex", "2");
     $(".arButton").hide();
   }
 
+  SlideInDetailArea(){
+    $(".detailArea").show();
+    $(".detailArea").animate({top:"6%"}, 500, "swing");
+  }
 
 
    StartChangeModelViewNormal(){
@@ -754,6 +767,11 @@ class flow {
         $(".ModelViewArea").css("zIndex", "0");
       }
     });
+    
+    $(".arButton").show();
+   }
+
+   SlideOutDetailArea(){
 
     $(".detailArea").animate({top:"100%"}, 
     {
@@ -764,8 +782,6 @@ class flow {
       }
 
     } );
-    
-    $(".arButton").show();
    }
 
   /**
@@ -807,15 +823,91 @@ class flow {
 
   test_InitItemPickUp(){
 
-    // 要素追加
+    // 機能一覧取得
+    let itemInfo = this.indexWnd.dataMng.GetNowItemDetailInfo();
 
-    // お気に入りかその他か確認
+    // 要素追加
+    let pickUpElement = "";
+    let otherElement = "";
+    let cssText = this.GetScrollElementHeightText();
+
+    for (let index = 0; index < itemInfo.length; index++) {
+      let imgType = "";
+      let nowStr = "";
+      // 画像のサイズ確認
+      if (this.indexWnd.dataMng.CheckDispSize(itemInfo[index].DISP_SIZE)) {
+        // 通常サイズ
+        imgType = "SlickElementImg";
+      } else {
+        // 横長サイズ
+        imgType = "SlickElementWideImg";
+      }
+
+      // タイプの確認
+      if (this.indexWnd.dataMng.CheckIMGSrcType(itemInfo[index].TYPE)) {
+        // 通常
+        nowStr += this.CreateIMGElement(itemInfo[index].SRC, imgType, cssText, index);
+      } else {
+        // 動画リンクの場合
+        nowStr += this.CreateVideoElement(
+          itemInfo[index].SRC,
+          imgType,
+          cssText,
+          itemInfo[index].NAME
+        );
+      }
+
+      // どこに追加するか確認
+      if( index < 6 ){
+        // とりあえず、注目に五個分設定
+        pickUpElement += nowStr;
+      }else{
+        otherElement += nowStr;
+      }
+
+    }
 
     // 対象の親に追加
+    pickUpElement = this.CreateScrollElement(pickUpElement);
+    otherElement = this.CreateScrollElement(otherElement);
+
+    // 注目
+    this.itemPickUpScrollParent.append(pickUpElement);
+    // その他
+    this.itemOtherScrollParent.append(otherElement);
+
+
+    // ここで画面内に移動かな。
+    this.StartChangeModelViewWipe();
+    // test部分のスライドIN
+    this.test_SlideInItemPickUpArea();
 
   }
 
-  test_Termi
+  test_EndItemPickUp(){
+    // モデル表示領域をもとに戻す
+    this.StartChangeModelViewNormal();
+    // スライドアウト
+    this.test_SlideOutItemPickUpArea();
+  }
+
+  test_SlideInItemPickUpArea(){
+    $(".ItemPickUpArea").show();
+    $(".ItemPickUpArea").animate({top:"6%"}, 500, "swing");
+  }
+
+  test_SlideOutItemPickUpArea(){
+    $(".ItemPickUpArea").animate({top:"100%"}, 
+    {
+      duration : 500,
+      complete : function(){
+        // 注目、その他の配下要素削除
+        $(".PickUpScrollArea").empty();
+        $(".OtherScrollArea").empty();
+        $(".ItemPickUpArea").hide();
+      }
+    } );
+  }
 
 
 

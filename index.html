@@ -185,27 +185,29 @@
   </div>
   <!--modal-->
 
-  <!--詳細表示-->
-  <div class="detailArea">
-    <button class="backButton" onclick="Flow.StartChangeModelViewNormal()">戻る</button>
-    <div class="detailInfoArea"></div>
-    <div class="detailButtomBlank" ></div>
-  </div>
+
 
   <!--機能一覧表示領域-->
   <div class="ItemPickUpArea">
-    <button class="backButton" onclick="Flow.StartChangeModelViewNormal()">戻る</button>
-    <p >注目小組タイトル</p>
+    <button class="backButton" onclick="Flow.ChangeState(Flow.MenuStateID.CATEGORY)">戻る</button>
+    <p>注目小組タイトル</p>
     <div class="PickUpScrollArea">
 
     </div>
     <p>その他小組</p>
     <div class="OtherScrollArea">
-      
-    </div> 
-    <div class="detailButtomBlank" ></div>
+
+    </div>
+    <div class="detailButtomBlank"></div>
   </div>
-  
+
+  <!--詳細表示-->
+  <div class="detailArea">
+    <button class="backButton" onclick="Flow.SlideOutDetailArea()">戻る</button>
+    <div class="detailInfoArea"></div>
+    <div class="detailButtomBlank"></div>
+  </div>
+
   <!-- 外部リンク-->
 
 
@@ -220,7 +222,7 @@
 
     $(function () {
 
-      window.scroll(0,0);
+      window.scroll(0, 0);
 
       // データマネージャー初期化
       dataMng.Init();

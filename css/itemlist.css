@@ -1,0 +1,12 @@
+.ItemPickUpArea {
+  width: 100%;
+  height: 100%;
+  background-color: #f9f6f4;
+  position: absolute;
+  top: 100%;
+  display: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+
