@@ -10,3 +10,24 @@
 }
 
 
+.ItemPickUpBreadCrumb{
+  padding-top: 10px;
+}
+
+.ItemPickUpBreadCrumb div {
+  display: inline;
+  list-style: none;
+  font-weight: bold;
+}
+
+.ItemPickUpBorder{
+  margin: 0%;
+}
+
+.ItemPickUpCategoryName{
+  margin-top: 5%;
+}
+
+
+
+

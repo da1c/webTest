@@ -189,12 +189,22 @@
 
   <!--機能一覧表示領域-->
   <div class="ItemPickUpArea">
-    <button class="backButton" onclick="Flow.ChangeState(Flow.MenuStateID.CATEGORY)">戻る</button>
-    <p>注目小組タイトル</p>
+
+    <div class="ItemPickUpBreadCrumb">
+      <div class="BreadCrumbPrev" onclick="Flow.ChangeState(Flow.MenuStateID.CATEGORY)">
+        <div class="NoSelectText ">商材情報</div>
+      </div>
+      <div>
+        <div class="NoSelectText BreadCrumbCurrent">機能</div>
+      </div>
+      
+    </div>
+    <hr class="ItemPickUpBorder" size="2px" />
+    <p class="NoSelectText ItemPickUpCategoryName">注目小組タイトル</p>
     <div class="PickUpScrollArea">
 
     </div>
-    <p>その他小組</p>
+    <p class="NoSelectText ItemPickUpCategoryName">その他小組</p>
     <div class="OtherScrollArea">
 
     </div>
