@@ -13,6 +13,20 @@
   overflow-x: hidden;
   height: 100%;
   width: 100%;
+  display: grid;
+  grid-auto-rows: 30%;
+  grid-template-columns: 33% 33% 33%;
+}
+
+.itemListElement{
+  position: relative;
+}
+
+.itemListIMG{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: 0% 0%;
 }
 
 

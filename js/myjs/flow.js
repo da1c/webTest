@@ -55,8 +55,7 @@ class flow {
     this.menuParent = window.$(".MenuParent");
 
     // 機能一覧の親
-    this.itemPickUpScrollParent = window.$(".PickUpScrollArea");
-    this.itemOtherScrollParent = window.$(".OtherScrollArea");
+    this.itemPickUpScrollParent = window.$(".scrollArea");
 
     // パンくずのOBJを取得
     this.breadCrumbObjArray = new Array(
@@ -827,13 +826,11 @@ class flow {
     let itemInfo = this.indexWnd.dataMng.GetNowItemDetailInfo();
 
     // 要素追加
-    let pickUpElement = "";
-    let otherElement = "";
-    let cssText = this.GetScrollElementHeightText();
+    let nowStr = "";
 
     for (let index = 0; index < itemInfo.length; index++) {
       let imgType = "";
-      let nowStr = "";
+
       // 画像のサイズ確認
       if (this.indexWnd.dataMng.CheckDispSize(itemInfo[index].DISP_SIZE)) {
         // 通常サイズ
@@ -846,36 +843,23 @@ class flow {
       // タイプの確認
       if (this.indexWnd.dataMng.CheckIMGSrcType(itemInfo[index].TYPE)) {
         // 通常
-        nowStr += this.CreateIMGElement(itemInfo[index].SRC, imgType, cssText, index);
+        nowStr += this.CreateItemListIMGElement(itemInfo[index].SRC, index);
       } else {
         // 動画リンクの場合
-        nowStr += this.CreateVideoElement(
+        nowStr += this.CreateItemListVideoElement(
           itemInfo[index].SRC,
-          imgType,
-          cssText,
           itemInfo[index].NAME
         );
       }
 
-      // どこに追加するか確認
-      if( index < 6 ){
-        // とりあえず、注目に五個分設定
-        pickUpElement += nowStr;
-      }else{
-        otherElement += nowStr;
-      }
 
     }
 
-    // 対象の親に追加
-    pickUpElement = this.CreateScrollElement(pickUpElement);
-    otherElement = this.CreateScrollElement(otherElement);
+    // ダミーを一行分追加
+    nowStr += '<div></div><div></div><div></div>';
 
     // 注目
-    this.itemPickUpScrollParent.append(pickUpElement);
-    // その他
-    this.itemOtherScrollParent.append(otherElement);
-
+    this.itemPickUpScrollParent.append(nowStr);
 
     // ここで画面内に移動かな。
     this.StartChangeModelViewWipe();
@@ -902,14 +886,28 @@ class flow {
       duration : 500,
       complete : function(){
         // 注目、その他の配下要素削除
-        $(".PickUpScrollArea").empty();
-        $(".OtherScrollArea").empty();
+        $(".scrollArea").empty();
         $(".ItemPickUpArea").hide();
       }
     } );
   }
+  CreateItemListIMGElement(src, idx) {
+    return (
+      '<div class="itemListElement"><img class="itemListIMG" src="' +
+      src +
+      '"onclick="Flow.DispItemDetail(' + idx + ')"></div>'
+    );
+  }
 
-
+  CreateItemListVideoElement(src, videoID ) {
+    return (
+      '<div class="itemListElement"><img class="itemListIMG" src="' +
+      src +
+      '" onclick="window.top.Flow.ClickVideo(' +
+      videoID +
+      ')"><img class="MovieIcon" src="./img/movie_icon.png"></div>'
+    );
+  }
 
   test(){
 
