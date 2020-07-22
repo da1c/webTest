@@ -851,26 +851,18 @@ class flow {
           itemInfo[index].NAME
         );
       }
-
-
     }
-
-    // ダミーを一行分追加
-    nowStr += '<div></div><div></div><div></div>';
 
     // 注目
     this.itemPickUpScrollParent.append(nowStr);
 
-    // ここで画面内に移動かな。
-    this.StartChangeModelViewWipe();
     // test部分のスライドIN
     this.test_SlideInItemPickUpArea();
 
   }
 
   test_EndItemPickUp(){
-    // モデル表示領域をもとに戻す
-    this.StartChangeModelViewNormal();
+
     // スライドアウト
     this.test_SlideOutItemPickUpArea();
   }

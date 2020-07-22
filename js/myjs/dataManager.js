@@ -138,7 +138,13 @@ class dataManager {
           { TYPE: this.SrcType.IMG, SRC: "img/kitchen/8.png", NAME: "8" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
           { TYPE: this.SrcType.IMG, SRC: "img/kitchen/9.png", NAME: "9" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
           { TYPE: this.SrcType.IMG, SRC: "img/kitchen/10.png", NAME: "10", DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE:this.SrcType.VIDEO, SRC: "img/toire/10.png", NAME:"1", DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""}
+          { TYPE:this.SrcType.VIDEO, SRC: "img/toire/10.png", NAME:"1", DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
+          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/5.png", NAME: "5" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
+          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/6.png", NAME: "6" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
+          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/7.png", NAME: "7" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
+          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/8.png", NAME: "8" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
+          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/9.png", NAME: "9" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
+          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/10.png", NAME: "10", DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""}
         ),
         ARURL: "",
         COLOR: new Array(
