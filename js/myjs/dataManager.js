@@ -150,15 +150,26 @@ class dataManager {
         COLOR: new Array(
           {
             COLOR_CATEGORY: "カラー1箇所",
-            COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
+            COLOR_INFO_ARRAY: new Array( 
+              {SRC:"img/toire/1.png", NAME:"キッチン1"},
+              {SRC:"img/toire/2.png", NAME:"キッチン2"},
+              {SRC:"img/toire/3.png", NAME:"キッチン3"}),
           },
           {
             COLOR_CATEGORY: "カラー2箇所",
-            COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
+            COLOR_INFO_ARRAY: new Array(
+              {SRC:"img/toire/1.png", NAME:"キッチン2-1"},
+              {SRC:"img/toire/2.png", NAME:"キッチン2-2"},
+              {SRC:"img/toire/3.png", NAME:"キッチン3-3"}
+            ),
           },
           {
             COLOR_CATEGORY: "カラー3箇所",
-            COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
+            COLOR_INFO_ARRAY: new Array(
+              {SRC:"img/toire/1.png", NAME:"キッチン3-1"},
+              {SRC:"img/toire/2.png", NAME:"キッチン3-2"},
+              {SRC:"img/toire/3.png", NAME:"キッチン3-3"}
+              ),
           }
         ),
         WALL_INFO : new Array({ PATH : "img/kitchen/1.png", POS : new THREE.Vector3( 0,0,0), ROT:new THREE.Vector3(0, 0, 0) }),
@@ -191,15 +202,26 @@ class dataManager {
         COLOR: new Array(
           {
             COLOR_CATEGORY: "カラー1箇所",
-            COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
+            COLOR_INFO_ARRAY: new Array( 
+              {SRC:"img/toire/1.png", NAME:"キッチン1"},
+              {SRC:"img/toire/2.png", NAME:"キッチン2"},
+              {SRC:"img/toire/3.png", NAME:"キッチン3"}),
           },
           {
             COLOR_CATEGORY: "カラー2箇所",
-            COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
+            COLOR_INFO_ARRAY: new Array(
+              {SRC:"img/toire/1.png", NAME:"キッチン2-1"},
+              {SRC:"img/toire/2.png", NAME:"キッチン2-2"},
+              {SRC:"img/toire/3.png", NAME:"キッチン3-3"}
+            ),
           },
           {
             COLOR_CATEGORY: "カラー3箇所",
-            COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
+            COLOR_INFO_ARRAY: new Array(
+              {SRC:"img/toire/1.png", NAME:"キッチン3-1"},
+              {SRC:"img/toire/2.png", NAME:"キッチン3-2"},
+              {SRC:"img/toire/3.png", NAME:"キッチン3-3"}
+              ),
           }
         ),
         WALL_INFO : new Array({ PATH : "img/kitchen/4.png", POS : new THREE.Vector3( 0,0,0), ROT:new THREE.Vector3(0,0,0)  }),
@@ -230,15 +252,26 @@ class dataManager {
         COLOR: new Array(
           {
             COLOR_CATEGORY: "カラー1箇所",
-            COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
+            COLOR_INFO_ARRAY: new Array( 
+              {SRC:"img/toire/1.png", NAME:"キッチン1"},
+              {SRC:"img/toire/2.png", NAME:"キッチン2"},
+              {SRC:"img/toire/3.png", NAME:"キッチン3"}),
           },
           {
             COLOR_CATEGORY: "カラー2箇所",
-            COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
+            COLOR_INFO_ARRAY: new Array(
+              {SRC:"img/toire/1.png", NAME:"キッチン2-1"},
+              {SRC:"img/toire/2.png", NAME:"キッチン2-2"},
+              {SRC:"img/toire/3.png", NAME:"キッチン3-3"}
+            ),
           },
           {
             COLOR_CATEGORY: "カラー3箇所",
-            COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
+            COLOR_INFO_ARRAY: new Array(
+              {SRC:"img/toire/1.png", NAME:"キッチン3-1"},
+              {SRC:"img/toire/2.png", NAME:"キッチン3-2"},
+              {SRC:"img/toire/3.png", NAME:"キッチン3-3"}
+              ),
           }
         ),
         WALL_INFO : new Array(
@@ -270,7 +303,11 @@ class dataManager {
         ARURL: "",
         COLOR: new Array({
           COLOR_CATEGORY: "カラー1箇所",
-          COLOR_ID_ARRAY: new Array(1, 2, 3, 4, 5),
+          COLOR_INFO_ARRAY: new Array(
+            {SRC:"img/toire/1.png", NAME:"キッチン3-1"},
+            {SRC:"img/toire/2.png", NAME:"キッチン3-2"},
+            {SRC:"img/toire/3.png", NAME:"キッチン3-3"}
+            ),
         }),
         WALL_INFO : new Array({ PATH : "img/kitchen/4.png", POS : new THREE.Vector3( 0,0,0), ROT:new THREE.Vector3(0,0,0)  }),
         FLOOR_INFO : new Array({ PATH : "img/kitchen/5.png", POS : new THREE.Vector3( 0,0,0), ROT:new THREE.Vector3(-Math.PI / 2,0,0)  }),
@@ -368,6 +405,8 @@ class dataManager {
     return this.nowItemInfo.COLOR[ this.selectColorTypeID];
   }
 
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 廃止
   GetColorInfo(colorID){
     for (let index = 0; index < this.colorInfoArray.length; index++) {
       if (colorID == this.colorInfoArray[index].ID) {
@@ -377,6 +416,7 @@ class dataManager {
 
     return null;
   }
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
   CheckIMGSrcType( check ){

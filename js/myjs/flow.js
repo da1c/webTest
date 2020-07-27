@@ -383,10 +383,8 @@ class flow {
     // 高さ設定用のテキスト取得
     let cssText = this.GetScrollElementHeightText();
     // カラー情報分、スクロール要素配下に要素を追加
-    for (let index = 0; index < colorInfo.COLOR_ID_ARRAY.length; ++index) {
-      const element = this.indexWnd.dataMng.GetColorInfo(
-        colorInfo.COLOR_ID_ARRAY[index]
-      );
+    for (let index = 0; index < colorInfo.COLOR_INFO_ARRAY.length; ++index) {
+      const element = colorInfo.COLOR_INFO_ARRAY[index];
       element_str +=
         '<li class="SlickElement"'+ cssText +'><div class="ColorName NoSelectText">' +
         element.NAME +
