@@ -12,7 +12,7 @@ class dataManager {
     this.nowItemID = 0;
     this.selectDetailID = -1;
     this.selectColorTypeID = -1;
-    this.SrcType = { IMG : 1, VIDEO : 2 };
+    this.SrcType = { DETAIL : "Detail", LINK : "Link" };
     this.videoInfoArray = null;
     this.webCatarogURL = "";
     this.homePageURL = "";
@@ -81,6 +81,24 @@ class dataManager {
   }
 
 
+  AddInfo(info){
+
+    // ItemIDの配列作成
+    let itemIdArray = new Array();
+    for (let index = 0; index < info.length; index++) {
+      itemIdArray.push( info[index].ID);
+      this.itemInfoArray.push(info[index]);
+    }
+
+    this.StyleInfoArray.push( 
+      {  
+        ID: 0, 
+        NAME : "見積もり",
+        ITEM_ID : itemIdArray
+      } );
+      
+  }
+
   /**
    *初期化処理
    *
@@ -94,29 +112,22 @@ class dataManager {
         ID : 1, // ID
         NAME : "スタイル1", // スタイル名
         ITEM_ID : new Array( 1, 2, 3, 4),
-        WALL_TEXTURE_PATH : "img/kitchen/1.png",
-        FLOOR_TEXTURE_PATH : "img/kitchen/2.png",
+
       },
       {
         ID : 2, // ID
         NAME : "スタイル2", // スタイル名
         ITEM_ID : new Array( 4, 3, 2, 1),
-        WALL_TEXTURE_PATH : "img/kitchen/3.png",
-        FLOOR_TEXTURE_PATH : "img/kitchen/4.png",
       },
       {
         ID : 3, // ID
         NAME : "スタイル3", // スタイル名
         ITEM_ID : new Array( 1, 2, 3, 4),
-        WALL_TEXTURE_PATH : "img/kitchen/5.png",
-        FLOOR_TEXTURE_PATH : "img/kitchen/6.png",
       },
       {
         ID : 4, // ID
         NAME : "スタイル4", // スタイル名
         ITEM_ID : new Array( 2, 2, 2, 2),
-        WALL_TEXTURE_PATH : "img/kitchen/7.png",
-        FLOOR_TEXTURE_PATH : "img/kitchen/8.png",
       }
     );
 
@@ -125,26 +136,12 @@ class dataManager {
     this.itemInfoArray = new Array(
       {
         ID: 1,
-        ModeInfo: new Array( { PATH : "model/kitchen.fbx", POS : new THREE.Vector3( 0, 0, 0)}),
+        ModelInfo: new Array( { PATH : "model/kitchen.fbx", POS : new THREE.Vector3( 0, 0, 0)}),
         ItemName: "キッチン",
         DetailIDArray: new Array(
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/1.png", NAME: "1", DISP_SIZE : this.DISPSIZE.WIDE, DETAIL_VALUE:'タイトル<img class="detailInfoImage" src="img/kitchen/1.png">'},
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/2.png", NAME: "2", DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:'<img class="detailInfoImage" src="img/kitchen/2.png">'},
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/3.png", NAME: "3", DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:'<img class="detailInfoImage" src="img/kitchen/2.png">' + CreateVideoLink("https://www.youtube.com/embed/U5ltyDw43lg", "test<br>test")},
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/4.png", NAME: "4" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/5.png", NAME: "5" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/6.png", NAME: "6" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/7.png", NAME: "7" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/8.png", NAME: "8" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/9.png", NAME: "9" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/10.png", NAME: "10", DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE:this.SrcType.VIDEO, SRC: "img/toire/10.png", NAME:"1", DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/5.png", NAME: "5" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/6.png", NAME: "6" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/7.png", NAME: "7" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/8.png", NAME: "8" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/9.png", NAME: "9" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG, SRC: "img/kitchen/10.png", NAME: "10", DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""}
+          { TYPE: this.SrcType.DETAIL, SRC: "img/kitchen/1.png", LINK_PATH: "1", DetailInfo:new Array( { DetailPath : "img/kitchen/1.png", DetailType: "IMAGE", Title :""},{ DetailPath : "https://www.youtube.com/embed/U5ltyDw43lg", DetailType: "VIDEO", Title :"ビデオテスト"} )},
+          { TYPE: this.SrcType.LINK, SRC: "img/kitchen/2.png", LINK_PATH: "https://www.youtube.com/embed/U5ltyDw43lg", DetailInfo:new Array( { DetailPath : "", DetailType: "VIDEO", Title :""} )}
+
         ),
         ARURL: "",
         COLOR: new Array(
@@ -173,7 +170,7 @@ class dataManager {
           }
         ),
         WALL_INFO : new Array({ PATH : "img/kitchen/1.png", POS : new THREE.Vector3( 0,0,0), ROT:new THREE.Vector3(0, 0, 0) }),
-        FLOOR_INFO : new Array({ PATH : "img/kitchen/1.png", POS : new THREE.Vector3( 0,0,0), ROT:new THREE.Vector3(-Math.PI / 2, 0, 0)  }),
+        FLOOR_INFO : new Array({ PATH : "img/kitchen/1.png", POS : new THREE.Vector3( 0,0,0), ROT:new THREE.Vector3(-3.1416 / 2, 0, 0)  }),
         WALL_POS:new THREE.Vector3(0,0,0),
         FLOOR_POS:new THREE.Vector3(0,0,0),
         WEB_CATAROG_URL:"",
@@ -184,19 +181,16 @@ class dataManager {
       },
       {
         ID: 2,
-        ModeInfo: new Array( { PATH : "model/bathroom.fbx", POS : new THREE.Vector3( 0, 0, 0)}),
+        ModelInfo: new Array( { PATH : "model/bathroom.fbx", POS : new THREE.Vector3( 0, 0, 0)}),
         ItemName: "バスルーム",
         DetailIDArray: new Array(
-          { TYPE: this.SrcType.IMG,SRC: "img/bath/1.png", NAME: "1" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/bath/2.png", NAME: "2" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/bath/3.png", NAME: "3" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/bath/4.png", NAME: "4" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/bath/5.png", NAME: "5" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/bath/6.png", NAME: "6" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/bath/7.png", NAME: "7" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/bath/8.png", NAME: "8" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/bath/9.png", NAME: "9" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/bath/10.png", NAME: "10" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""}
+          { TYPE: this.SrcType.DETAIL, SRC: "img/bath/1.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/bath/1.png", DetailType: "IMAGE", Title :""},{ DetailPath : "https://www.youtube.com/embed/U5ltyDw43lg", DetailType: "VIDEO", Title :"ビデオテスト"} )},
+          { TYPE: this.SrcType.DETAIL, SRC: "img/bath/2.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/bath/2.png", DetailType: "IMAGE", Title :""})},
+          { TYPE: this.SrcType.DETAIL, SRC: "img/bath/3.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/bath/3.png", DetailType: "IMAGE", Title :""})},
+          { TYPE: this.SrcType.DETAIL, SRC: "img/bath/4.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/bath/4.png", DetailType: "IMAGE", Title :""})},
+          { TYPE: this.SrcType.DETAIL, SRC: "img/bath/5.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/bath/5.png", DetailType: "IMAGE", Title :""})},
+          { TYPE: this.SrcType.DETAIL, SRC: "img/bath/6.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/bath/6.png", DetailType: "IMAGE", Title :""})},
+
         ),
         ARURL: "",
         COLOR: new Array(
@@ -234,19 +228,16 @@ class dataManager {
       },
       {
         ID: 3,
-        ModeInfo: new Array( { PATH : "model/makebase.fbx", POS : new THREE.Vector3( 0, 0, 0)}),
+        ModelInfo: new Array( { PATH : "model/makebase.fbx", POS : new THREE.Vector3( 0, 0, 0)}),
         ItemName: "化粧台",
         DetailIDArray: new Array(
-          { TYPE: this.SrcType.IMG,SRC: "img/senmen/1.png", NAME: "1" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/senmen/2.png", NAME: "2" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/senmen/3.png", NAME: "3" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/senmen/4.png", NAME: "4" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/senmen/5.png", NAME: "5" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/senmen/6.png", NAME: "6" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/senmen/7.png", NAME: "7" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/senmen/8.png", NAME: "8" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/senmen/9.png", NAME: "9" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/senmen/10.png", NAME: "10" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""}
+          { TYPE: this.SrcType.DETAIL, SRC: "img/senmen/1.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/senmen/1.png", DetailType: "IMAGE", Title :""},{ DetailPath : "https://www.youtube.com/embed/U5ltyDw43lg", DetailType: "VIDEO", Title :"ビデオテスト"} )},
+          { TYPE: this.SrcType.DETAIL, SRC: "img/senmen/2.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/senmen/2.png", DetailType: "IMAGE", Title :""})},
+          { TYPE: this.SrcType.DETAIL, SRC: "img/senmen/3.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/senmen/3.png", DetailType: "IMAGE", Title :""})},
+          { TYPE: this.SrcType.DETAIL, SRC: "img/senmen/4.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/senmen/4.png", DetailType: "IMAGE", Title :""})},
+          { TYPE: this.SrcType.DETAIL, SRC: "img/senmen/5.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/senmen/5.png", DetailType: "IMAGE", Title :""})},
+          { TYPE: this.SrcType.DETAIL, SRC: "img/senmen/6.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/senmen/6.png", DetailType: "IMAGE", Title :""})},
+
         ),
         ARURL: "",
         COLOR: new Array(
@@ -286,19 +277,16 @@ class dataManager {
       },
       {
         ID: 4,
-        ModeInfo: new Array( { PATH : "model/toilet.fbx", POS : new THREE.Vector3( 0, 0, 0)}, { PATH : "model/toilet.fbx", POS : new THREE.Vector3( 100, 0, 0)}),
+        ModelInfo: new Array( { PATH : "model/toilet.fbx", POS : new THREE.Vector3( 0, 0, 0)}, { PATH : "model/toilet.fbx", POS : new THREE.Vector3( 100, 0, 0)}),
         ItemName: "トイレ",
         DetailIDArray: new Array(
-          { TYPE: this.SrcType.IMG,SRC: "img/toire/1.png", NAME: "1" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/toire/2.png", NAME: "2" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/toire/3.png", NAME: "3" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/toire/4.png", NAME: "4" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/toire/5.png", NAME: "5" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/toire/6.png", NAME: "6" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/toire/7.png", NAME: "7" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/toire/8.png", NAME: "8" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/toire/9.png", NAME: "9" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""},
-          { TYPE: this.SrcType.IMG,SRC: "img/toire/10.png", NAME: "10" , DISP_SIZE : this.DISPSIZE.NORMAL, DETAIL_VALUE:""}
+          { TYPE: this.SrcType.DETAIL, SRC: "img/toire/1.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/toire/1.png", DetailType: "IMAGE", Title :""},{ DetailPath : "https://www.youtube.com/embed/U5ltyDw43lg", DetailType: "VIDEO", Title :"ビデオテスト"} )},
+          { TYPE: this.SrcType.DETAIL, SRC: "img/toire/2.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/toire/2.png", DetailType: "IMAGE", Title :""})},
+          { TYPE: this.SrcType.DETAIL, SRC: "img/toire/3.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/toire/3.png", DetailType: "IMAGE", Title :""})},
+          { TYPE: this.SrcType.DETAIL, SRC: "img/toire/4.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/toire/4.png", DetailType: "IMAGE", Title :""})},
+          { TYPE: this.SrcType.DETAIL, SRC: "img/toire/5.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/toire/5.png", DetailType: "IMAGE", Title :""})},
+          { TYPE: this.SrcType.DETAIL, SRC: "img/toire/6.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/toire/6.png", DetailType: "IMAGE", Title :""})},
+
         ),
         ARURL: "",
         COLOR: new Array({
@@ -319,21 +307,7 @@ class dataManager {
       }
     );
 
-    this.colorInfoArray = new Array(
-      { ID: 1, SRC: "img/toire/1.png", NAME: "1" },
-      { ID: 2, SRC: "img/toire/2.png", NAME: "2" },
-      { ID: 3, SRC: "img/toire/3.png", NAME: "3" },
-      { ID: 4, SRC: "img/toire/4.png", NAME: "4" },
-      { ID: 5, SRC: "img/toire/5.png", NAME: "5" },
-      { ID: 6, SRC: "img/toire/6.png", NAME: "6" },
-      { ID: 7, SRC: "img/toire/7.png", NAME: "7" },
-      { ID: 8, SRC: "img/toire/8.png", NAME: "8" },
-      { ID: 9, SRC: "img/toire/9.png", NAME: "9" },
-      { ID: 10, SRC: "img/toire/10.png", NAME: "10" }
-    );
 
-    this.videoInfoArray= new Array(
-      { ID:1, SRC:"https://www.youtube-nocookie.com/embed/U5ltyDw43lg", NAME:"てすと"} );
   }
 
   /**
@@ -342,7 +316,7 @@ class dataManager {
    * @memberof dataManager
    */
   GetNowModelPath() {
-    return this.nowItemInfo.ModeInfo;
+    return this.nowItemInfo.ModelInfo;
 
   }
 
@@ -382,6 +356,9 @@ class dataManager {
   GetSelectItemARUrl() {
     return this.nowItemInfo.ARURL;
   }
+
+
+
   /**
    *現在選択中商材のカラー箇所が複数か確認
    *
@@ -420,7 +397,7 @@ class dataManager {
 
 
   CheckIMGSrcType( check ){
-    return this.SrcType.IMG == check;
+    return this.SrcType.DETAIL == check;
   }
 
   GetVideoInfo(videoID){

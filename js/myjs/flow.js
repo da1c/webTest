@@ -307,15 +307,7 @@ class flow {
     for (let index = 0; index < itemInfo.length; index++) {
       let imgType = "";
 
-      // 画像のサイズ確認
-      if (this.indexWnd.dataMng.CheckDispSize(itemInfo[index].DISP_SIZE)) {
-        // 通常サイズ
-        imgType = "SlickElementImg";
-      } else {
-        // 横長サイズ
-        imgType = "SlickElementWideImg";
-      }
-
+      imgType = "SlickElementImg";
       // タイプの確認
       if (this.indexWnd.dataMng.CheckIMGSrcType(itemInfo[index].TYPE)) {
         // 通常
@@ -426,12 +418,14 @@ class flow {
   }
 
   // 機能の動画を選択
-  ClickVideo(ID) {
-    let info = this.indexWnd.dataMng.GetVideoInfo(ID);
-    this.indexWnd.open(info.SRC);
+  ClickVideo(idx) {
+
+    let itemInfo = this.indexWnd.dataMng.GetNowItemDetailInfo();
+;
+    this.indexWnd.open(itemInfo[idx].LINK_PATH);
 
     // メニューのモーダル表示をフェードＩＮ
-    this.VideoViewFadeIn();
+    //this.VideoViewFadeIn();
   }
 
   SetVideoView(src) {
@@ -693,15 +687,52 @@ class flow {
   
 
 
+  /**
+   *機能詳細画面表示
+   *
+   * @param {*} idx
+   * @memberof flow
+   */
   DispItemDetail(idx){
 
-    // 詳細表示の内容を設定
+    // 詳細表示の内容を設定を取得
     let itemInfo = this.indexWnd.dataMng.GetNowItemDetailInfo();
 
-    this.indexWnd.$(".detailInfoArea").append(itemInfo[idx].DETAIL_VALUE);
-    //this.StartChangeModelViewWipe();
+    // 情報から詳細表示要素作成
+    let detailEle = this.CreateItemDetailElement(itemInfo[idx].DetailInfo);
+
+    this.indexWnd.$(".detailInfoArea").append(detailEle);
+
     this.SlideInDetailArea();
   }
+
+
+  /**
+   *詳細情報から要素作成
+   *
+   * @param {*} itemInfo
+   * @returns
+   * @memberof flow
+   */
+  CreateItemDetailElement(detailInfo){
+    let detailNum = detailInfo.length;
+    let ele = "";
+    for (let detailIdx = 0; detailIdx < detailNum; ++detailIdx) {
+      
+      // 種類確認
+      if( detailInfo[detailIdx].DetailType == "VIDEO" ){
+        // 動画
+        ele += CreateVideoLink( detailInfo[detailIdx].DetailPath, detailInfo[detailIdx].Title);
+      }else{
+        // 画像表示
+        ele += '<img class="detailInfoImage" src="'+ detailInfo[detailIdx].DetailPath +'">';
+      }
+      
+    }
+
+    return ele;
+  }
+
 
   /**
    *モデル表示領域をワイプサイズに変更開始
@@ -830,13 +861,9 @@ class flow {
       let imgType = "";
 
       // 画像のサイズ確認
-      if (this.indexWnd.dataMng.CheckDispSize(itemInfo[index].DISP_SIZE)) {
-        // 通常サイズ
-        imgType = "SlickElementImg";
-      } else {
-        // 横長サイズ
-        imgType = "SlickElementWideImg";
-      }
+      // 通常サイズ
+      imgType = "SlickElementImg";
+
 
       // タイプの確認
       if (this.indexWnd.dataMng.CheckIMGSrcType(itemInfo[index].TYPE)) {
@@ -846,7 +873,7 @@ class flow {
         // 動画リンクの場合
         nowStr += this.CreateItemListVideoElement(
           itemInfo[index].SRC,
-          itemInfo[index].NAME
+          index
         );
       }
     }
@@ -889,12 +916,12 @@ class flow {
     );
   }
 
-  CreateItemListVideoElement(src, videoID ) {
+  CreateItemListVideoElement(src, detailIdx ) {
     return (
       '<div class="itemListElement"><img class="itemListIMG" src="' +
       src +
       '" onclick="window.top.Flow.ClickVideo(' +
-      videoID +
+      detailIdx +
       ')"><img class="MovieIcon" src="./img/movie_icon.png"></div>'
     );
   }

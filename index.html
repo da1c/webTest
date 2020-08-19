@@ -16,12 +16,14 @@
   <script src="./js/common/OrbitControls.js"></script>
 
 
-  <script src="./js/myjs/flow.js?DATE=20200528a"></script>
-  <script src="./js/myjs/dataManager.js?DATE=20200528"></script>
+  <script src="./js/myjs/flow.js?DATE=20200820"></script>
+  <script src="./js/myjs/dataManager.js?DATE=20200820"></script>
   <script src="./js/myjs/modelView.js?DATE=20200528"></script>
   <script src="./js/myjs/selectCSS.js?DATE=20200529"></script>
   <script src="./js/myjs/createHtmlString.js?DATE=20200623"></script>
   <script src="./js/myjs/getURLParam.js?DATE=20200715"></script>
+  <script src="./js/myjs/FileRequest.js?DATE=20200820"></script>
+  <script src="./js/myjs/XMLParser.js?DATE=20200820"></script>
 
 
   <link rel="stylesheet" type="text/css" href="./css/main.css?DATE=20200714" media="screen" />
@@ -227,18 +229,46 @@
     $(function () {
 
       window.scroll(0, 0);
-
       // データマネージャー初期化
       dataMng.Init();
       // 初期商材はkitchenを指定
       dataMng.nowItemID = 0;
-
       // フローにwindowオブジェクトを登録
       Flow.SetIndexWindow(window);
-      Flow.Init();
 
-      // サイズ設定
-      Flow.Resize();
+      // URLパラメータの有無を確認
+      if(window.location.search == ""){
+        // パラメータ無し
+        Flow.Init();
+        // サイズ設定
+        Flow.Resize();
+      }else{
+        // パラメータ有り
+        // URLパラメータ取得
+        let urlParam = GetURLParam(window.location.search);
+        if(urlParam.ref == "test"){
+          urlParam.ref = "./datainfo.xml";
+        }
+        var xmlObj = null;
+        XmlFileRequest(
+        urlParam.ref,
+        (text) => {
+          xmlObj = text;
+          parseData = Parser(xmlObj);
+          dataMng.AddInfo(parseData);
+
+          Flow.Init();
+          // サイズ設定
+          Flow.Resize();
+        },
+        () => {
+          alert("失敗");
+          Flow.Init();
+          // サイズ設定
+          Flow.Resize();
+        }
+    );
+      }
     });
 
     // 画面サイズ更新時の処理を設定

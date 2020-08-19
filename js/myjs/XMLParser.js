@@ -73,7 +73,7 @@ function Parser(_xmlObj) {
     itemInfo.COLOR = colorCategoryInfo;
     // ----------------------------------------------
 
-
+    itemInfo.ID = 100 + itemIdx;
     // リストに追加
     data.push(itemInfo);
 
