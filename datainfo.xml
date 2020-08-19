@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<test1>
+<item>
+<!--商品名-->
+<ItemName>キッチン_テスト</ItemName>
+<!--モデルパス-->
+<ModelPath>model/kitchen.fbx</ModelPath>
+<!--モデル座標-->
+<ModelPos>0.0,0.0,0.0</ModelPos>
+<!--カタログURL-->
+<CatalogUrl></CatalogUrl>
+<!--取扱説明書-->
+<Instruction_URL></Instruction_URL>
+<!--機能一覧-->
+<Detail>
+<!--機能-->
+<Function>
+<ImagePath>img/kitchen/1.png</ImagePath>
+<DispType>Detail</DispType>
+<LinkPath>リンクパス</LinkPath>
+<DetailInfo>
+<DetailID>VIDEO</DetailID>
+<Title>紹介動画</Title>
+<DetailInfoPath>https://www.youtube.com/embed/U5ltyDw43lg</DetailInfoPath>
+</DetailInfo>
+
+<DetailInfo>
+<DetailID>IMAGE</DetailID>
+<Title>画像1</Title>
+<DetailInfoPath>img/kitchen/1.png</DetailInfoPath>
+</DetailInfo>
+
+</Function>
+
+<Function>
+<ImagePath>img/kitchen/1.png</ImagePath>
+<DispType>Link</DispType>
+<LinkPath>https://www.youtube.com/embed/U5ltyDw43lg</LinkPath>
+</Function>
+
+</Detail>
+<!--カラー関連-->
+<ColorList>
+<ColorCategory>
+  <ColorCategoryName>カラー箇所</ColorCategoryName>
+  <ColorInfo><Name>カラー1</Name><ImagePath>img/toire/1.png</ImagePath></ColorInfo>
+  <ColorInfo><Name>カラー2</Name><ImagePath>img/toire/1.png</ImagePath></ColorInfo>
+  <ColorInfo><Name>カラー3</Name><ImagePath>img/toire/1.png</ImagePath></ColorInfo>
+</ColorCategory>
+<ColorCategory>
+  <ColorCategoryName>カラー箇所2</ColorCategoryName>
+  <ColorInfo><Name>カラー12</Name><ImagePath>img/toire/2.png</ImagePath></ColorInfo>
+  <ColorInfo><Name>カラー22</Name><ImagePath>img/toire/2.png</ImagePath></ColorInfo>
+  <ColorInfo><Name>カラー32</Name><ImagePath>img/toire/2.png</ImagePath></ColorInfo>
+</ColorCategory>
+</ColorList>
+
+<!--壁情報 テクスチャ、座標、角度-->
+<WallInfo>
+<Wall>
+<ImagePath>img/kitchen/1.png</ImagePath>
+<Pos>0,0,0</Pos>
+<Rot>0,0,0</Rot>
+</Wall>
+<Wall>
+<ImagePath>img/kitchen/1.png</ImagePath>
+<Pos>1,0,1</Pos>
+<Rot>0,1,0</Rot>
+</Wall>
+</WallInfo>
+<!--床情報 テクスチャ、座標、角度-->
+<FloorInfo>
+<Floor>
+<ImagePath>img/kitchen/2.png</ImagePath>
+<Pos>1,1,1</Pos>
+<Rot>-1.5708, 0, 0</Rot>
+</Floor>
+</FloorInfo>
+
+<!--カメラ情報 座標、角度-->
+<CameraPos>1.0,100.0,100.0</CameraPos>
+<CameraRot>10.0,0.0,0.0</CameraRot>
+<!--ライトの強さ-->
+<DirLightIntensity>1</DirLightIntensity>
+<!--ARURL-->
+<ARURL>ARURL</ARURL>
+
+</item>
+
+</test1>
