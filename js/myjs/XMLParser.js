@@ -92,7 +92,7 @@ function GetXMLText(element, tagName) {
   let result = element.getElementsByTagName(tagName);
 
   if (result) {
-    console.log(tagName + "=" + result[0].textContent);
+    //console.log(tagName + "=" + result[0].textContent);
     return result[0].textContent;
   }
 
