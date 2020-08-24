@@ -80,7 +80,13 @@ class dataManager {
     return "";
   }
 
-
+  
+  /**
+   *情報追加
+   *
+   * @param {*} info
+   * @memberof dataManager
+   */
   AddInfo(info){
 
     // ItemIDの配列作成
@@ -453,6 +459,16 @@ class dataManager {
     // 現状は配列
     let itemID = this.nowItemIDArray[idx];
 
+    let hitflag = false;
+
+    this.findItemInfo( (obj)=> obj.ID == itemID, 
+                  (target) =>{ 
+                    this.nowItemID = target.ID;
+                    this.nowItemInfo = target;
+                    hitflag = true;
+                    return true;
+                  } );
+    /*
     for (let itemIdx = 0; itemIdx < this.itemInfoArray.length; itemIdx++) {
       const element = this.itemInfoArray[itemIdx];
       if( element.ID == itemID ){
@@ -461,8 +477,33 @@ class dataManager {
         return;
       }
     }
+    */
+    if(!hitflag)
+    {
+      console.error("選択した情報なし");
+    }
+  }
 
-    console.error("選択した情報なし");
+
+  /**
+   *
+   *
+   * @param {*} checkFunc 比較用関数
+   * @param {*} resultFunc 対象を扱う関数
+   * @memberof dataManager
+   */
+  findItemInfo(checkFunc, resultFunc){
+    
+    
+    for (let itemIdx = 0; itemIdx < this.itemInfoArray.length; itemIdx++) {
+      if( checkFunc( this.itemInfoArray[itemIdx] ) ){
+        if( resultFunc(this.itemInfoArray[itemIdx]));
+        {
+          return;
+        }
+      }
+    }
+
   }
 
   
