@@ -87,6 +87,12 @@
   border-width: 1px 2px;
 }
 
+.ItemSelectBannerParent{
+  width: 100%;
+  padding: 0%;
+  margin: 0%;
+}
+
 .CloseButton {
   position: absolute;
   width: 40px;

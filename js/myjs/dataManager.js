@@ -117,13 +117,13 @@ class dataManager {
       {
         ID : 1, // ID
         NAME : "スタイル1", // スタイル名
-        ITEM_ID : new Array( 1, 2, 3, 4),
+        ITEM_ID : new Array( 1, 2, 3, 4,1,1),
 
       },
       {
         ID : 2, // ID
         NAME : "スタイル2", // スタイル名
-        ITEM_ID : new Array( 4, 3, 2, 1),
+        ITEM_ID : new Array( 4, 3),
       },
       {
         ID : 3, // ID
@@ -133,7 +133,7 @@ class dataManager {
       {
         ID : 4, // ID
         NAME : "スタイル4", // スタイル名
-        ITEM_ID : new Array( 2, 2, 2, 2),
+        ITEM_ID : new Array( 2,2),
       }
     );
 
@@ -143,7 +143,7 @@ class dataManager {
       {
         ID: 1,
         ModelInfo: new Array( { PATH : "model/kitchen.fbx", POS : new THREE.Vector3( 0, 0, 0)}),
-        ItemName: "キッチン",
+        ItemName: "キッチン２２２",
         DetailIDArray: new Array(
           { TYPE: this.SrcType.DETAIL, SRC: "img/kitchen/1.png", LINK_PATH: "1", DetailInfo:new Array( { DetailPath : "img/kitchen/1.png", DetailType: "IMAGE", Title :""},{ DetailPath : "https://www.youtube.com/embed/U5ltyDw43lg", DetailType: "VIDEO", Title :"ビデオテスト"} )},
           { TYPE: this.SrcType.LINK, SRC: "img/kitchen/2.png", LINK_PATH: "https://www.youtube.com/embed/U5ltyDw43lg", DetailInfo:new Array( { DetailPath : "", DetailType: "VIDEO", Title :""} )}
@@ -527,4 +527,37 @@ class dataManager {
     return this.nowItemInfo.CAMERA_ROT;
   }
 
+  /**
+   *現在選択中のスタイルの商材名一覧取得
+   *
+   * @memberof dataManager
+   */
+  GetSelectStyleItemNameList(){
+
+    let nowStyleItemIDArray = null;
+    
+    // 現在のスタイルのアイテムIDリストの取得
+    this.findStyle( (obj)=> obj.ID == this.nowStyleID, (obj) => nowStyleItemIDArray = obj.ITEM_ID );
+    // 取得確認
+    if( nowStyleItemIDArray == null )
+    {
+      // 取得失敗
+      console.error("スタイル情報取得失敗");
+      return;
+    }
+
+    // アイテムIDから、各アイテム名を取得する
+    let itemNum = nowStyleItemIDArray.length;
+    // アイテム名格納用の配列を用意
+    let itemNameArray = new Array(itemNum);
+
+    // アイテムID分の名を取得
+    for (let itemIdx = 0; itemIdx < itemNum; itemIdx++) {
+      
+      this.findItemInfo((obj)=> obj.ID == nowStyleItemIDArray[itemIdx], (obj) => itemNameArray[itemIdx] = obj.ItemName);
+    }
+
+    return itemNameArray;
+
+  }
 }

@@ -5,6 +5,11 @@ function ModelViewRender() {
   Flow.modelView.Render();
 }
 
+/**
+ *
+ *
+ * @class flow
+ */
 class flow {
   /**
    *Creates an instance of flow.
@@ -26,7 +31,8 @@ class flow {
     this.nowMenuStateID = this.MenuStateID.NONE;
     this.prevMenuStateID = this.MenuStateID.NONE;
     this.menuParent = null;
-    this.scrollParent = null;
+    this.scrollParent = null; 
+    this.itemBannerParent = null;
 
     this.breadCrumbObjArray = null;
     this.breadCrumbNameObjArray = null;
@@ -42,8 +48,8 @@ class flow {
     this.changeItemFunc = this.DispSelectItem;
     // スタイル切り替えフラグ　壁、床の更新に使用
     this.changeStyleFlag = false;
-  }
 
+  }
 
   /**
    *初期化処理
@@ -56,6 +62,9 @@ class flow {
 
     // 機能一覧の親
     this.itemPickUpScrollParent = window.$(".scrollArea");
+
+    // 商材切り替えバナーの親
+    this.itemBannerParent = window.$(".ItemSelectBannerParent");
 
     // パンくずのOBJを取得
     this.breadCrumbObjArray = new Array(
@@ -76,7 +85,12 @@ class flow {
 
     // 3D空間初期化
     this.modelView = new ModelView();
-    this.modelView.Init(this.modelViewWidth, this.modelViewHeight, this.indexWnd.dataMng.GetCameraPos(), this.indexWnd.dataMng.GetCameraRot());
+    this.modelView.Init(
+      this.modelViewWidth,
+      this.modelViewHeight,
+      this.indexWnd.dataMng.GetCameraPos(),
+      this.indexWnd.dataMng.GetCameraRot()
+    );
 
     ModelViewRender();
 
@@ -89,6 +103,9 @@ class flow {
 
     // スタイル選択一覧作成
     this.CreateStyleSelectUI();
+
+    // 商品気r替えバナー初期化(作成も行っている)
+    this.InitItemSelectBanner();
   }
 
   SetIndexWindow(wnd) {
@@ -126,13 +143,10 @@ class flow {
 
   // 商材切り替えボタンクリック
   ClickItemSelectButton() {
-
     //
     this.changeItemFunc();
     this.indexWnd.$(".itemSelectModal").fadeIn();
   }
-
-
 
   /**
    *カラータイプクリック
@@ -207,11 +221,11 @@ class flow {
     this.indexWnd.dataMng.SetSelectItemID(id);
 
     // モデルウィンドウのモデル更新
-    this.modelView.SetModelInfo( this.indexWnd.dataMng.GetNowModelPath());
+    this.modelView.SetModelInfo(this.indexWnd.dataMng.GetNowModelPath());
 
     // 床、壁の切り替え
-    this.modelView.SetWall( window.dataMng.GetNowModelWallInfo() );
-    this.modelView.ChangeFloorTexture( window.dataMng.GetNowModelFloorInfo() );
+    this.modelView.SetWall(window.dataMng.GetNowModelWallInfo());
+    this.modelView.ChangeFloorTexture(window.dataMng.GetNowModelFloorInfo());
 
     // 平行光源の強さ設定
     let intensity = this.indexWnd.dataMng.GetDirLightIntensity();
@@ -242,32 +256,38 @@ class flow {
     window.$(".HeaderItemName").html(itemName);
   }
 
-  ClickStyleSelect(){
-
+  ClickStyleSelect() {
     // スタイル選択のUI表示
     this.DispSelectStyle();
 
     this.changeItemFunc = this.DispSelectStyle;
   }
 
-  SelectStyle(id){
+  SelectStyle(id) {
     // スタイルID切り替え
     window.dataMng.SelectStyleID(id);
 
     // スタイルが切り替わったか確認
     this.changeStyleFlag = window.dataMng.CheckChangeStyle();
 
+    if( this.changeStyleFlag )
+    {
+      // スタイルが切り替わったので、商品切り替えバナーを更新する
+      this.itemBannerParent.empty();
+      this.InitItemSelectBanner();
+    }
+
     this.DispSelectItem();
 
     this.changeItemFunc = this.DispSelectItem;
   }
 
-  DispSelectStyle(){
+  DispSelectStyle() {
     window.$(".itemSelectList").hide();
     window.$(".StyleSelectList").show();
   }
 
-  DispSelectItem(){
+  DispSelectItem() {
     window.$(".StyleSelectList").hide();
     window.$(".itemSelectList").show();
   }
@@ -277,12 +297,12 @@ class flow {
 
     // Index.htmlの各要素のサイズ設定
     this.indexWnd.$("#Canvas3D").css("height", this.modelViewHeight + "px");
-    this.indexWnd.$("#MenuArea").css("height", screenHegiht * 0.39 +"px");
-    this.indexWnd.$(".ItemHeader").css("height", screenHegiht * 0.14 +"px");
+    this.indexWnd.$("#MenuArea").css("height", screenHegiht * 0.39 + "px");
+    this.indexWnd.$(".ItemHeader").css("height", screenHegiht * 0.14 + "px");
     this.indexWnd.$("#Header").css("height", screenHegiht * 0.06 + "px");
 
     // メニュー部分のサイズを保存
-    this.menuAreaHeight = screenHegiht * 0.30 ;
+    this.menuAreaHeight = screenHegiht * 0.3;
   }
 
   GetScreenHarfSize() {
@@ -302,7 +322,6 @@ class flow {
     let itemInfo = this.indexWnd.dataMng.GetNowItemDetailInfo();
     let element_str = "";
 
-
     let cssText = this.GetScrollElementHeightText();
     for (let index = 0; index < itemInfo.length; index++) {
       let imgType = "";
@@ -311,7 +330,12 @@ class flow {
       // タイプの確認
       if (this.indexWnd.dataMng.CheckIMGSrcType(itemInfo[index].TYPE)) {
         // 通常
-        element_str += this.CreateIMGElement(itemInfo[index].SRC, imgType, cssText, index);
+        element_str += this.CreateIMGElement(
+          itemInfo[index].SRC,
+          imgType,
+          cssText,
+          index
+        );
       } else {
         // 動画リンクの場合
         element_str += this.CreateVideoElement(
@@ -330,17 +354,23 @@ class flow {
 
   CreateIMGElement(src, imgType, cssText, idx) {
     return (
-      '<li class="SlickElement"' + cssText +'><img class="' +
+      '<li class="SlickElement"' +
+      cssText +
+      '><img class="' +
       imgType +
       ' " src="' +
       src +
-      '"onclick="Flow.DispItemDetail(' + idx + ')"></li>'
+      '"onclick="Flow.DispItemDetail(' +
+      idx +
+      ')"></li>'
     );
   }
 
-  CreateVideoElement(src, imgType, cssText, videoID ) {
+  CreateVideoElement(src, imgType, cssText, videoID) {
     return (
-      '<li class="SlickElement"' + cssText +'><img class="' +
+      '<li class="SlickElement"' +
+      cssText +
+      '><img class="' +
       imgType +
       '" src="' +
       src +
@@ -351,13 +381,17 @@ class flow {
   }
 
   // スクロール要素作成
-  CreateScrollElement( element_str ){
-    return '<div class="HolizonScrollParent"><div class="ScrollNav"><ul >' + element_str + '</ul></div></div>';
+  CreateScrollElement(element_str) {
+    return (
+      '<div class="HolizonScrollParent"><div class="ScrollNav"><ul >' +
+      element_str +
+      "</ul></div></div>"
+    );
   }
 
-  GetScrollElementHeightText(){
+  GetScrollElementHeightText() {
     let elementHegiht = this.indexWnd.$(".MenuArea").height();
-    return 'style="height: ' + elementHegiht +'px"';
+    return 'style="height: ' + elementHegiht + 'px"';
   }
 
   /**
@@ -378,7 +412,9 @@ class flow {
     for (let index = 0; index < colorInfo.COLOR_INFO_ARRAY.length; ++index) {
       const element = colorInfo.COLOR_INFO_ARRAY[index];
       element_str +=
-        '<li class="SlickElement"'+ cssText +'><div class="ColorName NoSelectText">' +
+        '<li class="SlickElement"' +
+        cssText +
+        '><div class="ColorName NoSelectText">' +
         element.NAME +
         '</div><img class="SlickElementColorImg" src="' +
         element.SRC +
@@ -419,9 +455,7 @@ class flow {
 
   // 機能の動画を選択
   ClickVideo(idx) {
-
     let itemInfo = this.indexWnd.dataMng.GetNowItemDetailInfo();
-;
     this.indexWnd.open(itemInfo[idx].LINK_PATH);
 
     // メニューのモーダル表示をフェードＩＮ
@@ -504,7 +538,7 @@ class flow {
     this.menuParent.hide();
   }
 
-  ResetScrollElement(){
+  ResetScrollElement() {
     this.menuParent.empty();
   }
 
@@ -538,10 +572,7 @@ class flow {
       "onclick",
       "window.Flow.ChangeState( window.Flow.MenuStateID.CATEGORY)"
     );
-    this.breadCrumbObjArray[1].attr(
-      "onclick",
-      ""
-    );
+    this.breadCrumbObjArray[1].attr("onclick", "");
   }
 
   // アイテム選択ステート
@@ -565,10 +596,7 @@ class flow {
       "onclick",
       "window.Flow.ChangeState( window.Flow.MenuStateID.CATEGORY)"
     );
-    this.breadCrumbObjArray[1].attr(
-      "onclick",
-      ""
-    );
+    this.breadCrumbObjArray[1].attr("onclick", "");
   }
 
   EndColorCategoryState() {
@@ -663,13 +691,12 @@ class flow {
     }
   }
 
-   
   /**
    *スタイル選択UI作成
    *初回初期化時に行う
    * @memberof flow
    */
-  CreateStyleSelectUI(){
+  CreateStyleSelectUI() {
     // これ初回で行うだけで十分
     let styleInfoArray = window.dataMng.GetStyleInfoArray();
 
@@ -678,14 +705,17 @@ class flow {
 
     for (let styleIdx = 0; styleIdx < styleInfoArray.length; styleIdx++) {
       let element = styleInfoArray[styleIdx];
-      addElement += '<div class="itemselectbanner" onclick="Flow.SelectStyle(' + element.ID +')"><div class="StyleNameArea ContentsParent"><div class="ItemName ContentsLeftChild NoSelectText StyleName">'+ element.NAME +'</div></div></div>';
+      addElement +=
+        '<div class="itemselectbanner" onclick="Flow.SelectStyle(' +
+        element.ID +
+        ')"><div class="StyleNameArea ContentsParent"><div class="ItemName ContentsLeftChild NoSelectText StyleName">' +
+        element.NAME +
+        "</div></div></div>";
     }
 
     // 要素追加
     dstElement.append(addElement);
   }
-  
-
 
   /**
    *機能詳細画面表示
@@ -693,8 +723,7 @@ class flow {
    * @param {*} idx
    * @memberof flow
    */
-  DispItemDetail(idx){
-
+  DispItemDetail(idx) {
     // 詳細表示の内容を設定を取得
     let itemInfo = this.indexWnd.dataMng.GetNowItemDetailInfo();
 
@@ -706,7 +735,6 @@ class flow {
     this.SlideInDetailArea();
   }
 
-
   /**
    *詳細情報から要素作成
    *
@@ -714,103 +742,111 @@ class flow {
    * @returns
    * @memberof flow
    */
-  CreateItemDetailElement(detailInfo){
+  CreateItemDetailElement(detailInfo) {
     let detailNum = detailInfo.length;
     let ele = "";
     for (let detailIdx = 0; detailIdx < detailNum; ++detailIdx) {
-      
       // 種類確認
-      if( detailInfo[detailIdx].DetailType == "VIDEO" ){
+      if (detailInfo[detailIdx].DetailType == "VIDEO") {
         // 動画
-        ele += CreateVideoLink( detailInfo[detailIdx].DetailPath, detailInfo[detailIdx].Title);
-      }else{
+        ele += CreateVideoLink(
+          detailInfo[detailIdx].DetailPath,
+          detailInfo[detailIdx].Title
+        );
+      } else {
         // 画像表示
-        ele += '<img class="detailInfoImage" src="'+ detailInfo[detailIdx].DetailPath +'">';
+        ele +=
+          '<img class="detailInfoImage" src="' +
+          detailInfo[detailIdx].DetailPath +
+          '">';
       }
-      
     }
 
     return ele;
   }
-
 
   /**
    *モデル表示領域をワイプサイズに変更開始
    *
    * @memberof flow
    */
-  StartChangeModelViewWipe(){
+  StartChangeModelViewWipe() {
     let width = window.innerWidth;
     let height = window.innerHeight;
     $(".ModelViewArea").animate(
       {
         top: height * 0.8 + "px",
-        left: width * 0.65 + "px"
-      }
-      , 500, "swing");
+        left: width * 0.65 + "px",
+      },
+      500,
+      "swing"
+    );
     // サイズ修正
     $(".arButton").css("zIndex", "0");
-    $(".arButton").animate({ zIndex:1}, 
-    {
-      duration:500,
-      step:function(now){
-        Flow.ChangeWipeSize(now);
-      },
-      complete:function(){
-        $(".arButton").css("zIndex", "0");
+    $(".arButton").animate(
+      { zIndex: 1 },
+      {
+        duration: 500,
+        step: function (now) {
+          Flow.ChangeWipeSize(now);
+        },
+        complete: function () {
+          $(".arButton").css("zIndex", "0");
+        },
       }
-    });
+    );
 
-
-    
     $(".ModelViewArea").css("zIndex", "2");
     $(".arButton").hide();
   }
 
-  SlideInDetailArea(){
+  SlideInDetailArea() {
     $(".detailArea").show();
-    $(".detailArea").animate({top:"6%"}, 500, "swing");
+    $(".detailArea").animate({ top: "6%" }, 500, "swing");
   }
 
-
-   StartChangeModelViewNormal(){
+  StartChangeModelViewNormal() {
     let width = window.innerWidth;
     let height = window.innerHeight;
     $(".ModelViewArea").animate(
       {
         top: height * 0.06 + "px",
-        left: "0px"
-      }
-      , 500, "swing");
+        left: "0px",
+      },
+      500,
+      "swing"
+    );
     // サイズ修正
     $(".arButton").css("zIndex", "0");
-    $(".arButton").animate({ zIndex:1}, 
-    {
-      duration:500,
-      step:function(now){
-        Flow.ChangeNormalSize(now);
-      },
-      complete:function(){
-        $(".arButton").css("zIndex", "0");
-        $(".ModelViewArea").css("zIndex", "0");
+    $(".arButton").animate(
+      { zIndex: 1 },
+      {
+        duration: 500,
+        step: function (now) {
+          Flow.ChangeNormalSize(now);
+        },
+        complete: function () {
+          $(".arButton").css("zIndex", "0");
+          $(".ModelViewArea").css("zIndex", "0");
+        },
       }
-    });
-    
+    );
+
     $(".arButton").show();
-   }
+  }
 
-   SlideOutDetailArea(){
-
-    $(".detailArea").animate({top:"100%"}, 
-    {
-      duration : 500,
-      complete : function(){
-        $(".detailArea").hide();
-        $(".detailInfoArea").empty();
+  SlideOutDetailArea() {
+    $(".detailArea").animate(
+      { top: "100%" },
+      {
+        duration: 500,
+        complete: function () {
+          $(".detailArea").hide();
+          $(".detailInfoArea").empty();
+        },
       }
-
-    } );
-   }
+    );
+  }
 
   /**
    *ワイプサイズへ変更処理
@@ -818,10 +854,10 @@ class flow {
    * @param {*} now
    * @memberof flow
    */
-  ChangeWipeSize(now){
-    let nowWidth = this.modelViewWidth - ( this.modelViewDiffWidth * now );
-    let nowHeight = this.modelViewHeight - ( this.modelViewDiffHeight * now );
-    this.ChangeModelViewSize( nowWidth, nowHeight );
+  ChangeWipeSize(now) {
+    let nowWidth = this.modelViewWidth - this.modelViewDiffWidth * now;
+    let nowHeight = this.modelViewHeight - this.modelViewDiffHeight * now;
+    this.ChangeModelViewSize(nowWidth, nowHeight);
   }
   /**
    *ノーマルへ変更処理
@@ -829,10 +865,10 @@ class flow {
    * @param {*} now
    * @memberof flow
    */
-  ChangeNormalSize(now){
-    let nowWidth = this.modelViewWipeWidth + ( this.modelViewDiffWidth * now );
-    let nowHeight = this.modelViewWipeHeight + ( this.modelViewDiffHeight * now );
-    this.ChangeModelViewSize( nowWidth, nowHeight );
+  ChangeNormalSize(now) {
+    let nowWidth = this.modelViewWipeWidth + this.modelViewDiffWidth * now;
+    let nowHeight = this.modelViewWipeHeight + this.modelViewDiffHeight * now;
+    this.ChangeModelViewSize(nowWidth, nowHeight);
   }
 
   /**
@@ -842,15 +878,12 @@ class flow {
    * @param {*} heigth
    * @memberof flow
    */
-  ChangeModelViewSize( width, heigth ){
+  ChangeModelViewSize(width, heigth) {
     let area3D = this.indexWnd.$(".Canvas3D");
-    area3D.css( { width: width+"px",
-                  height : heigth + "px" } );
+    area3D.css({ width: width + "px", height: heigth + "px" });
   }
 
-
-  test_InitItemPickUp(){
-
+  test_InitItemPickUp() {
     // 機能一覧取得
     let itemInfo = this.indexWnd.dataMng.GetNowItemDetailInfo();
 
@@ -864,17 +897,13 @@ class flow {
       // 通常サイズ
       imgType = "SlickElementImg";
 
-
       // タイプの確認
       if (this.indexWnd.dataMng.CheckIMGSrcType(itemInfo[index].TYPE)) {
         // 通常
         nowStr += this.CreateItemListIMGElement(itemInfo[index].SRC, index);
       } else {
         // 動画リンクの場合
-        nowStr += this.CreateItemListVideoElement(
-          itemInfo[index].SRC,
-          index
-        );
+        nowStr += this.CreateItemListVideoElement(itemInfo[index].SRC, index);
       }
     }
 
@@ -883,40 +912,42 @@ class flow {
 
     // test部分のスライドIN
     this.test_SlideInItemPickUpArea();
-
   }
 
-  test_EndItemPickUp(){
-
+  test_EndItemPickUp() {
     // スライドアウト
     this.test_SlideOutItemPickUpArea();
   }
 
-  test_SlideInItemPickUpArea(){
+  test_SlideInItemPickUpArea() {
     $(".ItemPickUpArea").show();
-    $(".ItemPickUpArea").animate({top:"6%"}, 500, "swing");
+    $(".ItemPickUpArea").animate({ top: "6%" }, 500, "swing");
   }
 
-  test_SlideOutItemPickUpArea(){
-    $(".ItemPickUpArea").animate({top:"100%"}, 
-    {
-      duration : 500,
-      complete : function(){
-        // 注目、その他の配下要素削除
-        $(".scrollArea").empty();
-        $(".ItemPickUpArea").hide();
+  test_SlideOutItemPickUpArea() {
+    $(".ItemPickUpArea").animate(
+      { top: "100%" },
+      {
+        duration: 500,
+        complete: function () {
+          // 注目、その他の配下要素削除
+          $(".scrollArea").empty();
+          $(".ItemPickUpArea").hide();
+        },
       }
-    } );
+    );
   }
   CreateItemListIMGElement(src, idx) {
     return (
       '<div class="itemListElement"><img class="itemListIMG" src="' +
       src +
-      '"onclick="Flow.DispItemDetail(' + idx + ')"></div>'
+      '"onclick="Flow.DispItemDetail(' +
+      idx +
+      ')"></div>'
     );
   }
 
-  CreateItemListVideoElement(src, detailIdx ) {
+  CreateItemListVideoElement(src, detailIdx) {
     return (
       '<div class="itemListElement"><img class="itemListIMG" src="' +
       src +
@@ -926,11 +957,40 @@ class flow {
     );
   }
 
-  test(){
+  /**
+   * 商材切り替えバナーの作成
+   *
+   * @memberof flow
+   */
+  InitItemSelectBanner() {
+    // 不要なもの削除
 
-    let area = $(".ModelViewArea");
-    console.log( area.css('top') );
+    // 現在選択中のスタイル情報取得
+    // 必要なものは、各商材の名称と個数
+    let itemNameArray = this.indexWnd.dataMng.GetSelectStyleItemNameList();
 
+    // 
+    let addElementStr = "";
+    // アイテム名数取得
+    let itemNameNum = itemNameArray.length;
+
+    // アイテム名を元に、アイテムバナー要素作成
+    for (let itemIdx = 0; itemIdx < itemNameNum; itemIdx++) {
+      addElementStr += CreateItemBanner( itemIdx, itemNameArray[itemIdx] );
+    }
+
+    // 要素追加
+    this.itemBannerParent.append(addElementStr);
+
+    // アイテムバナー作成
+    function CreateItemBanner(id, itemName) {
+      return (
+        '<div class="itemselectbanner" onclick="Flow.ClickItemButton(' +
+        id +
+        ')"><div class="ItemNameArea ContentsParent"><div class="ItemName ContentsLeftChild NoSelectText">' +
+        itemName +
+        "</div></div></div>"
+      );
+    }
   }
-
 }
