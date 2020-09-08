@@ -57,3 +57,29 @@
     transform: translate(-50%, -50%);
     
 }
+
+.DetailHeader{
+    width: 100%;
+    background-color:#f9f6f4;
+}
+
+
+.DetailBackButton{
+    
+    width: auto;
+    padding: 3px;
+}
+
+.DetailBackButton div{
+    display: inline;
+    list-style: none;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.DetailBackButton::before{
+    content: '>';
+    padding: 0 0.2em;
+    color: #555;
+    text-decoration: none;
+}
