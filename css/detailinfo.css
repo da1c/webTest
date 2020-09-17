@@ -83,3 +83,13 @@
     color: #555;
     text-decoration: none;
 }
+
+
+.DetailLinkButton{
+    width: 30%;
+}
+
+.DetailLinkButtonText{
+    padding: 0 0.2em;
+}
+

@@ -238,7 +238,7 @@ class dataManager {
         ItemName: "化粧台",
         DetailIDArray: new Array(
           { TYPE: this.SrcType.DETAIL, SRC: "img/senmen/1.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/senmen/1.png", DetailType: "IMAGE", Title :""},{ DetailPath : "https://www.youtube.com/embed/U5ltyDw43lg", DetailType: "VIDEO", Title :"ビデオテスト"} )},
-          { TYPE: this.SrcType.DETAIL, SRC: "img/senmen/2.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/senmen/2.png", DetailType: "IMAGE", Title :""})},
+          { TYPE: this.SrcType.DETAIL, SRC: "img/senmen/2.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/senmen/2.png", DetailType: "IMAGE", Title :""},{ DetailPath : "https://www.youtube.com/embed/U5ltyDw43lg", DetailType : "LINK", Title : "動画を見る"})},
           { TYPE: this.SrcType.DETAIL, SRC: "img/senmen/3.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/senmen/3.png", DetailType: "IMAGE", Title :""})},
           { TYPE: this.SrcType.DETAIL, SRC: "img/senmen/4.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/senmen/4.png", DetailType: "IMAGE", Title :""})},
           { TYPE: this.SrcType.DETAIL, SRC: "img/senmen/5.png", LINK_PATH: "", DetailInfo:new Array( { DetailPath : "img/senmen/5.png", DetailType: "IMAGE", Title :""})},
@@ -361,6 +361,10 @@ class dataManager {
 
   GetSelectItemARUrl() {
     return this.nowItemInfo.ARURL;
+  }
+
+  SetSelectDetailID(selectID){
+    this.selectDetailID = selectID;
   }
 
 

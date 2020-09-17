@@ -732,6 +732,9 @@ class flow {
 
     this.indexWnd.$(".detailInfoArea").append(detailEle);
 
+    // 選択した機能IDをDataManagerに登録
+    this.indexWnd.dataMng.SetSelectDetailID(idx);
+
     this.SlideInDetailArea();
   }
 
@@ -753,12 +756,17 @@ class flow {
           detailInfo[detailIdx].DetailPath,
           detailInfo[detailIdx].Title
         );
-      } else {
+      }else if( detailInfo[detailIdx].DetailType == "IMAGE" ) {
         // 画像表示
         ele +=
           '<img class="detailInfoImage" src="' +
           detailInfo[detailIdx].DetailPath +
           '">';
+      }else{
+        // リンクボタンの表示
+        ele +='<div class="DetailLinkButton" onclick="Flow.ClickDetailLinkButton(' +detailIdx +')"><a class="DetailLinkButtonText"> '+
+        detailInfo[detailIdx].Title +
+        '</a></div>';
       }
     }
 
@@ -993,4 +1001,23 @@ class flow {
       );
     }
   }
+
+
+
+  /**
+   *機能詳細のリンクボタンを押下時の処理
+   *
+   * @memberof flow
+   */
+  ClickDetailLinkButton(index){
+
+    // 選択した小組の詳細情報のインデックスを使う
+    // リンクのアドレスを取得
+    let itemInfo = dataMng.GetSelectItemDetailInfo();
+    let linkAdress = itemInfo.DetailInfo[index].DetailPath;
+
+    // 別タブでオープン
+    this.indexWnd.open(linkAdress);
+  }
+
 }
